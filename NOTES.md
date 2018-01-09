@@ -23,3 +23,26 @@ Rails Project NOTES Virtual Dealership Manager
 11. Good validations and descriptive messages when validation fails so user knows what to fix. Use flash[:notice] to implement this in the views. this will highlight the field that needs to be fixed or that failed validation.
 
 12. Nexted routes. Namespace perhaps render different views for managers when editing inventory.
+
+Models
+Employee:
+    #=> belongs_to :employer, :class_name => "Dealership"
+    belongs_to :dealership
+    delegate :vehicles, :to => :dealership
+
+Dealership:
+    has_many :employees
+    has_many :dealership_vehicles
+    has_many :vehicles, through: :dealership_vehicles
+
+Vehicle:
+    has_many :dealership_vehicles
+    has_many :dealerships, through: :dealership_vehicles
+
+DealershipVehicle:
+    belongs_to :dealership
+    belongs_to :vehicle
+
+
+    
+
