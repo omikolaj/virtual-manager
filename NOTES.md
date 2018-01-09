@@ -1,6 +1,6 @@
 Rails Project NOTES Virtual Dealership Manager
 
-1. Research how to generate scaffolding for Rails App, (Not rails g scaffold). Rails skeleton app. 
+1. Research how to generate scaffolding for Rails App, (Not rails g scaffold). Rails skeleton app. [X]
 
 2. Implement Omniauth github strategy (gem "omniauth" and gem "omniauth-github")
 
