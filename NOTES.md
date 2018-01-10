@@ -30,18 +30,42 @@ Employee:
     belongs_to :dealership
     delegate :vehicles, :to => :dealership
 
+    migrations:
+        first_name;
+        last_name;
+        dealership_id;
+        manager;
+
+
 Dealership:
     has_many :employees
     has_many :dealership_vehicles
     has_many :vehicles, through: :dealership_vehicles
 
+    migrations:
+        name:
+        city:
+
+
 Vehicle:
     has_many :dealership_vehicles
     has_many :dealerships, through: :dealership_vehicles
 
+    migrations:
+        make:
+        model;
+        year;
+
 DealershipVehicle:
     belongs_to :dealership
     belongs_to :vehicle
+
+    migrations:
+        dealership_id
+        vehicle_id
+        lot_ready
+        in_repair
+        
 
 
     
