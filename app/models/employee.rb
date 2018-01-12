@@ -3,7 +3,8 @@ class Employee < ApplicationRecord
     belongs_to :dealership
     delegate :vehicles, :to => :dealership
     has_secure_password
-    validates :first_name, :last_name, :username, presence: true
+    validates :first_name, :last_name, :username, :dealership_id, presence: true
     validates :username, uniqueness: true
     
+
 end

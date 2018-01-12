@@ -1,0 +1,17 @@
+<div class"row">
+     <div class="col-md-6 col-md-offset-3">
+        <%= form_for(:sessions, url: login_path) do |f| %>
+
+        <%= f.label :username %>
+        <%= f.text_field :username, class: "form-control" %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control" %>
+
+        <%= f.submit "Log in", class: "btn btn-primary" %>
+    <%end%>
+
+    <p>New to the site? <%= link_to "Start Now!", signup_path %></p>
+
+    </div>
+</div>

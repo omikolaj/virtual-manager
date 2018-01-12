@@ -33,9 +33,14 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 # Use PostgresSQL as database for Active Record
+
 gem 'pg'
-gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'font-awesome-sass', '~> 4.4.0'
+
+gem 'bootstrap-sass', '~> 3.3.7'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -43,6 +48,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'pry'
 end
 
 group :development do
