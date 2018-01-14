@@ -1,0 +1,11 @@
+<%= form_for(@vehicle) do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+<%= f.label :model %><br>
+<%= f.text_field :model %><br>
+<%= f.label :make %><br>
+<%= f.text_field :make %><br>
+<%= f.label :year %><br>
+<%= f.text_field :year %><br>
+<%= f.%><br>
+<%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

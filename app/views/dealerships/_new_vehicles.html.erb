@@ -1,0 +1,27 @@
+<%= f.fields_for :vehicles do |vehicle_builder|%><br>
+<%= vehicle_builder.label :make %><br>
+<%= vehicle_builder.text_field :make, list: "makes"%><br>
+<datalist id="makes">
+<% Vehicle.all.group_by(&:make).map{|k, v| v.first}.each do |vehicle|%>
+<option value="<%=vehicle.make%>">
+<%end%>
+</datalist>
+
+<%= vehicle_builder.label :model %><br>
+<%= vehicle_builder.text_field :model, list: "models" %><br>
+<datalist id="models">
+<% Vehicle.all.group_by(&:model).map{|k, v| v.first}.each do |vehicle|%>
+<option value="<%=vehicle.model%>">
+<%end%>
+</datalist>
+
+<%= vehicle_builder.label :year %><br>
+<%= vehicle_builder.text_field :year, list: "years" %><br>
+<datalist id="years">
+<% Vehicle.all.group_by(&:year).map{|k, v| v.first}.each do |vehicle|%>
+<option value="<%=vehicle.year%>">
+<%end%>
+</datalist>
+
+<%end%>
+

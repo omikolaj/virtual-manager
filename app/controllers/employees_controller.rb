@@ -2,8 +2,8 @@ class EmployeesController < ApplicationController
     before_action :require_login, :except => [:new, :create]
     
     def index
-        @employee = Employee.find_by(:id => current_user.id)
-        @employees = @employee.dealership.employees
+        @employees = Employee.find_by(:id => current_user.id).dealership.employees
+        
     end
 
     def show

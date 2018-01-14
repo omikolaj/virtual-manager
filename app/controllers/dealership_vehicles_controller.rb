@@ -1,2 +1,3 @@
 class DealershipVehiclesController < ApplicationController
+    
 end

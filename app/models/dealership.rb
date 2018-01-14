@@ -4,4 +4,11 @@ class Dealership < ApplicationRecord
     has_many :employees
     validates :name, :city, presence: true
     validates :name, uniqueness: true
+
+    def vehicles_attributes=(vehicles_attributes)
+        vehicles_attributes.each do |i, vehicle|
+            self.vehicles.build(vehicle)
+        end
+    end
+
 end
