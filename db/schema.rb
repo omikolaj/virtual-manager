@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180113132124) do
+ActiveRecord::Schema.define(version: 20180110115235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,8 +18,9 @@ ActiveRecord::Schema.define(version: 20180113132124) do
   create_table "dealership_vehicles", force: :cascade do |t|
     t.integer "dealership_id"
     t.integer "vehicle_id"
-    t.integer "lot_ready"
-    t.integer "in_repair"
+    t.boolean "is_lot_ready", default: true
+    t.string "buyer"
+    t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "permission"
@@ -33,12 +34,13 @@ ActiveRecord::Schema.define(version: 20180113132124) do
   end
 
   create_table "employees", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
+    t.string "name"
     t.integer "dealership_id"
+    t.boolean "omniauth", default: false
+    t.integer "uid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "manager"
+    t.boolean "manager", default: false
     t.string "password_digest"
     t.string "email"
   end
@@ -49,7 +51,6 @@ ActiveRecord::Schema.define(version: 20180113132124) do
     t.integer "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_lot_ready", default: true
   end
 
 end

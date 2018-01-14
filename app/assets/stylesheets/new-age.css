@@ -309,3 +309,5 @@ footer {
 
 .field_with_errors input{
   border: 5px solid blue;}
+.field_with_errors select{
+  border: 5px solid blue;}

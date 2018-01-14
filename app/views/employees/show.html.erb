@@ -1,4 +1,4 @@
-<h1>Hi <%=current_user.first_name%></h1><br>
+<h1>Hi <%=current_user.name%></h1><br>
 <h1>Hi <%=current_user.email%></h1><br>
 
 <%= link_to "Edit Profile", edit_employee_path(current_user.id), class: "btn btn-primary" %>

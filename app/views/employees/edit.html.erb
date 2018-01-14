@@ -1,7 +1,2 @@
-<% if @employee.new_with_omni?(@employee.id)%>
-<% provide(:button_text, "Complete")%>
-<h3>Please Complete the form to successfully register!</h3>
-<% else %>
 <% provide(:button_text, "Update Profile")%>
-<%end%>
  <%= render 'employees/form' %>

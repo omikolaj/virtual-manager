@@ -1,9 +1,6 @@
 class EmployeesController < ApplicationController
-
-    def omniauth
-        @employee = Employee.find_existing_or_new_by_omniauth(current_user.id)
-    end
-
+    before_action :require_login, :except => [:new, :create]
+    
     def index
         @employee = Employee.find_by(:id => current_user.id)
         @employees = @employee.dealership.employees
@@ -11,11 +8,7 @@ class EmployeesController < ApplicationController
 
     def show
         @employee = Employee.find_by(:id => params[:id])
-        if @employee.new_with_omni?(params[:id])
-            redirect_to edit_employee_path(@employee)
-        else
-            render :show
-        end
+        render :show
     end
 
     def new
@@ -26,20 +19,18 @@ class EmployeesController < ApplicationController
         @employee = Employee.new(employee_params)
         if @employee.save
             session[:user_id] = @employee.id
-            
             redirect_to @employee
         else
-            render :new
+            render :'new'
         end
     end
 
     def edit
-        @employee = Employee.find_existing_or_new_by_omniauth(params[:id])
-        #@employee = Employee.find_by(:id => params[:id])
+        @employee = Employee.find_by(:id => params[:id])
     end
 
     def update
-        @employee = Employee.find_existing_or_new_by_omniauth(params[:id])
+        @employee = Employee.find_by(:id => params[:id])
         if @employee.update(employee_params)
             redirect_to @employee
             flash[:success] = "Profile Updated"
@@ -54,6 +45,11 @@ class EmployeesController < ApplicationController
 
     private 
     def employee_params
-        params.require(:employee).permit(:first_name, :last_name, :email, :password, :manager, :dealership_id)
+        params.require(:employee).permit(:name, :email, :password, :manager, :dealership_id)
     end
+
+    def require_login
+        redirect_to root_path unless logged_in?
+    end
+
 end

@@ -2,7 +2,7 @@ class VehiclesController < ApplicationController
 
     def index
         @dealership = Dealership.find_by(:id => params[:dealership_id])
-        @vehicles = Vehicle.all
+        @vehicles = @dealership.vehicles
     end
 
     def show

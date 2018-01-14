@@ -14,7 +14,6 @@ class SessionsController < ApplicationController
             end
         else #Normal Login
             @employee = Employee.find_by(:email => params[:sessions][:email].downcase)
-            binding.pry
             if @employee && @employee.authenticate(params[:sessions][:password])
                 log_in @employee
                 redirect_to @employee

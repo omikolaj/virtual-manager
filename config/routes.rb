@@ -14,7 +14,5 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   
   get '/auth/github/callback', to: 'sessions#create'
-  get '/omniauth', to: 'employees#omniauth'
-  post '/omniauth/:id', to: 'employees#edit'
   
 end
