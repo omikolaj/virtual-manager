@@ -11,3 +11,5 @@ Dealership.create(name: "Grandis", city: "Henesys")
 Dealership.create(name: "Victoria", city: "Kerning City")
 Dealership.create(name: "Maple", city: "Tree Hill")
 Dealership.create(name: "Ossyria", city: "Southperry")
+
+Vehicle.create(make: "BMW", model: "M3", year: 2010)

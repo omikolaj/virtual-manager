@@ -1,0 +1,6 @@
+<h1>Add New Dealership</h1>
+<%= link_to "Add New Dealership", new_dealership_path %>
+<%= @dealerships.map do |dealership|%>
+<h1><%= dealership.name%></h1><br>
+<%= link_to "Visit This Dealership", dealership_path(dealership.id) %>
+<%end%>

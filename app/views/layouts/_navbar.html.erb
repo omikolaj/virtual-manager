@@ -11,7 +11,7 @@
             </li>
           <% if current_user.present? %>
             <li class="nav-item">
-                <%= link_to "Edit Profile", edit_employee_path(current_user.id), class: "nav-link js-scroll-trigger" %>
+                <%= link_to "Profile", employee_path(current_user.id), class: "nav-link js-scroll-trigger" %>
             </li>
             <li class="nav-item">
               <%= link_to "Log Out", logout_path, method: 'DELETE', class: "nav-link js-scroll-trigger" %>

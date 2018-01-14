@@ -1,0 +1,7 @@
+<h1><%=@dealership.name%></h1><br>
+<h1><%=@dealership.city%></h1><br>
+<h1><%=@dealership.vehicles.size%></h1><br>
+<h1><%=@dealership.employees.size%></h1><br>
+
+<%= link_to "View Car Lot", dealership_vehicles_path(@dealership.id) %><br>
+<%= link_to "Edit Dealership", edit_dealership_path(@dealership.id) %>
