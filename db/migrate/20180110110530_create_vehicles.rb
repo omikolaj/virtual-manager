@@ -4,6 +4,7 @@ class CreateVehicles < ActiveRecord::Migration[5.1]
       t.string :make
       t.string :model
       t.integer :year
+      t.integer :dealership_vehicle_id
 
       t.timestamps
     end

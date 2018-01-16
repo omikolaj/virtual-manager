@@ -1,11 +1,31 @@
 <%= form_for(@vehicle) do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
+
 <%= f.label :model %><br>
-<%= f.text_field :model %><br>
+<%= f.text_field :model, list: "models" %><br>
+<datalist id="models">
+<% Vehicle.all.group_by(&:make).map{|k, v| v.first}.each do |vehicle|%>
+<option value="<%=vehicle.make%>">
+<%end%>
+</datalist>
+
 <%= f.label :make %><br>
-<%= f.text_field :make %><br>
+<%= f.text_field :make, list: "makes" %><br>
+<datalist id="makes">
+<% Vehicle.all.group_by(&:make).map{|k, v| v.first}.each do |vehicle|%>
+<option value="<%=vehicle.make%>">
+<%end%>
+</datalist>
+
 <%= f.label :year %><br>
-<%= f.text_field :year %><br>
-<%= f.%><br>
+<%= f.text_field :year, list: "years" %><br>
+<datalist id="years">
+<% Vehicle.all.group_by(&:year).map{|k, v| v.first}.each do |vehicle|%>
+<option value="<%=vehicle.year%>">
+<%end%>
+</datalist>
+
+<%= render 'vehicles/dealershp_vehicles', f: f %>
+
 <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>

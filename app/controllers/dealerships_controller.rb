@@ -20,7 +20,7 @@ class DealershipsController < ApplicationController
             redirect_to @dealership
             flash[:success] = "Dealership Created!"
         else
-            render :'new'
+            render :new
         end
     end
 

@@ -9,9 +9,9 @@
 
 <%= vehicle_builder.label :model %><br>
 <%= vehicle_builder.text_field :model, list: "models" %><br>
-<datalist id="models">
-<% Vehicle.all.group_by(&:model).map{|k, v| v.first}.each do |vehicle|%>
-<option value="<%=vehicle.model%>">
+<datalist id="makes">
+<% Vehicle.all.group_by(&:make).map{|k, v| v.first}.each do |vehicle|%>
+<option value="<%=vehicle.make%>">
 <%end%>
 </datalist>
 

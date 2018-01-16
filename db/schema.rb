@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20180110115235) do
 
   create_table "dealership_vehicles", force: :cascade do |t|
     t.integer "dealership_id"
-    t.integer "vehicle_id"
     t.boolean "is_lot_ready", default: true
     t.string "buyer"
     t.integer "price"
@@ -49,6 +48,7 @@ ActiveRecord::Schema.define(version: 20180110115235) do
     t.string "make"
     t.string "model"
     t.integer "year"
+    t.integer "dealership_vehicle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

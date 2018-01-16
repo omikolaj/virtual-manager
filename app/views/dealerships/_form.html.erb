@@ -4,6 +4,6 @@
 <%= f.text_field :name %><br>
 <%= f.label :city %><br>
 <%= f.text_field :city %><br>
-<%= render "dealerships/new_vehicles", f: f unless editing(f)%>
+<%# <%= render "dealerships/new_vehicles", f: f unless editing(f)%> %>
 <%= f.submit yield(:button_text), class: "btn btn-primary" %>
 <% end %>
