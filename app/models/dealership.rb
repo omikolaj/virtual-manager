@@ -8,8 +8,17 @@ class Dealership < ApplicationRecord
     def vehicles_attributes=(vehicles_attributes)
         vehicles_attributes.each do |i, vehicle|
             self.vehicles.build(vehicle)
-            binding.pry
         end
     end
+
+    def self.lot_ready
+       
+    end
+
+    def self.in_repair
+
+    end
+
+    
 
 end

@@ -2,5 +2,6 @@
 <%= link_to "Add New Dealership", new_dealership_path %>
 <%= @dealerships.map do |dealership|%>
 <h1><%= dealership.name%></h1><br>
-<%= link_to "Visit This Dealership", dealership_path(dealership.id) %>
+<%= link_to "Visit Dealership", dealership_path(dealership.id) %><br>
+<%= link_to "Delete", dealership, method: :delete, data: { confirm: "This will remove all employees as well. Are you sure?" } %>
 <%end%>

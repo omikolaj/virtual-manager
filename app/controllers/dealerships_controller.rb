@@ -1,11 +1,12 @@
 class DealershipsController < ApplicationController
+    before_action :dealership, only: [:show, :edit, :update, :create, :destroy]
 
     def index
         @dealerships = Dealership.all
     end
 
     def show
-        @dealership = Dealership.find_by(:id => params[:id])
+        
     end
 
     def new
@@ -14,8 +15,7 @@ class DealershipsController < ApplicationController
     end
 
     def create
-        @dealership = Dealership.new(dealership_params)
-        if @dealership.save
+        if @dealership.update()
             redirect_to @dealership
             flash[:success] = "Dealership Created!"
         else
@@ -24,11 +24,10 @@ class DealershipsController < ApplicationController
     end
 
     def edit
-        @dealership = Dealership.find_by(:id => params[:id])
+
     end
 
     def update
-        @dealership = Dealership.find_by(:id => params[:id])
         if @dealership.update(dealership_params)
             flash[:success] = "Dealershp Updated"
             redirect_to @dealership
@@ -38,12 +37,17 @@ class DealershipsController < ApplicationController
     end
 
     def destroy
-
+        @dealership.destroy
+        redirect_to dealerships_path
     end
 
     private
     def dealership_params
         params.require(:dealership).permit(:name, :city, :vehicles_attributes => [:make, :model, :year])
+    end
+
+    def dealership
+        @dealership = Dealership.find_by(:id => params[:id])
     end
 
     
