@@ -1,7 +1,6 @@
 <%= f.fields_for :dealership_vehicle do |dealership_vehicle_builder|%><br>
-<%= dealership_vehicle_builder.hidden_field :dealership_id, value: @vehicle.dealership_vehicle.dealership_id%>
 
-<%# <%= render 'shared/error_messages', object: dealership_vehicle_builder.object%>
+<%= dealership_vehicle_builder.hidden_field :dealership_id, value: @vehicle.dealership_vehicle.dealership_id unless f.object.is_a?(Dealership)%>
 
 <%= dealership_vehicle_builder.label :is_lot_ready %><br>
 <%= dealership_vehicle_builder.text_field :is_lot_ready %><br>

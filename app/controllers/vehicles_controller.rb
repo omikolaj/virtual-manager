@@ -16,7 +16,7 @@ class VehiclesController < ApplicationController
     end
 
     def create
-        @vehicle = Vehicle.new(vehicle_params)
+        @vehicle = Vehicle.new(vehicle_params)        
         if @vehicle.save
             redirect_to @vehicle
             flash[:success] = "Vehicle successfully added!"

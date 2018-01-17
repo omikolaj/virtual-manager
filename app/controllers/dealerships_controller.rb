@@ -11,7 +11,6 @@ class DealershipsController < ApplicationController
     def new
         @dealership = Dealership.new
         @dealership.vehicles.build
-        @dealership.vehicles.build
     end
 
     def create
