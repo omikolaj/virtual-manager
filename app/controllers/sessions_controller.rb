@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+    skip_before_action :require_login, only: [:create, :new]
 
     def new
     end
@@ -7,6 +8,7 @@ class SessionsController < ApplicationController
         if auth_hash = request.env["omniauth.auth"]
             if @employee = Employee.find_or_create_by_omniauth(auth_hash)
                 log_in @employee
+                
                 redirect_to @employee
             else
                 flash.now[:danger] = "Email already exists."

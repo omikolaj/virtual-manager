@@ -1,5 +1,6 @@
 class EmployeesController < ApplicationController
-    before_action :require_login, :except => [:new, :create]
+    skip_before_action :require_login, only: [:new, :create]
+    
     
     def index
         @employees = Employee.find_by(:id => current_user.id).dealership.employees
@@ -48,8 +49,5 @@ class EmployeesController < ApplicationController
         params.require(:employee).permit(:name, :email, :password, :manager, :dealership_id)
     end
 
-    def require_login
-        redirect_to root_path unless logged_in?
-    end
 
 end
