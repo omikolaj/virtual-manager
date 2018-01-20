@@ -1,12 +1,10 @@
 <h1>Home Page</h1><br>
 
 <%= link_to "View All Dealerships", dealerships_path %><br>
+<h3>As a manager you can generate a report for your dealership's lot, all of the dealerships, or a specific dealership. Just select from the drop down and select generate"</h3>
+<h4>Generate report for:</h4>
+<%= render 'report'%>
 
-<%= link_to "Go to your dealership", dealership_path(current_user.dealership.id)%><br>
-
-<%= link_to "See all of your co-workers", employees_path %><br>
-
-<%= link_to "See your lot", dealership_vehicles_path(current_user.dealership.id) %><br>
 
 
 

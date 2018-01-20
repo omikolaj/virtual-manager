@@ -6,7 +6,7 @@
 <%= link_to "Add Vehicle", new_dealership_vehicle_path(@dealership.id) %><br>
 <%= link_to "View Car Lot", dealership_vehicles_path(@dealership.id) %><br>
 <%= link_to "Edit Dealership", edit_dealership_path(@dealership.id) %><br>
-<%= link_to "View All Dealerships", dealerships_path %><br>
 
 <%= form_tag dealership_path(@dealership.id), method: 'delete'%>
-<%= submit_tag "Delete #{@dealership.name}"%>
+<%= submit_tag "Delete #{@dealership.name}"%><br>
+ <%= link_to "Back", dealerships_path%>

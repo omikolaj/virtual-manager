@@ -1,6 +1,6 @@
 class DealershipsController < ApplicationController
     before_action :dealership, only: [:show, :edit, :update, :create, :destroy]
-
+    
     def index
         @dealerships = Dealership.all
     end

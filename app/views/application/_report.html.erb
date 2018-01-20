@@ -1,0 +1,5 @@
+<%= form_tag("/reports", method: "get") do %>
+<%= select_tag "dealership_id", content_tag(:option,'All',:value=>0)+content_tag(:option,'Your Dealership',:value=>current_user.dealership.id)+options_from_collection_for_select(Dealership.all, "id", "name")%><h4>Vehicles that are(blank returns all vehicles)</h4>
+<%= select_tag :type, content_tag(:option,'In Repair',:value=>0)+content_tag(:option,'Lot Ready',:value=>1) %>
+<%= submit_tag "Generate"%>
+<% end%>

@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'application#welcome'
-
+  
   resources :employees
   resources :dealerships do
     resources :vehicles
   end
+
+  get '/reports', to: 'vehicles#reports'
+
   resources :vehicles
   
   get '/signup', to: 'employees#new'

@@ -1,4 +1,10 @@
 <h1>Hi <%=current_user.name%></h1><br>
 <h1>Hi <%=current_user.email%></h1><br>
 
-<%= link_to "Edit Profile", edit_employee_path(current_user.id), class: "btn btn-primary" %>
+<%= link_to "Edit Profile", edit_employee_path(current_user.id), class: "btn btn-primary" %><br>
+
+<%= link_to "Go to your dealership", dealership_path(current_user.dealership.id)%><br>
+
+<%= link_to "See all of your co-workers", employees_path %><br>
+
+<%= link_to "See your lot", dealership_vehicles_path(current_user.dealership.id) %><br>

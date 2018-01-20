@@ -10,15 +10,4 @@ class Dealership < ApplicationRecord
             self.vehicles.build(vehicle)
         end
     end
-
-    def self.lot_ready
-       
-    end
-
-    def self.in_repair
-
-    end
-
-    
-
 end

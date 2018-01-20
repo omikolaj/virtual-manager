@@ -39,7 +39,6 @@ gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'font-awesome-sass', '~> 4.4.0'
-
 gem 'bootstrap-sass', '~> 3.3.7'
 
 group :development, :test do
@@ -49,6 +48,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'pry'
+  gem "rails-erd"
 end
 
 group :development do

@@ -1,7 +1,6 @@
 class EmployeesController < ApplicationController
     skip_before_action :require_login, only: [:new, :create]
     
-    
     def index
         @employees = Employee.find_by(:id => current_user.id).dealership.employees
         

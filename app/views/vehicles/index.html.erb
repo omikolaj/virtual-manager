@@ -1,11 +1,12 @@
 <h1>Add new vehicle to this dealership</h1><br>
+<%= link_to "Back to Dealership", dealership_path(@dealership.id)%><br>
 <%= link_to "Add New Vehicle", new_dealership_vehicle_path(@dealership.id)%><br>
 <%= @vehicles.each do |vehicle| %>
-<h1><%= vehicle.make %></h1><br>
-<h1><%= vehicle.model %></h1><br>
-<h1><%= vehicle.year %></h1><br>
+<h1><%= vehicle.make %></h1>
+<h1><%= vehicle.model %></h1>
+<h1><%= vehicle.year %></h1>
 <%= link_to "Edit This Vehicle", edit_dealership_vehicle_path(@dealership.id, vehicle.id)%><br>
 <%= link_to "View This Vehicle", dealership_vehicle_path(@dealership.id, vehicle.id)%><br>
 <%= link_to "Delete", vehicle, method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>
-<%= link_to "Back to Dealership", dealership_path(@dealership.id)%><br>
+
