@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20180110115235) do
     t.integer "dealership_id"
     t.boolean "omniauth", default: false
     t.integer "uid"
+    t.integer "permission"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "manager", default: false

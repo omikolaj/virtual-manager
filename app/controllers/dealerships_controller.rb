@@ -1,4 +1,5 @@
 class DealershipsController < ApplicationController
+    include DealershipHelper
     before_action :dealership, only: [:show, :edit, :update, :create, :destroy]
     
     def index
@@ -10,8 +11,13 @@ class DealershipsController < ApplicationController
     end
 
     def new
-        @dealership = Dealership.new
-        @dealership.vehicles.build
+        if !can_current_user?(:new, @dealership)
+            redirect_back fallback_location: dealerships_path
+            flash[:notice] = "You cannot edit dealerships"
+        else
+            @dealership = Dealership.new
+            @dealership.vehicles.build
+        end
     end
 
     def create
@@ -24,7 +30,10 @@ class DealershipsController < ApplicationController
     end
 
     def edit
-
+        if !can_current_user?(:edit, @dealership)
+            redirect_back fallback_location: @dealership
+            flash[:notice] = "You cannot edit dealerships"
+        end
     end
 
     def update
@@ -37,8 +46,16 @@ class DealershipsController < ApplicationController
     end
 
     def destroy
-        @dealership.destroy
-        redirect_to dealerships_path
+        if !can_current_user?(:destroy, @dealership)
+            redirect_back fallback_location: @dealership
+            flash[:notice] = "You cannot delete this dealerships"
+        else
+            employ_orphans(params[:id]) do            
+                @dealership.destroy unless last_dealership?
+            end
+            redirect_to dealerships_path
+            display_flash
+        end
     end
 
     private

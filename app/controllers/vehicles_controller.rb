@@ -3,16 +3,10 @@ class VehiclesController < ApplicationController
     before_action :vehicle, only: [:show, :edit, :update, :update, :destroy]
 
     def reports
-        binding.pry
-        if @vehicles = generate_report_for(:id => params[:dealership_id], :type => params[:type])
-            #redirect_to reports_path
-        else
-            render 'dealerships/reports'
-        end
+        @vehicles = generate_report_for(:id => params[:dealership_id], :type => params[:type])
     end
 
     def index
-        #create a scope method using ActiveRecord query selectors to only select vehiles assigned to this dealership
         @dealership = Dealership.find_by(:id => params[:dealership_id])
         @vehicles = @dealership.vehicles
     end
@@ -38,7 +32,7 @@ class VehiclesController < ApplicationController
     end
 
     def edit
-
+            
     end
 
     def update

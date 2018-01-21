@@ -14,7 +14,7 @@ class Vehicle < ApplicationRecord
     end
     
     def self.all_lot_ready?(boolean)
-        joins(:dealership_vehicle).where("dealership_vehicles.is_lot_ready = ?","boolean")
+        joins(:dealership_vehicle).where("dealership_vehicles.is_lot_ready = ?", boolean)
     end
 
     def self.lot_ready?(id, boolean)
