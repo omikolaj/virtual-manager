@@ -1,5 +1,5 @@
 class DealershipsController < ApplicationController
-    include DealershipHelper
+    include DealershipHelper, EmployeesHelper
     before_action :dealership, only: [:show, :edit, :update, :create, :destroy]
     
     def index
@@ -10,18 +10,18 @@ class DealershipsController < ApplicationController
         
     end
 
-    def new
-        if !can_current_user?(:new, @dealership)
-            redirect_back fallback_location: dealerships_path
-            flash[:notice] = "You cannot edit dealerships"
-        else
-            @dealership = Dealership.new
-            @dealership.vehicles.build
-        end
+		def new
+				if !can_current_user?(:new, @@dealership = Dealership.new)
+					raise params.inspect
+				else
+					@dealership = Dealership.new
+					@dealership.vehicles.build
+				end
     end
 
     def create
-        if @dealership.update()
+        @dealership = Dealership.new(dealership_params)
+        if @dealership.save
             redirect_to @dealership
             flash[:success] = "Dealership Created!"
         else
@@ -46,16 +46,21 @@ class DealershipsController < ApplicationController
     end
 
     def destroy
-        if !can_current_user?(:destroy, @dealership)
-            redirect_back fallback_location: @dealership
-            flash[:notice] = "You cannot delete this dealerships"
-        else
-            employ_orphans(params[:id]) do            
-                @dealership.destroy unless last_dealership?
-            end
-            redirect_to dealerships_path
-            display_flash
+      if !can_current_user?(:destroy, @dealership)
+          redirect_back fallback_location: @dealership
+          flash[:notice] = "You cannot delete this dealerships"
+      else
+        employ_orphans(params[:id]) do 
+          if last_dealership?
+              redirect_back fallback_location: @dealership
+              flash[:notice] = "Sorry you cannot delete last dealership" 
+          else           
+              @dealership.destroy
+              flash[:notice] = "Dealership successfully deleted. All employees have been relocated to other locations"
+              redirect_to dealerships_path
+          end
         end
+      end
     end
 
     private

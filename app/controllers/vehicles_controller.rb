@@ -1,6 +1,7 @@
 class VehiclesController < ApplicationController
     include VehiclesHelper
     before_action :vehicle, only: [:show, :edit, :update, :update, :destroy]
+    before_action :new_vehicle, only: [:new]
 
     def reports
         @vehicles = generate_report_for(:id => params[:dealership_id], :type => params[:type])
@@ -16,9 +17,13 @@ class VehiclesController < ApplicationController
     end
 
     def new
-        @vehicle = Vehicle.new
-        @vehicle.build_dealership_vehicle(:dealership_id => params[:dealership_id])
-        @dealership = Dealership.find_by(:id => params[:dealership_id])
+        #binding.pry
+        if !can_current_user?(:new, @vehicle)#.build_dealership_vehicle(:dealership_id => params[:dealership_id]))
+            redirect_back fallback_location: @dealership
+            flash[:notice] = "You cannot add vehicle"
+        else
+
+        end
     end
 
     def create
@@ -31,8 +36,11 @@ class VehiclesController < ApplicationController
         end
     end
 
-    def edit
-            
+	def edit
+        if !can_current_user?(:edit, @vehicle)
+            redirect_back fallback_location: @dealership
+            flash[:notice] = "You cannot edit this vehicle"
+        end		
     end
 
     def update
@@ -45,8 +53,12 @@ class VehiclesController < ApplicationController
     end
 
     def destroy
+        if !can_current_user?(:destroy, @vehicle)
+            redirect_back fallback_location: @vehicle
+            flash[:notice] = "You cannot delete this vehicle"
+        end	
         @vehicle.destroy
-        redirect_to dealership_vehicles_path(@vehicle.dealership.id)
+        redirect_to dealership_vehicles_path(@vehicle.dealership.id) unless performed?
     end
 
     private
@@ -56,6 +68,12 @@ class VehiclesController < ApplicationController
 
     def vehicle
         @vehicle = Vehicle.find_by(:id => params[:id])
+    end
+    
+    def new_vehicle
+        @vehicle = Vehicle.new
+        @vehicle.build_dealership_vehicle(:dealership_id => params[:dealership_id])
+        @dealership = Dealership.find_by(:id => params[:dealership_id])
     end
 
 end
