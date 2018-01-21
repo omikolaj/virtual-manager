@@ -1,6 +1,6 @@
 <h1><%= @vehicle.make%></h1>
 
-<%= link_to "Back to Dealership", dealership_path(@vehicle.dealership.id) %><br>
+<%= link_to "Back", url_for(:back) %><br>
 <%= link_to "Edit Vehicle", edit_vehicle_path(@vehicle.id) %><br>
 <%= link_to "View All Dealership's Vehicles", dealership_vehicles_path(@vehicle.dealership.id) %><br>
 

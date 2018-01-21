@@ -8,6 +8,9 @@ module Permissions
                     employee = self.employees.find_by(:id => current_user.id)
                     if !employee && method_name == :new && association == :dealership
                         current_user.send("#{method_name}able?")
+                    elsif
+                        !employee && method_name == :view
+                        current_user.send("#{method_name}able?")
                     elsif !employee
                         return false
                     else
@@ -22,6 +25,7 @@ module Permissions
             :new => 10,
             :edit => 20,
             :view => 30,
+            :none => 40
         }
 
         def permissable(*args)

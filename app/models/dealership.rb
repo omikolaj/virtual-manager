@@ -5,7 +5,9 @@ class Dealership < ApplicationRecord
     has_many :employees
     validates :name, :city, presence: true
     validates :name, uniqueness: true
-    scope :id_array, -> {pluck(:id)}
+    scope :id_array, ->(avoid) {
+        pluck(:id).reject{|d| d == avoid.to_i }
+    }
     permissions_for :dealership, :destroy, :edit, :view, :new
 
     def self.all_except_current(dealership)

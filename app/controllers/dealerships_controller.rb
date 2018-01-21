@@ -1,5 +1,5 @@
 class DealershipsController < ApplicationController
-    include DealershipHelper, EmployeesHelper
+    include DealershipHelper, EmployeesHelper, VehiclesHelper
     before_action :dealership, only: [:show, :edit, :update, :create, :destroy]
     
     def index
@@ -7,15 +7,24 @@ class DealershipsController < ApplicationController
     end
 
     def show
-        
+			if !can_current_user?(:view, @dealership)
+				redirect_back fallback_location: @dealership
+				flash[:notice] = "You cannot view dealerships"
+			end
     end
 
 		def new
-				if !can_current_user?(:new, @@dealership = Dealership.new)
-					raise params.inspect
+				if !can_current_user?(:new, @dealership = Dealership.new)
+					redirect_back fallback_location: @dealership
+					flash[:notice] = "You cannot add new dealerships"
 				else
-					@dealership = Dealership.new
-					@dealership.vehicles.build
+					if current_user.manager?
+							@dealership = Dealership.new
+							@dealership.vehicles.build
+					else
+						redirect_to @dealership
+						flash[:notice] = "You must must be a manager to add new dealerships"
+					end
 				end
     end
 
@@ -45,24 +54,16 @@ class DealershipsController < ApplicationController
         end
     end
 
-    def destroy
-      if !can_current_user?(:destroy, @dealership)
-          redirect_back fallback_location: @dealership
-          flash[:notice] = "You cannot delete this dealerships"
-      else
-        employ_orphans(params[:id]) do 
-          if last_dealership?
-              redirect_back fallback_location: @dealership
-              flash[:notice] = "Sorry you cannot delete last dealership" 
-          else           
-              @dealership.destroy
-              flash[:notice] = "Dealership successfully deleted. All employees have been relocated to other locations"
-              redirect_to dealerships_path
-          end
-        end
-      end
-    end
-
+		def destroy
+			if can_dealership_be_deleted?
+				redirect_back fallback_location: @dealership
+			else
+				employ_orphans(params[:id])        
+        @dealership.destroy
+        flash[:notice] = "Dealership successfully deleted. All employees and assets have been relocated and redistributed"
+        redirect_to dealerships_path
+			end
+		
     private
     def dealership_params
         params.require(:dealership).permit(:name, :city, :vehicles_attributes => [:make, :model, :year])

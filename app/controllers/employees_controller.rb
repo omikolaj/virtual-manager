@@ -1,6 +1,12 @@
 class EmployeesController < ApplicationController
     skip_before_action :require_login, only: [:new, :create]
     
+    def permissions
+        @employee = Employee.find_by(:id => params[:employee_id])
+        @employee.update_permissions(params[:permission_id])
+        redirect_to root_path
+    end
+
     def index
         @employees = Employee.find_by(:id => current_user.id).dealership.employees
         

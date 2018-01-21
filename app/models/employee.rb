@@ -9,14 +9,10 @@ class Employee < ApplicationRecord
     validates :email, presence: true, uniqueness: true
     permissable :destroy, :edit, :view, :new
 
-    def self.assign_employees_to_random_dealership(orphaned_employees, current_user_id)
+    def self.assign_employees_to_random_dealership(orphaned_employees, dealership_id)
         orphaned_employees.each do |employee|
-            employee.update(:dealership_id => Dealership.id_array.sample)
+            employee.update_attribute(:dealership_id, Dealership.id_array(dealership_id).sample)
         end
-    end
-
-    def self.current_user_new_dealership(current_user_id)
-        Employee.find_by(:id => current_user_id).dealership.id
     end
 
     def self.find_or_create_by_omniauth(auth_hash)
@@ -27,6 +23,10 @@ class Employee < ApplicationRecord
             employee.omniauth = true
             employee.dealership_id = 1
         end
+    end
+
+    def update_permissions(permission_id)
+        self.update_attribute(:permission, permission_id)
     end
 
 end

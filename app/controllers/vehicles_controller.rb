@@ -13,16 +13,16 @@ class VehiclesController < ApplicationController
     end
 
     def show
-        
+        if !can_current_user?(:view, @vehicle)
+            redirect_back fallback_location: @dealership
+            flash[:notice] = "You cannot add vehicle"
+        end
     end
 
     def new
-        #binding.pry
-        if !can_current_user?(:new, @vehicle)#.build_dealership_vehicle(:dealership_id => params[:dealership_id]))
+        if !can_current_user?(:new, @vehicle)
             redirect_back fallback_location: @dealership
             flash[:notice] = "You cannot add vehicle"
-        else
-
         end
     end
 
@@ -56,8 +56,9 @@ class VehiclesController < ApplicationController
         if !can_current_user?(:destroy, @vehicle)
             redirect_back fallback_location: @vehicle
             flash[:notice] = "You cannot delete this vehicle"
-        end	
-        @vehicle.destroy
+        else	
+            @vehicle.destroy
+        end
         redirect_to dealership_vehicles_path(@vehicle.dealership.id) unless performed?
     end
 

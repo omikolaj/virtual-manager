@@ -9,4 +9,4 @@
 
 <%= form_tag dealership_path(@dealership.id), method: 'delete'%>
 <%= submit_tag "Delete #{@dealership.name}"%><br>
- <%= link_to "Back", dealerships_path%>
+ <%= link_to "Back", url_for(:back)%>

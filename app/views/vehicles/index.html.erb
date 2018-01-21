@@ -1,5 +1,5 @@
 <h1>Add new vehicle to this dealership</h1><br>
-<%= link_to "Back to Dealership", dealership_path(@dealership.id)%><br>
+<%= link_to "Back", url_for(:back)%><br>
 <%= link_to "Add New Vehicle", new_dealership_vehicle_path(@dealership.id)%><br>
 <%= @vehicles.each do |vehicle| %>
 <h1><%= vehicle.make %></h1>
