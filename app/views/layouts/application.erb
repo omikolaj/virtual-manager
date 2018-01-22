@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <head>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-
-    <%= javascript_include_tag :application, 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= csrf_meta_tag %>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-
+    
   </head>
   <body>
 <%= render 'layouts/navbar'%>
@@ -28,7 +28,7 @@
       <%= yield %>
     
 </header>
-</body>
+
      <footer>
       <div class="container">
         <p>© 2017 Start Bootstrap. All Rights Reserved.</p>
@@ -44,5 +44,6 @@
           </li>
         </ul>
       </div>
-    </footer> 
+    </footer>
+    </body> 
 </html>

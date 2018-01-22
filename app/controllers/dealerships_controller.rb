@@ -55,7 +55,7 @@ class DealershipsController < ApplicationController
     end
 
 		def destroy
-			if can_dealership_be_deleted?
+			if dealership_cannot_be_deleted
 				redirect_back fallback_location: @dealership
 			else
 				employ_orphans(params[:id])        
@@ -63,6 +63,7 @@ class DealershipsController < ApplicationController
         flash[:notice] = "Dealership successfully deleted. All employees and assets have been relocated and redistributed"
         redirect_to dealerships_path
 			end
+		end
 		
     private
     def dealership_params
