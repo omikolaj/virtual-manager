@@ -1,6 +1,7 @@
 class DealershipsController < ApplicationController
     include DealershipHelper, EmployeesHelper, VehiclesHelper
-    before_action :dealership, only: [:show, :edit, :update, :create, :destroy]
+		before_action :dealership, only: [:show, :edit, :update, :create, :destroy]
+		before_action :require_login
     
     def index
         @dealerships = Dealership.all

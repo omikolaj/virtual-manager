@@ -38,7 +38,7 @@ gem 'pg'
 gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-github'
-gem 'font-awesome-sass', '~> 4.4.0'
+gem 'font-awesome-sass', '~> 4.7.0'
 gem 'bootstrap-sass', '~> 3.3.7'
 
 

@@ -1,9 +1,37 @@
-<h1>Hi <%=current_user.name%></h1><br>
-<h1>Hi <%=current_user.email%></h1><br>
-<%= link_to "Edit Profile", edit_employee_path(current_user.id), class: "btn btn-primary" %><br>
+<div class="container">
+<h1>Welcome <%=current_user.name%></h1>
+<h2>Where would you like to go?</h2>
 
-<%= link_to "Go to your dealership", dealership_path(current_user.dealership.id)%><br>
+        <div class="row">
+          <div class="col-lg-8 my-auto">
+            <div class="container-fluid">
+              <div class="row top-buffer">
+                <div class="col-lg-6">
+                  <div class="feature-item">
+                    <%= link_to "Edit Profile", edit_employee_path(current_user.id), class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="feature-item">
+                    <%= link_to "Go to your dealership", dealership_path(current_user.dealership.id), class: "btn btn-outline btn-xl js-scroll-trigger btn-block"%>
+                  </div>
+                </div>
+              </div>
+              <div class="row top-buffer">
+                <div class="col-lg-6">
+                  <div class="feature-item">
+                    <%= link_to "View all co-workers", employees_path, class: "btn btn-outline btn-xl js-scroll-trigger btn-block"%>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="feature-item">
+                    <%= link_to "See your lot", dealership_vehicles_path(current_user.dealership.id), class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
+                  </div>
+                </div>
+              </div>
+    
+            </div>
+          </div>
 
-<%= link_to "See all of your co-workers", employees_path %><br>
-
-<%= link_to "See your lot", dealership_vehicles_path(current_user.dealership.id) %><br>
+        </div>
+      </div>

@@ -19,18 +19,17 @@
   </head>
   <body>
 <%= render 'layouts/navbar'%>
-<header class="masthead">
+ <%# <header class="masthead">
+</header> %>
+
     <div class="container">
       <% flash.each do |message_type, message| %>
         <div class="alert alert-<%= message_type %>"><%= message %></div>
-      <% end %>
-      
-      </div>
-      <%= yield %>
+        <% end %>      
+    </div>
     
-</header>
-
-     <footer>
+      <%= yield %>
+     <%# <footer>
       <div class="container">
         <p>© 2017 Start Bootstrap. All Rights Reserved.</p>
         <ul class="list-inline">
@@ -45,6 +44,6 @@
           </li>
         </ul>
       </div>
-    </footer>
+    </footer> %>
     </body> 
 </html>

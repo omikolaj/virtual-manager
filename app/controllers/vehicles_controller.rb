@@ -2,6 +2,7 @@ class VehiclesController < ApplicationController
     include VehiclesHelper
     before_action :vehicle, only: [:show, :edit, :update, :update, :destroy]
     before_action :new_vehicle, only: [:new]
+    before_action :require_login
 
     def reports
         @vehicles = generate_report_for(:id => params[:dealership_id], :type => params[:type])

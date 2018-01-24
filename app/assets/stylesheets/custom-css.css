@@ -1,0 +1,18 @@
+body{
+    position: relative;
+    width: 100%;
+    padding-top: 150px;
+    padding-bottom: 100px;
+    color: white;
+    background: url("bg-pattern.png"), #7b4397;
+    background: url("bg-pattern.png"), -webkit-linear-gradient(to left, #7b4397, #dc2430);
+    background: url("bg-pattern.png"), linear-gradient(to left, #7b4397, #dc2430);
+}
+
+.top-buffer { margin-top:20px; }
+
+.extra-style{background: #ffffff24}
+
+.custom-font{color: #000000}
+
+.nobackground{background-color: #ffffff00}
