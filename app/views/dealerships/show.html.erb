@@ -1,12 +1,46 @@
-<h1><%=@dealership.name%></h1><br>
-<h1><%=@dealership.city%></h1><br>
-<h1><%=@dealership.vehicles.size%></h1><br>
-<h1><%=@dealership.employees.size%></h1><br>
+<div class="jumbotron jumbotron-country text-center jumbotron-background">
+		<h1 class="display-3">Welcome to <%=@dealership.name%></h1>
+		<p class="lead fa fa-building-o fa-lg" aria-hidden="true"> City: <%=@dealership.city%></p>
+		<hr class="my-4">
+        <div class="container">
+        <div class="row justify-content-md-center">
+        <div class ="col-md-4 text-center">
+		<p>Number of vehicles: <%=@dealership.vehicles.size%></p>
+        <i class="fa fa-car fa-4x" aria-hidden="true"></i>        
+        </div>
+        <div class ="col-md-4 text-center">
+        <p>We have <%=@dealership.employees.size%> employees</p>
+        <i class="fa fa-user fa-4x" aria-hidden="true"></i>
+        </div>
+        </div>
+        </div>
+</div>
 
-<%= link_to "Add Vehicle", new_dealership_vehicle_path(@dealership.id) %><br>
-<%= link_to "View Car Lot", dealership_vehicles_path(@dealership.id) %><br>
-<%= link_to "Edit Dealership", edit_dealership_path(@dealership.id) %><br>
 
-<%= form_tag dealership_path(@dealership.id), method: 'delete'%>
-<%= submit_tag "Delete #{@dealership.name}"%><br>
- <%= link_to "Back", url_for(:back)%>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-md-4 text-center">
+      <%= link_to "Add Vehicle", new_dealership_vehicle_path(@dealership.id), class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
+    </div>
+    <div class="col-md-4 text-center">
+      <%= link_to "View Car Lot", dealership_vehicles_path(@dealership.id), class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
+    </div>
+    <div class="col-md-4 text-center">
+      <%= link_to "Edit Dealership", edit_dealership_path(@dealership.id), class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
+    </div>
+  </div>
+  </div>
+  <div class="container">
+    <div class="row justify-content-md-center">
+    <div class="col-md-4 top-buffer">
+      <%= form_tag dealership_path(@dealership.id), method: 'delete'%>
+        <%= submit_tag "Delete #{@dealership.name}", class: "btn btn-outline btn-xl js-scroll-trigger btn-block nobackground"%>
+    </div>
+    <div class="col-md-4 top-buffer">
+      <%= link_to "View All Dealerships", dealerships_path, class: "btn btn-outline btn-xl js-scroll-trigger btn-block"%>
+    </div>
+  </div>
+</div>
+
+
+ 

@@ -1,0 +1,8 @@
+<div class="col-lg-3 col-md-4 top-buffer">
+<%= image_tag("car-logo.png", size: '92x92')%>
+<p><%= vehicle.year %></p>
+<p><%= vehicle.make %> - <%= vehicle.model %></p>
+<%= link_to "Edit This Vehicle", edit_dealership_vehicle_path(@dealership.id, vehicle.id), class: "btn btn-outline btn-xl js-scroll-trigger btn-block"%><br>
+<%= link_to "View This Vehicle", dealership_vehicle_path(@dealership.id, vehicle.id), class: "btn btn-outline btn-xl js-scroll-trigger btn-block"%><br>
+<%= link_to "Delete", vehicle, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
+</div>

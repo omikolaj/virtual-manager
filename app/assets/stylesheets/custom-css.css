@@ -16,3 +16,18 @@ body{
 .custom-font{color: #000000}
 
 .nobackground{background-color: #ffffff00}
+
+.jumbotron-background{
+    background-color:#e9ecef3d;
+}
+
+.my-4{
+    border-width: 3px;
+    border-color: #fbeeff70;
+    width: 100%;
+}
+
+.top-margin{
+    margin-top:10px;
+}
+

@@ -9,7 +9,7 @@
 <%= f.label "Select Your Dealership"%><br>
 <%= f.collection_select :dealership_id, Dealership.all, :id, :name %><br>
 <%= f.label "Are you a manager?"%><br>
-<%= f.check_box :manager %><br>
+<%= f.check_box :manager %>
 <%= f.submit yield(:button_text), class:"btn btn-outline btn-xl js-scroll-trigger btn-block nobackground"%>
 <% end %>
 

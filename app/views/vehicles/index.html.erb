@@ -1,12 +1,27 @@
-<h1>Add new vehicle to this dealership</h1><br>
-<%= link_to "Back", url_for(:back)%><br>
-<%= link_to "Add New Vehicle", new_dealership_vehicle_path(@dealership.id)%><br>
-<%= @vehicles.each do |vehicle| %>
-<h1><%= vehicle.make %></h1>
-<h1><%= vehicle.model %></h1>
-<h1><%= vehicle.year %></h1>
-<%= link_to "Edit This Vehicle", edit_dealership_vehicle_path(@dealership.id, vehicle.id)%><br>
-<%= link_to "View This Vehicle", dealership_vehicle_path(@dealership.id, vehicle.id)%><br>
-<%= link_to "Delete", vehicle, method: :delete, data: { confirm: "Are you sure?" } %>
-<% end %>
+<div class="container">
+    <div class="row justify-content-md-center">
+    <h1>You can add a new vehicles here</h1>
+    </div>
+    <div class="row justify-content-md-center">
+    <div class="col-lg-3 col-md-4 top-buffer">
+    <%= link_to "Add New Vehicle", new_dealership_vehicle_path(@dealership.id), class: "btn btn-outline btn-xl js-scroll-trigger btn-block"%>
+    </div>
+        <div class="col-lg-3 col-md-4 top-buffer">
+    <%= link_to "Back", url_for(:back), class: "btn btn-outline btn-xl js-scroll-trigger btn-block nobackground"%>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron jumbotron-country text-center nobackground">
+<div class="container">
+<div class="row">
+<%# <%= @vehicles.map do |vehicle| %>
+
+<%= render @vehicles %>
+
+<%# <% end %> 
+</div>
+</div>
+</div>
+
 
