@@ -1,16 +1,100 @@
-<h1>Home Page</h1><br>
+<div class="container">
+<div class="row justify-content-md-center">
+<div class="col-lg-3 col-md-4 text-center">
+<%= link_to "View All Dealerships", dealerships_path, class: "btn btn-outline btn-xl js-scroll-trigger" %><br>
+</div>
+</div>
+</div>
 
-<%= link_to "View All Dealerships", dealerships_path %><br>
 <%if current_user.manager%>
-<h3>As a manager you can generate a report for your dealership's lot, all of the dealerships, or a specific dealership. Just select from the drop down and select generate"</h3>
+
+<div class="jumbotron jumbotron-country text-center jumbotron-background top-buffer">
+<h1>As a manager you can generate reports and modify employees' permission levels</h1>
+</div>
+
+<div class="container">
+<div class="row justify-content-md-center">
+<div class="col-lg-6 col-md-6 text-center mb-5 mt-3">
 <h4>Generate report for:</h4>
-<%= render 'vehicles/report'%><br>
+<%= render 'vehicles/report'%>
+</div>
+</div>
+</div>
 
-<h4>Here you can change your employees permissions</h4>
-
+<div class="container">
+<div class="row justify-content-md-center">
+<div class="col-lg-6 col-md-6 mt-5">
+<h4>Change permissions for:</h4>
+<p>*All users default to destroy</p>
 <%= render 'employees/permissions'%>
+</div>
 
+<div class="col-lg-6 col-md-6 mt-5 text-center">
+<p class="text-center">Permission Levels apply to the dealership the user belongs to and cascade down<p>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Permission</th>
+      <th scope="col">Employee</th>
+      <th scope="col">Manager</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Destroy</th>
+      <td>Delete vehicles</td>
+      <td>Delete vehicles and dealership</td>
+    </tr>
+    <tr>
+      <th scope="row">New</th>
+      <td>Add vehicles</td>
+      <td>Add vehicles and New dealerships</td>
+    </tr>
+    <tr>
+      <th scope="row">Edit</th>
+      <td>Edit vehicles</td>
+      <td>Edit vehicles and dealership</td>
+    </tr>
+    <tr>
+      <th scope="row">View</th>
+      <td>View all dealerships and all vehicles</td>
+      <td>View all dealerships and all vehicles</td>
+    </tr>
+    <tr>
+      <th scope="row">None</th>
+      <td>Cannot View any dealerships or any vehicles</td>
+      <td>Cannot View any dealerships or any vehicles</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<% else %>
+<div class="jumbotron jumbotron-country text-center jumbotron-background top-buffer">
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <h3>If you don't know where youre going any road will take you there</h3>
+      <div class="col-sm-9 offset-3">
+      <medium>- Lewis Carroll</medium>
+      </div>
+    </div>
+    <div class="carousel-item">
+        <h3>No problem can be solved from the same level of consciousness that created it</h3>
+        <div class="col-sm-9 offset-3">
+        <medium>- Albert Einstein</medium>
+      </div>
+    </div>
+    <div class="carousel-item">
+        <h3>An investment in knowledge pays the best interest</h3>
+      <div class="col-sm-9 offset-3">
+      <medium>- Benjamin Franklin</medium>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 <%end%>
-
 
 

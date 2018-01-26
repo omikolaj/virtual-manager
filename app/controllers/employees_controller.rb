@@ -4,8 +4,12 @@ class EmployeesController < ApplicationController
     
     def permissions
         @employee = Employee.find_by(:id => params[:employee_id])
-        @employee.update_permissions(params[:permission_id])
-        redirect_to root_path
+        if @employee.update_permissions(params[:permission_id])
+            flash[:success] = "Permission successfully updated"
+            redirect_to root_path
+        else
+            render :home
+        end
     end
 
     def index
