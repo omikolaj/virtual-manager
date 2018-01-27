@@ -1,6 +1,6 @@
 class Employee < ApplicationRecord
     extend Permissions
-    # belongs_to :employer, :class_name => "Dealership", :foreign_key => "dealership_id", :optional => true
+    belongs_to :employer, :class_name => "Dealership", :foreign_key => "dealership_id", :optional => true
     belongs_to :dealership, :optional => true
     delegate :vehicles, :to => :dealership
     has_secure_password :validations => false

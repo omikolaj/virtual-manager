@@ -1,10 +1,9 @@
-
-
 <div class="text-center">
 <h1 class="display-3">Welcome <%=current_user.name%></h1>
+<p class="fa fa-briefcase fa-lg" aria-hidden="true"> Employer: <%= current_user.employer.name%></p><br>
+<p class="fa fa-male fa-lg" aria-hidden="true"> Manager: <%= display_manager %></p>
 <p class="display-5">Where would you like to go?</p>
 </div>
-
         <div class="row justify-content-md-center">
           <div class="col-lg-8 my-auto">
             <div class="container-fluid">

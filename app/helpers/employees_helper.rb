@@ -16,6 +16,18 @@ module EmployeesHelper
         DealershipVehicle.relocate(vehicles, dealership_id)
     end
 
+    def display_manager
+        manager = ""
+        current_user.dealership.employees.collect do |e|
+            if manager.split.size >= 1 && e.manager == true
+                manager += ", #{e.name}"
+            elsif e.manager == true
+                manager += "#{e.name}"
+            end
+        end
+        manager
+    end
+
 
     # def employ_orphans(dealership_id)
     #     employees = Dealership.find_by(:id=> dealership_id).employees

@@ -5,6 +5,7 @@ class VehiclesController < ApplicationController
     before_action :require_login
 
     def reports
+        @dealership = Dealership.find_by(:id => params[:dealership_id]) unless params[:dealership_id] == 0
         @vehicles = generate_report_for(:id => params[:dealership_id], :type => params[:type])
     end
 

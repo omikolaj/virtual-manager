@@ -1,5 +1,5 @@
 <%= form_tag("/permissions", method: "post") do %>
 <%= select_tag "employee_id", options_from_collection_for_select(@employees, "id", "name", current_user.id)%>
-<%= select_tag "permission_id",options_from_collection_for_select(Permissions::PERMISSIONS, :last, :first)%>
-<%= submit_tag "Update"%>
+<%= select_tag "permission_id",options_from_collection_for_select(Permissions::PERMISSIONS, :last, :first)%><br>
+<%= submit_tag "Update", class: "btn btn-outline btn-xl js-scroll-trigger nobackground mt-3" %>
 <% end%>

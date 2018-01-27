@@ -7,4 +7,8 @@ module VehiclesHelper
             Vehicle.lot_ready?(id, type)
         end
     end
+
+    def report_type
+        params[:type] == "0" ? "Vehicles in repair" : "Lot ready vehicles"
+    end
 end

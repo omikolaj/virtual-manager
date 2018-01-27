@@ -30,4 +30,11 @@ body{
 .top-margin{
     margin-top:10px;
 }
+.no-padding{
+    padding: 0px;
+}
+
+.hr-or{
+    max-width: 100%
+}
 

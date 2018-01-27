@@ -1,7 +1,39 @@
-<h1>Add New Dealership</h1>
-<%= link_to "Add New Dealership", new_dealership_path %>
-<%= @dealerships.map do |dealership|%>
-<h1><%= dealership.name%></h1><br>
-<%= link_to "Visit Dealership", dealership_path(dealership.id) %><br>
-<%= link_to "Delete", dealership, method: :delete, data: { confirm: "This will remove all employees as well. Are you sure?" } %>
-<%end%>
+<div class="container">
+<div class="row justify-content-md-center">
+<h1>New Dealership?</h1>
+</div>
+<div class="row justify-content-md-center mt-3 mb-3">
+<%= image_tag("welcome-dealership.png", size: "270x70") %>
+</div>
+</div>
+
+<div class="container">
+<div class="row justify-content-md-center">
+<div class="col-lg-3 col-md-3">
+<%= link_to "Create", new_dealership_path, class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
+</div>
+<div class="col-lg-3 col-md-3">
+<%= link_to "Back Home", root_path, class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
+</div>
+</div>
+</div>
+
+
+<div class="container">
+<div class="row justify-content-md-center">
+<%= render @dealerships %>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

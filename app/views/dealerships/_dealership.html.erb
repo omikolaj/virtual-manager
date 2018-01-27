@@ -1,0 +1,6 @@
+<div class="col-lg-3 col-md-3 mb-5 mt-5 mr-5 text-center">
+<i class="fa fa-cubes fa-2x" aria-hidden="true"></i>
+<h1><%= dealership.name %></h1>
+<p>We have <%= dealership.vehicles.size%> vehicles</p>
+<%= link_to "Visit", dealership_path(dealership.id), class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
+</div>
