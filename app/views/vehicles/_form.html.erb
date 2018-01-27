@@ -1,32 +1,59 @@
 <%= form_for([@dealership, @vehicle]) do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
-<%= f.label :model %><br>
-<%= f.text_field :model, list: "models" %><br>
+<div class="form-group mt-2 justify-content-md-center" >
+<%= f.label :model, class: "col-form-label" %>
+<div class="row justify-content-md-center">
+<div class="col-sm-9">
+<%= f.text_field :model, list: "models", class:"form-control" %>
 <datalist id="models">
 <% Vehicle.all.group_by(&:make).map{|k, v| v.first}.each do |vehicle|%>
 <option value="<%=vehicle.make%>">
 <%end%>
 </datalist>
+</div>
+</div>
+</div>
 
-<%= f.label :make %><br>
-<%= f.text_field :make, list: "makes" %><br>
+<div class="form-group mt-2 justify-content-md-center" >
+<%= f.label :make, class: "col-form-label" %>
+<div class="row justify-content-md-center">
+<div class="col-sm-9">
+<%= f.text_field :make, list: "makes", class:"form-control" %>
 <datalist id="makes">
 <% Vehicle.all.group_by(&:make).map{|k, v| v.first}.each do |vehicle|%>
 <option value="<%=vehicle.make%>">
 <%end%>
 </datalist>
+</div>
+</div>
+</div>
 
-<%= f.label :year %><br>
-<%= f.text_field :year, list: "years" %><br>
+<div class="mt-2 justify-content-md-center" >
+<%= f.label :year, class: "col-form-label" %>
+<div class="row justify-content-md-center">
+<div class="col-sm-9">
+<%= f.number_field :year, list: "years", class:"form-control mb-4" %>
 <datalist id="years">
 <% Vehicle.all.group_by(&:year).map{|k, v| v.first}.each do |vehicle|%>
 <option value="<%=vehicle.year%>">
 <%end%>
 </datalist>
+</div>
+</div>
+</div>
 
 <%= render 'vehicles/dealershp_vehicles', f: f %>
 
-<%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<div class="row justify-content-md-center">
+<div class="col-lg-8 col-md-8">
+<%= f.submit yield(:button_text), class:"btn btn-outline btn-xl js-scroll-trigger btn-block nobackground mb-4" %>
 <% end %>
-<%= link_to "Back", dealership_path(@vehicle.dealership_vehicle.dealership_id)%>
+</div>
+</div>
+
+<div class="row justify-content-md-center">
+<div class="col-lg-8 col-md-8">
+<%= link_to "Go to Lot", dealership_vehicles_path(@vehicle.dealership_vehicle.dealership_id), class:"btn btn-outline btn-xl js-scroll-trigger btn-block nobackground mb-2"%>
+</div>
+</div>

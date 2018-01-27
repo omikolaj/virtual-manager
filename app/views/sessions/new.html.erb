@@ -1,18 +1,43 @@
-<div class"row">
-     <div class="col-md-6 col-md-offset-3">
+<div class="container">
+<div class="row justify-content-lg-center">
+<div class="col-lg-5 col-lg-offset-5">
+<div class="form-control extra-style custom-font text-center">
         <%= form_for(:sessions, url: login_path) do |f| %>
 
-        <%= f.label :email %>
+<div class="form-group mt-2 justify-content-md-center" >
+        <%= f.label :email, class: "col-form-label" %>
+        <div class="row justify-content-md-center">
+        <div class="col-sm-9">
         <%= f.text_field :email, class: "form-control" %>
+        </div>
+        </div>
 
-        <%= f.label :password %>
+<div class="form-group mt-2 justify-content-md-center" >
+        <%= f.label :password, class: "col-form-label" %>
+        <div class="row justify-content-md-center">
+        <div class="col-sm-9">
         <%= f.password_field :password, class: "form-control" %>
+        </div>
+        </div>
 
-        <%= f.submit "Log in", class: "btn btn-primary" %>
+        <div class="row justify-content-md-center">
+<div class="col-lg-8 col-md-8">
+        <%= f.submit "Log in", class:"btn btn-outline btn-xl js-scroll-trigger btn-block top-buffer mb-2 nobackground" %>
     <%end%>
+    </div>
+    </div>
 
-    <p>New to the site? <%= link_to "Start Now!", signup_path %></p><br>
-    <%= link_to "Back", root_path%>
-
+    <p>New to the site? <%= link_to "Start Now!", signup_path %></p>
+    <div class="row justify-content-md-center">
+    <div class="col-lg-8 col-md-8">
+    <%= link_to "Back", root_path, class:"btn btn-outline btn-xl js-scroll-trigger btn-block top-buffer mb-2" %>
+    </div>
+    </div>
     </div>
 </div>
+
+</div>
+</div>
+</div>
+</div>
+

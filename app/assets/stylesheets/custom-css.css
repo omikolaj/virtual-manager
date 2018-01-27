@@ -13,7 +13,7 @@ body{
 
 .extra-style{background: #ffffff24}
 
-.custom-font{color: #000000}
+.custom-font{color: #ffffff}
 
 .nobackground{background-color: #ffffff00}
 
@@ -38,3 +38,13 @@ body{
     max-width: 100%
 }
 
+.display-menus {
+    width: fit-content;
+    display:inline-block;
+}
+
+.big-checkbox {width: 20px; height: 20px;}
+
+.field_with_errors input{
+    border: 5px solid red !important;
+}
