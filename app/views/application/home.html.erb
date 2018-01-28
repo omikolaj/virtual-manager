@@ -1,8 +1,15 @@
 <div class="container">
 <div class="row justify-content-md-center">
 <div class="col-lg-6 col-md-6 text-center">
-<%= link_to "View All Dealerships", dealerships_path, class: "btn btn-outline btn-xl js-scroll-trigger mb-4" %><br>
+<%= image_tag("welcome-dealerships.png", size:"225x150", class: "mb-2") %><br>
+<%= link_to "View All Dealerships", dealerships_path, class: "btn btn-outline btn-xl js-scroll-trigger mb-4" %>
 </div>
+
+<div class="col-lg-6 col-md-6 text-center">
+<%= image_tag("user.png", size:"125x125", class: "margin-bottom")%><br>
+<%= link_to "Command Center", employee_path(current_user.id), class: "btn btn-outline btn-xl js-scroll-trigger mb-4" %>
+</div>
+
 </div>
 </div>
 
@@ -14,61 +21,56 @@
 
 <div class="container">
 <div class="row justify-content-md-center">
-<div class="col-lg-6 col-md-6 text-center mb-5 mt-3">
-<h2 class="mb-4">Reports</h2>
+
+<div class="col-lg-4 col-md-6 text-center ">
+<h2 class="margin-p">Reports</h2>
+
 <%= render 'vehicles/report_generator'%>
 <hr class="my-4">
 </div>
+
+<div class="col-lg-4 col-md-6 text-center">
+<h2>Permissions</h2>
+<p>*All users default to destroy</p>
+<%= render 'employees/permissions'%>
+<hr class="my-4">
+</div>
+
+
 </div>
 </div>
+
 
 <div class="container">
 <div class="row justify-content-md-center">
-<div class="col-lg-6 col-md-6 text-center">
-<h2>Permissions</h2>
-</div>
-</div>
-<div class="row justify-content-md-center">
-<div class="col-lg-6 col-md-6 text-center">
-<p>*All users default to destroy</p>
-<%= render 'employees/permissions'%>
-</div>
-
-
-<div class="col-lg-6 col-md-6 mt-5 text-center">
-<p class="text-center">Permission Levels apply to the dealership the user belongs to and cascade down<p>
-<table class="table">
+<div class="col-lg-8 col-md-8 mt-5 text-center mb-5">
+<p class="text-center">*Permission Levels apply to the dealership the user belongs. User with Edit permission also has View, this nesting applies to all levels<p>
+<table class="table mb-5">
   <thead>
     <tr>
       <th scope="col">Permission</th>
-      <th scope="col">Employee</th>
-      <th scope="col">Manager</th>
+      <th scope="col">Destroy</th>
+      <th scope="col">New</th>
+      <th scope="col">Edit</th>
+      <th scope="col">View</th>
+      <th scope="col">None</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th scope="row">Destroy</th>
+      <th scope="row">Employee</th>
       <td>Delete vehicles</td>
-      <td>Delete vehicles and dealership</td>
-    </tr>
-    <tr>
-      <th scope="row">New</th>
       <td>Add vehicles</td>
-      <td>Add vehicles and New dealerships</td>
-    </tr>
-    <tr>
-      <th scope="row">Edit</th>
       <td>Edit vehicles</td>
-      <td>Edit vehicles and dealership</td>
-    </tr>
-    <tr>
-      <th scope="row">View</th>
       <td>View all dealerships and all vehicles</td>
-      <td>View all dealerships and all vehicles</td>
-    </tr>
-    <tr>
-      <th scope="row">None</th>
       <td>Cannot View any dealerships or any vehicles</td>
+    </tr>
+    <tr>
+      <th scope="row">Manager</th>
+      <td>Delete vehicles and dealerships</td>
+      <td>Add vehicles and New dealerships</td>
+      <td>Edit vehicles and dealership</td>
+      <td>View all dealerships and all vehicles</td>
       <td>Cannot View any dealerships or any vehicles</td>
     </tr>
   </tbody>
@@ -78,27 +80,10 @@
 </div>
 <% else %>
 <div class="jumbotron jumbotron-country text-center jumbotron-background top-buffer">
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <h3>If you don't know where youre going any road will take you there</h3>
-      <div class="col-sm-9 offset-3">
-      <medium>- Lewis Carroll</medium>
-      </div>
-    </div>
-    <div class="carousel-item">
-        <h3>No problem can be solved from the same level of consciousness that created it</h3>
-        <div class="col-sm-9 offset-3">
-        <medium>- Albert Einstein</medium>
-      </div>
-    </div>
-    <div class="carousel-item">
-        <h3>An investment in knowledge pays the best interest</h3>
-      <div class="col-sm-9 offset-3">
-      <medium>- Benjamin Franklin</medium>
-      </div>
-    </div>
-  </div>
+ <h3>Here, managers can modify permission levels and generate reports. In command center, Edit your account to a manager and find out for yourself!</h3>
+ </div>
+
+
 </div>
 </div>
 <%end%>

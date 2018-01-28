@@ -48,3 +48,22 @@ body{
 .field_with_errors input{
     border: 5px solid red !important;
 }
+
+.no-padding{
+    padding-top:1.5rem;
+}
+
+.table {
+    border-radius: 5px;
+    width: 50%;
+    margin: 0px auto;
+    float: none;
+}
+
+.margin-p{
+    margin-bottom: 55px;
+}
+
+.margin-bottom{
+    margin-bottom: 33px;
+}

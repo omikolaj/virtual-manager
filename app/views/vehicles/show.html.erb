@@ -1,8 +1,56 @@
-<h1><%= @vehicle.make%></h1>
 
-<%= link_to "Back", url_for(:back) %><br>
-<%= link_to "Edit Vehicle", edit_vehicle_path(@vehicle.id) %><br>
-<%= link_to "View All Dealership's Vehicles", dealership_vehicles_path(@vehicle.dealership.id) %><br>
+<h2 class="text-center">Vehicle's Info</h2>
+<div class="container">
+<div class="jumbotron jumbotron-country jumbotron-background no-padding">
+<div class="col-lg-12 col-md-12">
 
+<table class="table text-center">
+  <tbody>
+    <tr>
+      <th scope="row">Make</th>
+      <td><%=@vehicle.make %></td>
+    </tr>
+    <tr>
+      <th scope="row">Model</th>
+      <td><%=@vehicle.model %></td>
+    </tr>
+    <tr>
+      <th scope="row">Year</th>
+      <td><%=@vehicle.year %></td>
+    </tr>
+    <tr>
+      <th scope="row">Status</th>
+      <td><%=@vehicle.dealership_vehicle.is_lot_ready == true ? "Lot ready" : "In repair" %></td>
+    </tr>
+    <tr>
+      <th scope="row">Price</th>
+      <td><%=@vehicle.dealership_vehicle.price %></td>
+    </tr>
+    <tr>
+      <th scope="row">Buyer</th>
+      <td><%=@vehicle.dealership_vehicle.buyer %></td>
+    </tr>
+    <tr>
+      <th scope="row"></th>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row justify-content-md-center">
+<div class="col-lg-3 col-md-4 mt-2">
+<%= link_to "Back", dealership_vehicles_path(@vehicle.dealership.id), class:"btn btn-outline btn-xl js-scroll-trigger btn-block" %>
+</div>
+<div class="col-lg-3 col-md-4 mt-2">
+<%= link_to "Edit Vehicle", edit_vehicle_path(@vehicle.id), class:"btn btn-outline btn-xl js-scroll-trigger btn-block" %>
+</div>
+<div class="col-lg-3 col-md-4 mt-2">
 <%= form_tag vehicle_path(@vehicle.id), method: 'delete'%>
-<%= submit_tag "Delete #{@vehicle.make}"%>
+<%= submit_tag "Delete", class: "btn btn-outline btn-xl js-scroll-trigger btn-block nobackground" %>
+</div>
+</div>
+</div>
+</div>

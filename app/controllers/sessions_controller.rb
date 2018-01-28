@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
             if @employee = Employee.find_or_create_by_omniauth(auth_hash)
                 log_in @employee
                 
-                redirect_to @employee
+                redirect_to root_path
             else
                 flash.now[:danger] = "Email already exists."
                 render :welcome
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
             @employee = Employee.find_by(:email => params[:sessions][:email].downcase)
             if @employee && @employee.authenticate(params[:sessions][:password])
                 log_in @employee
-                redirect_to @employee
+                redirect_to root_path
             else
                 flash.now[:danger] = "Invalid email or password, please try again."
                 render :new

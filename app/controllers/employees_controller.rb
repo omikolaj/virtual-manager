@@ -30,7 +30,7 @@ class EmployeesController < ApplicationController
         @employee = Employee.new(employee_params)
         if @employee.save
             session[:user_id] = @employee.id
-            redirect_to @employee
+            redirect_to root_path
         else
             render :'new'
         end

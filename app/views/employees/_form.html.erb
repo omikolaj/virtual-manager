@@ -32,9 +32,18 @@
 <%= f.collection_select :dealership_id, Dealership.all, :id, :name, {selected: "#{Dealership.all.first.name}"}, {class: "form-control display-menus mb-2"} %><br>
 
 
+<div class="row justify-content-md-center">
+        <div>
+            <%= f.check_box :manager, class:"big-checkbox align-middle ml-4", id:"fancy-checkbox-default" %>
+            <div class="[ btn-group ] mt-3">
+                <label for="fancy-checkbox-default" class="[ btn btn-default ]">
+                    <span class="[ glyphicon glyphicon-ok ]"></span>
+                </label>
+                <%= f.label "Are you a manager?", for: "fancy-checkbox-default", class:"btn btn-outline btn-xl js-scroll-trigger btn-block mb-4"%>                   
+             </div>
+        </div>
+</div>
 
-<%= f.label "Are you a manager?"%><br>
-<%= f.check_box :manager, class: "mb-4" %>
 
 <div class="row justify-content-md-center">
 <div class="col-lg-8 col-md-8">
