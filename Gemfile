@@ -41,11 +41,16 @@ gem 'omniauth-github'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'sprockets'
 gem 'bootstrap-sass', '~> 3.3.7'
-gem 'rails_12factor'
 
 group :production do
   gem 'pg', '~> 0.20'
   gem 'rails_12factor'
+  gem 'jquery-rails'
+  gem 'omniauth'
+  gem 'omniauth-github'
+  gem 'font-awesome-sass', '~> 4.7.0'
+  gem 'sprockets'
+  gem 'bootstrap-sass', '~> 3.3.7'
 end
 
 
@@ -67,6 +72,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'pg', '~> 0.20'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
