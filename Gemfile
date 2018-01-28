@@ -42,6 +42,10 @@ gem 'font-awesome-sass', '~> 4.7.0'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'rails_12factor'
 
+group :production do
+  gem 'pg'#, '0.15.1'
+  gem 'rails_12factor'
+end
 
 
 group :development, :test do
