@@ -11,16 +11,13 @@ class Dealership < ApplicationRecord
     permissions_for :dealership, :destroy, :edit, :view, :new
 
     def self.all_except_current(dealership)
-        self.all.reject{|o| o.name == dealership.name}
+      self.all.reject{|o| o.name == dealership.name}
     end
 
     def vehicles_attributes=(vehicles_attributes)
-        vehicles_attributes.each do |i, vehicle|
-            self.vehicles.build(vehicle)
-        end
+      vehicles_attributes.each do |i, vehicle|
+        self.vehicles.build(vehicle)
+      end
     end
-
     
-
-       
 end

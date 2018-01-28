@@ -1,7 +1,7 @@
 class DealershipsController < ApplicationController
-    include DealershipHelper, EmployeesHelper, VehiclesHelper
-		before_action :dealership, only: [:show, :edit, :update, :create, :destroy]
-		before_action :require_login
+  include DealershipHelper, EmployeesHelper, VehiclesHelper
+	before_action :dealership, only: [:show, :edit, :update, :create, :destroy]
+	before_action :require_login
     
     def index
       @dealerships = Dealership.all
@@ -10,14 +10,14 @@ class DealershipsController < ApplicationController
     def show
       if !can_current_user?(:view, @dealership)
 				redirect_back fallback_location: employee_path(current_user.id)
-				flash[:notice] = "You cannot view any dealerships. Check your permission levels"
+				flash[:notice] = "You cannot view this dealerships. Check your permission levels"
 			end
     end
 
 		def new
 		  if !can_current_user?(:new, @dealership = Dealership.new)
 			  redirect_back fallback_location: @dealership
-				flash[:notice] = "You cannot add new dealerships. Are you a manager? Do you have 'New' permission level?"
+				flash[:notice] = "You cannot add new dealership. Are you a manager? Do you have 'New' permission level?"
 			else
 				if current_user.manager?
 					@dealership = Dealership.new

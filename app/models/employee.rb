@@ -10,28 +10,28 @@ class Employee < ApplicationRecord
     permissable :destroy, :edit, :view, :new
 
     def self.assign_employees_to_random_dealership(orphaned_employees, dealership_id)
-        orphaned_employees.each do |employee|
-            employee.update_attribute(:dealership_id, Dealership.id_array(dealership_id).sample)
-        end
+      orphaned_employees.each do |employee|
+      employee.update_attribute(:dealership_id, Dealership.id_array(dealership_id).sample)
+      end
     end
 
     def self.find_or_create_by_omniauth(auth_hash)
-        self.where(:uid => auth_hash["uid"]).first_or_create do |employee|
-            employee.email = auth_hash["info"]["email"]
-            employee.password = SecureRandom.hex
-            employee.name = auth_hash["info"]["name"]
-            employee.omniauth = true
-            employee.dealership_id = 1
-        end
+      self.where(:uid => auth_hash["uid"]).first_or_create do |employee|
+        employee.email = auth_hash["info"]["email"]
+        employee.password = SecureRandom.hex
+        employee.name = auth_hash["info"]["name"]
+        employee.omniauth = true
+        employee.dealership_id = 1
+      end
     end
 
     def update_permissions(permission_id)
-        self.update_attribute(:permission, permission_id)
+      self.update_attribute(:permission, permission_id)
     end
 
     def self.get_permission_level(id)
-        employee = Employee.find_by(:id => id)
-        Permissions::PERMISSIONS.invert[employee.permission].to_s        
+      employee = Employee.find_by(:id => id)
+      Permissions::PERMISSIONS.invert[employee.permission].to_s        
     end
 
 end

@@ -1,39 +1,39 @@
 class EmployeesController < ApplicationController
-    before_action :require_login, :employee
-    skip_before_action :require_login, only: [:new, :create]
+  include EmployeesHelper
+  before_action :require_login, :employee
+  skip_before_action :require_login, only: [:new, :create]
     
     def permissions
-        @employee = Employee.find_by(:id => params[:employee_id])
-        if @employee.update_permissions(params[:permission_id])
-            flash[:success] = "Permission successfully updated"
-            redirect_to root_path
-        else
-            flash[:error] = "Something went wrong..."
-            render :home
-        end
+      @employee = Employee.find_by(:id => params[:employee_id])
+      if @employee.update_permissions(params[:permission_id])
+        flash[:success] = "Permission updated to '#{display_permission}'"
+        redirect_to root_path
+      else
+        flash[:error] = "Something went wrong..."
+        render :home
+      end
     end
 
     def index
-        @employees = Employee.find_by(:id => current_user.id).dealership.employees
-        
+      @employees = Employee.find_by(:id => current_user.id).dealership.employees        
     end
 
     def show
-        render :show
+      render :show
     end
 
     def new
-        @employee = Employee.new
+      @employee = Employee.new
     end
     
     def create
-        @employee = Employee.new(employee_params)
-        if @employee.save
-            session[:user_id] = @employee.id
-            redirect_to root_path
-        else
-            render :'new'
-        end
+      @employee = Employee.new(employee_params)
+      if @employee.save
+        session[:user_id] = @employee.id          
+        redirect_to root_path
+      else
+        render :'new'
+      end
     end
 
     def edit
@@ -41,12 +41,12 @@ class EmployeesController < ApplicationController
     end
 
     def update
-        if @employee.update(employee_params)
-            redirect_to @employee
-            flash[:success] = "Profile Updated"
-        else
-            render :edit
-        end
+      if @employee.update(employee_params)
+        redirect_to @employee
+        flash[:success] = "Profile successfully updated"
+      else
+        render :edit
+      end
     end
 
     def destroy
@@ -61,6 +61,5 @@ class EmployeesController < ApplicationController
     def employee
       @employee = Employee.find_by(:id => params[:id])
     end
-
-
+    
 end
