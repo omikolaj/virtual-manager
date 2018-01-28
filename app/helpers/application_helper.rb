@@ -17,7 +17,11 @@ module ApplicationHelper
 
   private
   def load_database
-    Rails.application.load_seed if Dealership.all.size < 1
+    Rails.application.load_seed if check_dealerships
+  end
+
+  def check_dealerships
+    session[:dealerships_size] ||= Dealership.all.size < 1
   end
   
 end
