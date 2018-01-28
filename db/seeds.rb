@@ -74,13 +74,13 @@ Employee.create(name: "Ada Lovelace", manager: false, email: "ada.lovelace@gmail
 Employee.create(name: "Steve Wozniak", manager: false, email: "steve.wozniak@gmail.com", password: "password", dealership_id: 4, permission: 0)
 Employee.create(name: "John Carmack", manager: false, email: "john.carmack@gmail.com", password: "password", dealership_id: 5, permission: 0)
 Employee.create(name: "Donald Knuth", manager: false, email: "donald.knuth@gmail.com", password: "password", dealership_id: 6, permission: 0)
-Employee.create(name: "Grace Hopper", manager: true, email: "grace.hopper@gmail.com", password: "password", dealership_id: 2, permission: 0
+Employee.create(name: "Grace Hopper", manager: true, email: "grace.hopper@gmail.com", password: "password", dealership_id: 2, permission: 0)
 Employee.create(name: "Richard Stallman", manager: false, email: "richard.stallman@gmail.com", password: "password", dealership_id: 1, permission: 0)
 Employee.create(name: "James Gosling", manager: false, email: "james.gosling@gmail.com", password: "password", dealership_id: 3, permission: 0)
 Employee.create(name: "Ken Thompson", manager: false, email: "ken.thompson@gmail.com", password: "password", dealership_id: 4, permission: 0)
 Employee.create(name: "Bjarne Stroustrup", manager: false, email: "bjarne.stroustrup@gmail.com", password: "password", dealership_id: 5, permission: 0)
 Employee.create(name: "Larry Wall", manager: false, email: "larry.wall@gmail.com", password: "password", dealership_id: 6, permission: 0)
-Employee.create(name: "Linus Torvalds", manager: true, email: "linus.torvalds@gmail.com", password: "password", dealership_id: 3, permission: 0
+Employee.create(name: "Linus Torvalds", manager: true, email: "linus.torvalds@gmail.com", password: "password", dealership_id: 3, permission: 0)
 Employee.create(name: "Guido van Rossum", manager: false, email: "guido.vanRossum@gmail.com", password: "password", dealership_id: 2, permission: 0)
 Employee.create(name: "Paul Allen", manager: false, email: "paul.allen@gmail.com", password: "password", dealership_id: 1, permission: 0)
 Employee.create(name: "Brian Kernighan", manager: false, email: "brian.kernighan@gmail.com", password: "password", dealership_id: 4, permission: 0)
