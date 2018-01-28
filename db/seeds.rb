@@ -68,7 +68,7 @@ Vehicle.create(make: "Honda", model: "Oddyssey", year: 2014, dealership_vehicle_
 Vehicle.create(make: "Kia", model: "Stinger", year: 2017, dealership_vehicle_id: 26)
 Vehicle.create(make: "Kia", model: "Soul", year: 2017, dealership_vehicle_id: 27)
 
-Employee.create(name: "Bill Gates", manager: true, email: "bill.gates@gmail.com", password: "password", dealership_id: 1, permission: 0
+Employee.create(name: "Bill Gates", manager: true, email: "bill.gates@gmail.com", password: "password", dealership_id: 1, permission: 0)
 Employee.create(name: "Mark Zuckerberg", manager: false, email: "mark.zuckerberg@gmail.com", password: "password", dealership_id: 2, permission: 0)
 Employee.create(name: "Ada Lovelace", manager: false, email: "ada.lovelace@gmail.com", password: "password", dealership_id: 3, permission: 0)
 Employee.create(name: "Steve Wozniak", manager: false, email: "steve.wozniak@gmail.com", password: "password", dealership_id: 4, permission: 0)
