@@ -31,7 +31,7 @@ class VehiclesController < ApplicationController
     def create
         @vehicle = Vehicle.new(vehicle_params)       
         if @vehicle.save
-            redirect_to @vehicle
+            redirect_to dealership_vehicle_path(@vehicle.dealership.id, @vehicle)
             flash[:success] = "Vehicle successfully added!"
         else
             render :new
@@ -60,6 +60,7 @@ class VehiclesController < ApplicationController
             flash[:notice] = "You cannot delete this vehicle"
         else	
             @vehicle.destroy
+            flash[:success] = "Vehicle successfully deleted"
         end
         redirect_to dealership_vehicles_path(@vehicle.dealership.id) unless performed?
     end

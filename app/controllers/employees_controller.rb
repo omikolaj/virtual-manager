@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-    before_action :require_login
+    before_action :require_login, :employee
     skip_before_action :require_login, only: [:new, :create]
     
     def permissions
@@ -8,6 +8,7 @@ class EmployeesController < ApplicationController
             flash[:success] = "Permission successfully updated"
             redirect_to root_path
         else
+            flash[:error] = "Something went wrong..."
             render :home
         end
     end
@@ -18,7 +19,6 @@ class EmployeesController < ApplicationController
     end
 
     def show
-        @employee = Employee.find_by(:id => params[:id])
         render :show
     end
 
@@ -37,11 +37,10 @@ class EmployeesController < ApplicationController
     end
 
     def edit
-        @employee = Employee.find_by(:id => params[:id])
+
     end
 
     def update
-        @employee = Employee.find_by(:id => params[:id])
         if @employee.update(employee_params)
             redirect_to @employee
             flash[:success] = "Profile Updated"
@@ -57,6 +56,10 @@ class EmployeesController < ApplicationController
     private 
     def employee_params
         params.require(:employee).permit(:name, :email, :password, :manager, :dealership_id)
+    end
+
+    def employee
+      @employee = Employee.find_by(:id => params[:id])
     end
 
 

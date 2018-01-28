@@ -28,6 +28,10 @@ module EmployeesHelper
         manager
     end
 
+    def display_permission
+        Employee.get_permission_level(current_user.id)
+    end
+
 
     # def employ_orphans(dealership_id)
     #     employees = Dealership.find_by(:id=> dealership_id).employees

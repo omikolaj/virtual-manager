@@ -1,27 +1,27 @@
 <%= form_for(@employee) do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
-<div class="form-group mt-2 justify-content-md-center" >
+<div class="form-group mt-2 justify-content-md-center justify-content-sm-center" >
 <%= f.label :name, class: "col-form-label" %>
-<div class="row justify-content-md-center">
+<div class="row justify-content-md-center justify-content-sm-center">
 <div class="col-sm-9">
 <%= f.text_field :name, class:"form-control" %>
 </div>
 </div>
 </div>
 
-<div class="form-group mt-2 justify-content-md-center">
+<div class="form-group mt-2 justify-content-md-center justify-content-sm-center">
 <%= f.label :email, class: "col-form-label" %>
-<div class="row justify-content-md-center">
+<div class="row justify-content-md-center justify-content-sm-center">
 <div class="col-sm-9">
 <%= f.email_field :email, class:"form-control" %>
 </div>
 </div>
 </div>
 
-<div class="form-group mt-2 justify-content-md-center">
+<div class="form-group mt-2 justify-content-md-center justify-content-sm-center">
 <%= f.label :password, class: "col-form-label" unless @employee.omniauth %>
-<div class="row justify-content-md-center">
+<div class="row justify-content-md-center justify-content-sm-center">
 <div class="col-sm-9">
 <%= f.password_field :password, class:"form-control" unless @employee.omniauth %>
 </div>
@@ -32,7 +32,7 @@
 <%= f.collection_select :dealership_id, Dealership.all, :id, :name, {selected: "#{Dealership.all.first.name}"}, {class: "form-control display-menus mb-2"} %><br>
 
 
-<div class="row justify-content-md-center">
+<div class="row justify-content-md-center justify-content-sm-center ">
         <div>
             <%= f.check_box :manager, class:"big-checkbox align-middle ml-4", id:"fancy-checkbox-default" %>
             <div class="[ btn-group ] mt-3">
@@ -45,7 +45,7 @@
 </div>
 
 
-<div class="row justify-content-md-center">
+<div class="row justify-content-md-center justify-content-sm-center">
 <div class="col-lg-8 col-md-8">
 <%= f.submit yield(:button_text), class:"btn btn-outline btn-xl js-scroll-trigger btn-block nobackground"%>
 </div>

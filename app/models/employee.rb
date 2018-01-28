@@ -29,4 +29,9 @@ class Employee < ApplicationRecord
         self.update_attribute(:permission, permission_id)
     end
 
+    def self.get_permission_level(id)
+        employee = Employee.find_by(:id => id)
+        Permissions::PERMISSIONS.invert[employee.permission].to_s        
+    end
+
 end

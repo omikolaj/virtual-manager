@@ -1,26 +1,27 @@
 <div class="container">
 <div class="row justify-content-lg-center">
 <div class="col-lg-5 col-lg-offset-5">
+<%= render partial: "shared/flash_messages", flash: flash %>
 <div class="form-control extra-style custom-font text-center">
         <%= form_for(:sessions, url: login_path) do |f| %>
 
-<div class="form-group mt-2 justify-content-md-center" >
+<div class="form-group mt-2 justify-content-md-center justify-content-sm-center" >
         <%= f.label :email, class: "col-form-label" %>
-        <div class="row justify-content-md-center">
+        <div class="row justify-content-md-center justify-content-sm-center">
         <div class="col-sm-9">
         <%= f.text_field :email, class: "form-control" %>
         </div>
         </div>
 
-<div class="form-group mt-2 justify-content-md-center" >
+<div class="form-group mt-2 justify-content-md-center justify-content-sm-center" >
         <%= f.label :password, class: "col-form-label" %>
-        <div class="row justify-content-md-center">
+        <div class="row justify-content-md-center justify-content-sm-center">
         <div class="col-sm-9">
         <%= f.password_field :password, class: "form-control" %>
         </div>
         </div>
 
-        <div class="row justify-content-md-center">
+        <div class="row justify-content-md-center justify-content-sm-center">
 <div class="col-lg-8 col-md-8">
         <%= f.submit "Log in", class:"btn btn-outline btn-xl js-scroll-trigger btn-block top-buffer mb-2 nobackground" %>
     <%end%>
@@ -28,7 +29,7 @@
     </div>
 
     <p>New to the site? <%= link_to "Start Now!", signup_path %></p>
-    <div class="row justify-content-md-center">
+    <div class="row justify-content-md-center justify-content-sm-center">
     <div class="col-lg-8 col-md-8">
     <%= link_to "Back", root_path, class:"btn btn-outline btn-xl js-scroll-trigger btn-block top-buffer mb-2" %>
     </div>

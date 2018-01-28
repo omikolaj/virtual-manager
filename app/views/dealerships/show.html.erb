@@ -1,3 +1,6 @@
+<div class="container">
+  <%= render partial: "shared/flash_messages", flash: flash %>
+</div>
 <div class="jumbotron jumbotron-country text-center jumbotron-background">
 		<h1 class="display-3">Welcome to <%=@dealership.name%></h1>
 		<p class="lead fa fa-building-o fa-lg" aria-hidden="true"> City: <%=@dealership.city%></p>

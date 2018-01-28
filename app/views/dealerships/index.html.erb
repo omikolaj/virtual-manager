@@ -20,7 +20,11 @@
 
 
 <div class="container">
+
 <div class="row justify-content-md-center">
+<div class="container mt-5">
+  <%= render partial: "shared/flash_messages", flash: flash %>
+</div>
 <%= render @dealerships %>
 </div>
 </div>
