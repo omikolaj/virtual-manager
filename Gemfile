@@ -34,7 +34,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 # Use PostgresSQL as database for Active Record
 
-gem 'pg'
+
 gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-github'
@@ -43,7 +43,7 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'rails_12factor'
 
 group :production do
-  gem 'pg'#, '0.15.1'
+  gem 'pg', '~> 0.20'
   gem 'rails_12factor'
 end
 
