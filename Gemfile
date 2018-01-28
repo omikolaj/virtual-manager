@@ -56,6 +56,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'pry'
   gem "rails-erd"
+  gem 'pg', '~> 0.20'
 end
 
 group :development do
