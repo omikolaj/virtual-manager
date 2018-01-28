@@ -30,6 +30,6 @@ test:
 
 production:
   <<: *default
-  database: dealership-manager
+  adapter: postgresql
 
   
