@@ -11,9 +11,18 @@
                 <div class = "span3 mr-2">
                 <a href="/login" class="btn btn-outline btn-xl js-scroll-trigger">Log in</a>
                 </div>
+                </div>
+                
+                <div class="row mt-3">
+                <div class ="span 3 mr-2">
+                <%= form_tag guestlogin_path, method: 'post'%>
+                <%= submit_tag "Login as Guest", class: "btn btn-outline btn-xl js-scroll-trigger btn-block nobackground" %>
+                </div>
+
                 <div class ="span 3">
                 <%= link_to "Login via GitHub", '/auth/github', class: "btn btn-outline btn-xl js-scroll-trigger"%>
                 </div>
+
                 </div>
 
             </div>
