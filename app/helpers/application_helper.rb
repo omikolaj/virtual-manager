@@ -21,7 +21,7 @@ module ApplicationHelper
   end
 
   def check_dealerships
-    session[:dealerships_size] ||= Dealership.all.size < 1
+    database_empty ||= Dealership.all.size < 1
   end
   
 end

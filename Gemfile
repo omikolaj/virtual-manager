@@ -44,6 +44,7 @@ gem 'font-awesome-sass', '~> 4.7.0'
 gem 'sprockets'
 gem 'bootstrap-sass', '~> 3.3.7'
 
+
 group :production do
   gem 'pg', '~> 0.21'
   gem 'rails_12factor'
@@ -58,6 +59,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'pry'
   gem "rails-erd"
+  gem 'pg', '~> 0.21'
 end
 
 group :development do
