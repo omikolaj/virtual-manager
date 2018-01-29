@@ -1,0 +1,69 @@
+body{
+    position: relative;
+    width: 100%;
+    padding-top: 150px;
+    padding-bottom: 100px;
+    color: white;
+    background: image-url("bg-pattern.png"), #7b4397;
+    background: image-url("bg-pattern.png"), -webkit-linear-gradient(to left, #7b4397, #dc2430);
+    background: image-url("bg-pattern.png"), linear-gradient(to left, #7b4397, #dc2430);
+}
+
+.top-buffer { margin-top:20px; }
+
+.extra-style{background: #ffffff24}
+
+.custom-font{color: #ffffff}
+
+.nobackground{background-color: #ffffff00}
+
+.jumbotron-background{
+    background-color:#e9ecef3d;
+}
+
+.my-4{
+    border-width: 3px;
+    border-color: #fbeeff70;
+    width: 100%;
+}
+
+.top-margin{
+    margin-top:10px;
+}
+.no-padding{
+    padding: 0px;
+}
+
+.hr-or{
+    max-width: 100%
+}
+
+.display-menus {
+    width: fit-content;
+    display:inline-block;
+}
+
+.big-checkbox {width: 20px; height: 20px;}
+
+.field_with_errors input{
+    border: 5px solid red !important;
+}
+
+.no-padding{
+    padding-top:1.5rem;
+}
+
+.table {
+    border-radius: 5px;
+    width: 50%;
+    margin: 0px auto;
+    float: none;
+}
+
+.margin-p{
+    margin-bottom: 55px;
+}
+
+.margin-bottom{
+    margin-bottom: 33px;
+}
