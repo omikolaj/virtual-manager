@@ -1,0 +1,11 @@
+# Add configuration values here, as shown below.
+#
+#pusher_app_id: "2954"
+GITHUB_KEY: 50bf69ec71baa84abac1
+GITHUB_SECRET: 2d43ed195e54dc181d291f71de15a7a75f614a58
+# stripe_api_key: sk_test_2J0l093xOyW72XUYJHE4Dv2r
+# stripe_publishable_key: pk_test_ro9jV5SNwGb1yYlQfzG17LHK
+#
+# production:
+#   stripe_api_key: sk_live_EeHnL644i6zo4Iyq4v1KdV9H
+#   stripe_publishable_key: pk_live_9lcthxpSIHbGwmdO941O1XVU
