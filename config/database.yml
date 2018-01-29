@@ -7,11 +7,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  #database: dealership-manager
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  # username: oski
-  # password: Postgres123
-  # timeout: 5000
 
 development:
   <<: *default
@@ -31,7 +27,5 @@ test:
 production:
   <<: *default
   database: dealership-manager-production
-  username: oski
-  password: <%= ENV['dealership-manager-production_DATABASE_PASSWORD'] %>
-
+  
   
