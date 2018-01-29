@@ -34,4 +34,9 @@ class Employee < ApplicationRecord
       Permissions::PERMISSIONS.invert[employee.permission].to_s        
     end
 
+    def self.display_permission_level(user_id)
+      employee = Employee.find_by(:id => user_id)
+      Permissions::PERMISSIONS.invert[employee.permission].to_s 
+    end
+
 end

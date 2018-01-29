@@ -27,8 +27,12 @@ module EmployeesHelper
       manager
     end
 
-    def display_permission
+    def current_user_permission
         Employee.get_permission_level(current_user.id)
+    end
+
+    def display_permission_for(user_id)
+      Employee.display_permission_level(user_id)
     end
 
 end
