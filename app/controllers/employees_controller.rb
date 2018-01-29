@@ -6,7 +6,7 @@ class EmployeesController < ApplicationController
     def permissions
       @employee = Employee.find_by(:id => params[:employee_id])
       if @employee.update_permissions(params[:permission_id])
-        flash[:success] = "#{@employee.name} permission set to '#{display_permission_for(@employee.id)}'"
+        flash[:success] = "#{@employee.name}'s permission set to '#{display_permission_for(@employee.id)}'"
         redirect_to root_path
       else
         flash[:error] = "Something went wrong..."
