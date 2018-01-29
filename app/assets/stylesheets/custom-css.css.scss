@@ -9,6 +9,14 @@ body{
     background: image-url("bg-pattern.png"), linear-gradient(to left, #7b4397, #dc2430);
 }
 
+a.github{
+    color:white;
+}
+
+.h-100.main-height{
+    height: 85% !important;
+}
+
 .top-buffer { margin-top:20px; }
 
 .extra-style{background: #ffffff24}
