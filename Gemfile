@@ -36,7 +36,7 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 # Use PostgresSQL as database for Active Record
 
-
+gem 'figaro'
 gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-github'
