@@ -2,10 +2,10 @@
 
 
 <%= dealership_vehicle_builder.hidden_field :dealership_id, value: @vehicle.dealership_vehicle.dealership_id unless f.object.is_a?(Dealership)%>
-<div class="form-group justify-content-md-center" >
+<div class="form-group justify-content-md-center " >
 
 
-<div class="row justify-content-md-center">
+<div class="row justify-content-md-center justify-content-sm-center">
         <div>
             <%= dealership_vehicle_builder.check_box :is_lot_ready, id:"ready_checkbox", class:"big-checkbox align-middle ml-4", id:"fancy-checkbox-default" %>
             <div class="[ btn-group ] mt-3">
@@ -21,7 +21,7 @@
 
 <div class="form-group mt-2 justify-content-md-center" >
 <%= dealership_vehicle_builder.label :buyer, class: "col-form-label" %>
-<div class="row justify-content-md-center">
+<div class="row justify-content-md-center justify-content-sm-center">
 <div class="col-sm-9">
 <%= dealership_vehicle_builder.text_field :buyer, list: "buyers", class:"form-control" %>
 <datalist id="buyers">
@@ -35,7 +35,7 @@
 
 <div class="form-group mt-2 justify-content-md-center" >
 <%= dealership_vehicle_builder.label :price, class: "col-form-label" %>
-<div class="row justify-content-md-center">
+<div class="row justify-content-md-center justify-content-sm-center">
 <div class="col-sm-9">
 <%= dealership_vehicle_builder.number_field :price, class: "form-control mb-4" %>
 </div>

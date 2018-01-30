@@ -3,7 +3,7 @@
 
 <div class="form-group mt-2 justify-content-md-center" >
 <%= f.label :model, class: "col-form-label" %>
-<div class="row justify-content-md-center">
+<div class="row justify-content-md-center justify-content-sm-center">
 <div class="col-sm-9">
 <%= f.text_field :model, list: "models", class:"form-control" %>
 <datalist id="models">
@@ -17,7 +17,7 @@
 
 <div class="form-group mt-2 justify-content-md-center" >
 <%= f.label :make, class: "col-form-label" %>
-<div class="row justify-content-md-center">
+<div class="row justify-content-md-center justify-content-sm-center">
 <div class="col-sm-9">
 <%= f.text_field :make, list: "makes", class:"form-control" %>
 <datalist id="makes">
@@ -31,7 +31,7 @@
 
 <div class="mt-2 justify-content-md-center" >
 <%= f.label :year, class: "col-form-label" %>
-<div class="row justify-content-md-center">
+<div class="row justify-content-md-center justify-content-sm-center">
 <div class="col-sm-9">
 <%= f.number_field :year, list: "years", class:"form-control mb-4" %>
 <datalist id="years">
@@ -45,7 +45,7 @@
 
 <%= render 'vehicles/dealershp_vehicles', f: f %>
 
-<div class="row justify-content-md-center">
+<div class="row justify-content-md-center justify-content-sm-center">
 <div class="col-lg-8 col-md-8">
 <%= f.submit yield(:button_text), class:"btn btn-outline btn-xl js-scroll-trigger btn-block nobackground mb-4" %>
 <% end %>
