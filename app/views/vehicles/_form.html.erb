@@ -21,8 +21,8 @@
 <div class="col-sm-9">
 <%= f.text_field :make, list: "makes", class:"form-control" %>
 <datalist id="makes">
-<% Vehicle.all.group_by(&:make).map{|k, v| v.first}.each do |vehicle|%>
-<option value="<%=vehicle.make%>">
+<% Vehicle.all.group_by(&:model).map{|k, v| v.first}.each do |vehicle|%>
+<option value="<%=vehicle.model%>">
 <%end%>
 </datalist>
 </div>
