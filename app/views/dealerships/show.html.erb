@@ -8,11 +8,11 @@
     </div>
         <div class="container">
         <div class="row justify-content-md-center">
-        <div class ="col-md-4 text-center">
+        <div class ="col-md-5 text-center">
 		<p>Number of vehicles: <%=@dealership.vehicles.size%></p>
         <i class="fa fa-car fa-4x" aria-hidden="true"></i>        
         </div>
-        <div class ="col-md-4 text-center">
+        <div class ="col-md-5 text-center">
         <p>We have <%=@dealership.employees.size%> employees</p>
         <i class="fa fa-user fa-4x" aria-hidden="true"></i>
         </div>
@@ -24,24 +24,24 @@
 <div class="container mt-5">
 <hr class="my-4 hr-or">
   <div class="row justify-content-md-center">
-    <div class="col-md-4 text-center">
+    <div class="col-md-5 text-center mb-3">
       <%= link_to "Add Vehicle", new_dealership_vehicle_path(@dealership.id), class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
     </div>
-    <div class="col-md-4 text-center">
+    <div class="col-md-5 text-center mb-3">
       <%= link_to "View Car Lot", dealership_vehicles_path(@dealership.id), class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
     </div>
-    <div class="col-md-4 text-center">
+    <div class="col-md-5 text-center">
       <%= link_to "Edit Dealership", edit_dealership_path(@dealership.id), class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
     </div>
   </div>
   </div>
   <div class="container">
     <div class="row justify-content-md-center">
-    <div class="col-md-4 top-buffer">
+    <div class="col-md-5 top-buffer">
       <%= form_tag dealership_path(@dealership.id), method: 'delete'%>
         <%= submit_tag "Delete #{@dealership.name}", class: "btn btn-outline btn-xl js-scroll-trigger btn-block nobackground"%>
     </div>
-    <div class="col-md-4 top-buffer">
+    <div class="col-md-5 top-buffer">
       <%= link_to "View All Dealerships", dealerships_path, class: "btn btn-outline btn-xl js-scroll-trigger btn-block"%>
     </div>
   </div>

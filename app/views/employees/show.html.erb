@@ -1,5 +1,5 @@
 
-<div class="text-center">
+<div class="text-center mt-3">
 <div class="container">
   <%= render partial: "shared/flash_messages", flash: flash %>
 </div>
@@ -12,34 +12,34 @@
 
 
             <div class="container-fluid">
-              <div class="row top-buffer justify-content-md-center">
-                <div class="col-lg-4 col-md-6">
-                  <div class="feature-item">
+              <div class="row top-buffer justify-content-center mt-3">
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                  <div class="feature-item mt-2">
                     <%= link_to "Edit Profile", edit_employee_path(current_user.id), class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
                   </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                  <div class="feature-item">
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                  <div class="feature-item mt-2">
                     <%= link_to "Go to your dealership", dealership_path(current_user.dealership.id), class: "btn btn-outline btn-xl js-scroll-trigger btn-block"%>
                   </div>
                 </div>
               </div>
-              <div class="row top-buffer justify-content-md-center">
-                <div class="col-lg-4 col-md-6">
-                  <div class="feature-item">
+              <div class="row top-buffer justify-content-center">
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                  <div class="feature-item mt-2">
                     <%= link_to "View all co-workers", employees_path, class: "btn btn-outline btn-xl js-scroll-trigger btn-block"%>
                   </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
-                  <div class="feature-item">
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                  <div class="feature-item mt-2">
                     <%= link_to "See your lot", dealership_vehicles_path(current_user.dealership.id), class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
                   </div>
                 </div>
               </div>
 
-              <div class="row top-buffer justify-content-md-center">
-              <div class="col-lg-4 col-md-6">
-                  <div class="feature-item">
+              <div class="row top-buffer justify-content-center mt-3">
+              <div class="col-lg-4 col-md-4 col-sm-6">
+                  <div class="feature-item mt-2">
                     <%= link_to "Home", root_path, class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
                   </div>
                 </div>

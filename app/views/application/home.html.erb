@@ -1,11 +1,11 @@
 <div class="container">
 <div class="row justify-content-md-center">
-<div class="col-lg-6 col-md-6 text-center">
+<div class="col-lg-6 col-md-6 col-sm-6 text-center">
 <%= image_tag("welcome-dealerships.png", size:"225x150", class: "mb-2") %><br>
 <%= link_to "View All Dealerships", dealerships_path, class: "btn btn-outline btn-xl js-scroll-trigger mb-4" %>
 </div>
 
-<div class="col-lg-6 col-md-6 text-center">
+<div class="col-lg-6 col-md-6 col-sm-6 text-center">
 <%= image_tag("user.png", size:"125x125", class: "margin-bottom")%><br>
 <%= link_to "Command Center", employee_path(current_user.id), class: "btn btn-outline btn-xl js-scroll-trigger mb-4" %>
 </div>
@@ -15,21 +15,21 @@
 
 <%if current_user.manager%>
 
-<div class="jumbotron jumbotron-country text-center jumbotron-background top-buffer">
+<div id="permission-updated" class="jumbotron jumbotron-country text-center jumbotron-background top-buffer">
 <h3>Here you can generate reports and modify employees' permission levels</h3>
 </div>
 
 <div class="container">
 <div class="row justify-content-md-center">
 
-<div class="col-lg-4 col-md-6 text-center ">
+<div class="col-lg-6 col-md-6 col-sm-6 text-center ">
 <h2 class="margin-p">Reports</h2>
 
 <%= render 'vehicles/report_generator'%>
-<hr class="my-4">
+<hr class="my-4" id="permission-updated">
 </div>
 
-<div class="col-lg-4 col-md-6 text-center">
+<div class="col-lg-6 col-md-6 col-sm-6 text-center">
 <%= render partial: "shared/flash_messages", flash: flash %> 
 <h2>Permissions</h2>
 <p>*All users default to destroy</p>
@@ -40,50 +40,62 @@
 <div>
 
 <div class="container">
-<div class="row justify-content-md-center">
-<div class="col-lg-8 col-md-8 mt-5 text-center mb-5">
+<div class="row justify-content-center">
+<div class="col-lg-12 col-md-12 mt-5 text-center mb-5">
 <p class="text-center">*Permission Levels apply to the dealership the user belongs. User with Edit permission also has View, this nesting applies to all levels<p>
-<table class="table mb-5">
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<table class="table mb-5 table-responsive text-align">
   <thead>
     <tr>
       <th scope="col">Permission</th>
-      <th scope="col">Destroy</th>
-      <th scope="col">New</th>
-      <th scope="col">Edit</th>
-      <th scope="col">View</th>
-      <th scope="col">None</th>
+      <th scope="col">Employee</th>
+      <th scope="col">Manager</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th scope="row">Employee</th>
+      <th scope="row">Destroy</th>
       <td>Delete vehicles</td>
-      <td>Add vehicles</td>
-      <td>Edit vehicles</td>
-      <td>View all dealerships and all vehicles</td>
-      <td>Cannot View any dealerships or any vehicles</td>
+      <td>Delete vehicles and dealerships</td>
     </tr>
     <tr>
-      <th scope="row">Manager</th>
-      <td>Delete vehicles and dealerships</td>
+      <th scope="row">New</th>
+      <td>Add vehicles</td>
       <td>Add vehicles and New dealerships</td>
+    </tr>
+    <tr>
+      <th scope="row">Edit</th>
+      <td>Edit vehicles</td>
       <td>Edit vehicles and dealership</td>
+    </tr>
+    <tr>
+      <th scope="row">View</th>
       <td>View all dealerships and all vehicles</td>
+      <td>View all dealerships and all vehicles</td>
+    </tr>
+    <tr>
+      <th scope="row">None</th>
+      <td>Cannot View any dealerships or any vehicles</td>
       <td>Cannot View any dealerships or any vehicles</td>
     </tr>
   </tbody>
 </table>
-</div>
-</div>
-</div>
+
+
 <% else %>
 <div class="jumbotron jumbotron-country text-center jumbotron-background top-buffer">
  <h3>Here, managers can modify permission levels and generate reports. In command center, Edit your account to a manager and find out for yourself!</h3>
  </div>
-
-
-</div>
-</div>
 <%end%>
+
+
+
+
 
 

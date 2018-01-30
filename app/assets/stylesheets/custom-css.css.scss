@@ -4,8 +4,8 @@ body{
     padding-top: 150px;
     padding-bottom: 100px;
     color: white;
-    /*background: image-url("bg-pattern.png"), #7b4397;
-    background: image-url("bg-pattern.png"), -webkit-linear-gradient(to left, #7b4397, #dc2430);*/
+    background: image-url("bg-pattern.png"), #7b4397;
+    background: image-url("bg-pattern.png"), -webkit-linear-gradient(to left, #7b4397, #dc2430);
     background: image-url("bg-pattern.png"), linear-gradient(to left, #7b4397, #dc2430);
 }
 
@@ -13,8 +13,8 @@ a.github{
     color:white;
 }
 
-.h-100.main-height{
-    height: 85% !important;
+.buffer{
+    margin-top: 8rem;
 }
 
 .top-buffer { margin-top:20px; }
@@ -63,7 +63,7 @@ a.github{
 
 .table {
     border-radius: 5px;
-    width: 50%;
+    width: fit-content;
     margin: 0px auto;
     float: none;
 }
