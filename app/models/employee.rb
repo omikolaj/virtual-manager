@@ -17,9 +17,9 @@ class Employee < ApplicationRecord
 
     def self.find_or_create_by_omniauth(auth_hash)
       self.where(:uid => auth_hash["uid"]).first_or_create do |employee|
-        employee.email = auth_hash["info"]["email"]
+        employee.email = employee.set_github_email(auth_hash)
         employee.password = SecureRandom.hex
-        employee.name = auth_hash["info"]["name"]
+        employee.name = employee.set_github_name(auth_hash)
         employee.omniauth = true
         employee.dealership_id = 1
       end
@@ -37,6 +37,14 @@ class Employee < ApplicationRecord
     def self.display_permission_level(user_id)
       employee = Employee.find_by(:id => user_id)
       Permissions::PERMISSIONS.invert[employee.permission].to_s 
+    end
+
+    def set_github_email(auth_hash)
+      auth_hash["info"]["email"].nil? ? "#{auth_hash["info"]["nickname"]}@users.noreply.github.com" : auth_hash["info"]["email"]
+    end
+
+    def set_github_name(auth_hash)
+      auth_hash["info"]["name"].nil? ? auth_hash["info"]["nickname"] : auth_hash["info"]["name"]
     end
 
 end
