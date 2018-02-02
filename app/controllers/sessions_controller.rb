@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   skip_before_action :require_login, only: [:create, :new]
 
     def guest
-      @employee = Employee.find_by(:name => "Bill Gates")
+      @employee = Employee.find_by(:id => 1)
       log_in @employee
       redirect_to root_path
     end
