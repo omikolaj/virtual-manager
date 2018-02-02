@@ -27,7 +27,7 @@ class VehiclesController < ApplicationController
 
 		def new
       if !can_current_user?(:new, @vehicle)
-        redirect_back fallback_location: employee_path(current_user.id)
+        redirect_back fallback_location: dealership_path(@vehicle.dealership.id)
         flash[:notice] = "You cannot add vehicles. Check your permission levels"
       end
     end
@@ -44,7 +44,7 @@ class VehiclesController < ApplicationController
 
 		def edit
   		if !can_current_user?(:edit, @vehicle)
-      	redirect_back fallback_location: @dealership
+      	redirect_back fallback_location: dealership_vehicles_path(@vehicle.dealership.id)
       	flash[:notice] = "You cannot edit vehicles. Check your permission levels"
     	end		
   	end
@@ -52,15 +52,15 @@ class VehiclesController < ApplicationController
     def update
       if @vehicle.update(vehicle_params)
         flash[:success] = "Vehicle Updated"
-        redirect_to @vehicle
+        redirect_to dealership_vehicle_path(@vehicle.dealership.id, @vehicle.id) 
       else
         render :edit
       end
     end
 
     def destroy
-    	if !can_current_user?(:destroy, @vehicle)
-        redirect_back fallback_location: @vehicle
+      if !can_current_user?(:destroy, @vehicle)
+        redirect_back fallback_location: dealership_vehicle_path(@vehicle.dealership.id, @vehicle.id) 
         flash[:notice] = "You cannot delete this vehicle"
       else	
         @vehicle.destroy
