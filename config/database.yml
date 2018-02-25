@@ -11,7 +11,7 @@ default: &default
 
 development:
   <<: *default
-  database: dealership-manager_development
+  database: virtual-manager_development
 
   
 
@@ -20,12 +20,12 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: dealership-manager_test
+  database: virtual-manager_test
 
   
 
 production:
   <<: *default
-  database: dealership-manager-production
+  database: virtual-manager-production
   
   
