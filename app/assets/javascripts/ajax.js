@@ -1,4 +1,9 @@
-$(()=>attachListeners);
+$(()=>init());
+
+function init(){
+  attachListeners
+  prepareHandlebars()
+}
 
 let attachListeners = function(){
   //Attach click event to display all dealerships
@@ -36,18 +41,20 @@ let handleErrors = function(res){
   throw Error(res.statusText);
 }
 
-$(function(){
+function prepareHandlebars(){
   Handlebars.registerPartial("dealershipPartial", $("#dealership-template").html())
+  // Used for debugging Handlebars, drop {{debug}} in the code to see what values handlebars is working with
   Handlebars.registerHelper("debug", function(optionalValue) {
-    console.log("Current Context");
-    console.log("====================");
-    console.log(this);
+  console.log("Current Context");
+  console.log("====================");
+  console.log(this);
    
-    if (optionalValue) {
-      console.log("Value");
-      console.log("====================");
-      console.log(optionalValue);
+  if (optionalValue) {
+    console.log("Value");
+    console.log("====================");
+    console.log(optionalValue);
     }
-  });
-})
+  }); 
+}
+
 
