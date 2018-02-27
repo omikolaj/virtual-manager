@@ -2,7 +2,7 @@ $(()=>init());
 
 function init(){
   attachListeners
-  prepareHandlebars()
+  handlebarsDebugger()
 }
 
 let attachListeners = function(){
@@ -10,7 +10,7 @@ let attachListeners = function(){
   viewAllDealershipsListener;
 };
 
-let viewAllDealershipsListener = $(document).on("click", "#all-dealerships", getAllDealerships);
+let viewAllDealershipsListener = $(document).on("click", "#js-all-dealerships", getAllDealerships);
 
 function getAllDealerships(e){
   e.preventDefault()
@@ -41,20 +41,28 @@ let handleErrors = function(res){
   throw Error(res.statusText);
 }
 
-function prepareHandlebars(){
-  Handlebars.registerPartial("dealershipPartial", $("#dealership-template").html())
-  // Used for debugging Handlebars, drop {{debug}} in the code to see what values handlebars is working with
+$(function (){
+  if ($(".application.welcome").length > 0){
+    $(".application.welcome").ready(function(){
+      Handlebars.registerPartial("dealershipPartial", $("#dealership-template").html())
+    })
+  }
+})
+
+// Used for debugging Handlebars, drop {{debug}} in the code to see what values handlebars is working with
+function handlebarsDebugger(){
   Handlebars.registerHelper("debug", function(optionalValue) {
   console.log("Current Context");
   console.log("====================");
   console.log(this);
-   
+     
   if (optionalValue) {
     console.log("Value");
     console.log("====================");
     console.log(optionalValue);
     }
-  }); 
+  });
 }
+
 
 

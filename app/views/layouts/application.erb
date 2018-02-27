@@ -20,7 +20,7 @@
   </head>
   <body>
 <%= render 'layouts/navbar'%>
-  <main>
+  <main class="<%= controller_name%> <%= action_name %>">
       <%= yield %>
   </main>
 </body> 
