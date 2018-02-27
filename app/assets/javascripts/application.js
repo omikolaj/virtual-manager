@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require custom
-//= require custom_javascript
+//= require ajax
 //= require handlebars.min
 //= require bootstrap.bundle
 
