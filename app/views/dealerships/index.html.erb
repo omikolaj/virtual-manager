@@ -1,33 +1,34 @@
 <div class="container">
-<div class="row justify-content-center">
-<h1>New Dealership?</h1>
-</div>
-<div class="row justify-content-center mt-3 mb-3">
-<%= image_tag("welcome-dealership.png", size: "270x70") %>
-</div>
+  <div class="row justify-content-center">
+    <h1>New Dealership?</h1>
+  </div>
+  <div class="row justify-content-center mt-3 mb-3">
+    <%= image_tag("welcome-dealership.png", size: "270x70") %>
+  </div>
 </div>
 
 <div class="container">
-<div class="row justify-content-md-center">
-<div class="col-lg-3 col-md-4 mb-2">
-<%= link_to "Create", new_dealership_path, class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
+  <div class="row justify-content-md-center">
+    <div class="col-lg-3 col-md-4 mb-2">
+      <%= link_to "Create", new_dealership_path, class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
+    </div>
+    <div class="col-lg-3 col-md-4">
+      <%= link_to "Back Home", root_path, class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
+    </div>
+  </div>
 </div>
-<div class="col-lg-3 col-md-4">
-<%= link_to "Back Home", root_path, class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
-</div>
-</div>
-</div>
-
 
 <div class="container">
+  <div class="row justify-content-md-center">
+    <div class="container mt-5">
+      <%= render partial: "shared/flash_messages", flash: flash %>
+    </div>
+    <%= render @dealerships %>
+  </div>
+</div>
 
-<div class="row justify-content-md-center">
-<div class="container mt-5">
-  <%= render partial: "shared/flash_messages", flash: flash %>
-</div>
-<%= render @dealerships %>
-</div>
-</div>
+
+
 
 
 

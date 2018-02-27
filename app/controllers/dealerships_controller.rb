@@ -5,6 +5,10 @@ class DealershipsController < ApplicationController
     
     def index
       @dealerships = Dealership.all
+      respond_to do |format|
+        format.html {render :index}
+        format.json {render json: @dealerships, status: 200}
+      end
     end
 
     def show

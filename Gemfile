@@ -43,6 +43,7 @@ gem 'omniauth-github'
 gem 'font-awesome-sass', '~> 4.7.0'
 gem 'sprockets'
 gem 'bootstrap-sass', '~> 3.3.7'
+gem 'active_model_serializers'
 
 
 group :production do
