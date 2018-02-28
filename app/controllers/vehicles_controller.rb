@@ -11,7 +11,7 @@ class VehiclesController < ApplicationController
 
     def index
       @dealership = Dealership.find_by(:id => params[:dealership_id])
-			@vehicles = @dealership.vehicles
+      @vehicles = @dealership.vehicles
 			if !can_current_user?(:view, @dealership)
         redirect_back fallback_location: employee_path(current_user.id)
         flash[:notice] = "You cannot view vehicles. Check your permission levels"
@@ -22,6 +22,10 @@ class VehiclesController < ApplicationController
       if !can_current_user?(:view, @vehicle)
         redirect_back fallback_location: employee_path(current_user.id)
         flash[:notice] = "You cannot view vehicles. Check your permission levels"
+      end
+      respond_to do |format|
+        format.html {render :show}
+        format.json {render json: @vehicle, status: 200}
       end
     end
 
@@ -42,7 +46,7 @@ class VehiclesController < ApplicationController
       end
     end
 
-		def edit
+    def edit
   		if !can_current_user?(:edit, @vehicle)
       	redirect_back fallback_location: dealership_vehicles_path(@vehicle.dealership.id)
       	flash[:notice] = "You cannot edit vehicles. Check your permission levels"

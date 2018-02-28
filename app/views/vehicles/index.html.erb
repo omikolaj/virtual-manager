@@ -25,3 +25,75 @@
 
 <!-- Handlebars template scripts -->
 
+<script id="vehicle-template" type="text/x-handlebars-template">
+<div class="container">
+  <%= render partial: "shared/flash_messages", flash: flash %>
+</div>
+  <h2 class="text-center">Vehicle's Info</h2>
+  <div class="container">
+    <div class="jumbotron jumbotron-country jumbotron-background no-padding">
+      <div class="col-lg-12 col-md-12">
+
+        <table class="table text-center">
+          <tbody>
+            <tr>
+              <th scope="row">Make</th>
+              <td>{{make}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Model</th>
+              <td>{{model}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Year</th>
+              <td>{{year}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Status</th>
+              <td>{{vehicleStatus}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Price</th>
+              <td>{{dealership_vehicle.price}}</td>
+            </tr>
+            <tr>
+              <th scope="row">Buyer</th>
+              <td>{{dealership_vehicle.buyer}}</td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>  
+    </div>    
+  </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+        <a class="btn btn-outline btn-xl js-scroll-trigger btn-block" href="/dealerships/{{dealership.id}}/vehicles">Back to the lot</a>
+        <%#= link_to "Back to the Lot", dealership_vehicles_path(@vehicle.dealership.id), class:"btn btn-outline btn-xl js-scroll-trigger btn-block" %>
+      </div>
+      <div class="col-lg-3 col-md-4 mt-2 col-sm-6">
+      <a class="btn btn-outline btn-xl js-scroll-trigger btn-block" href="/dealerships/{{dealership.id}}/vehicles/{{id}}/edit">Edit Vehicle</a>
+        <%#= link_to "Edit Vehicle", edit_vehicle_path(@vehicle.id), class:"btn btn-outline btn-xl js-scroll-trigger btn-block" %>
+      </div>
+      <div class="col-lg-3 col-md-4 col-sm-6 mt-2">
+     <form method="post" action="/vehicles/{{id}}" >
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+      <input type="hidden" name="_method" value="delete"></input>
+      <button id="vehicle-delete-btn" class="btn btn-outline btn-xl js-scroll-trigger btn-block">Delete</button>
+    </form>
+        <%#= form_tag(vehicle_path(@vehicle.id), method: 'delete')%>
+        <%#= submit_tag "Delete", class: "btn btn-outline btn-xl js-scroll-trigger btn-block nobackground" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+</script>
+
+
+
