@@ -65,20 +65,17 @@ let renderAllDealerships = function(json){
 }
 
 $(function(){
-  if ($(".application.welcome").length > 0){
-    $(".application.welcome").ready(function(){
+  if ($(".application.home").length > 0){
+    $(".application.home").ready(function(){
       Handlebars.registerPartial("dealershipPartial", $("#dealership-template").html())
     })
   }
 })
 
 $(function(){
-  let page = $(".vehicles.index")
-  if(page.length > 0){
     Handlebars.registerHelper("vehicleStatus", function(){
       return this.dealership_vehicle.is_lot_ready === true ? "Lot ready" : "In repair"
     })
-  }
 })
 
 // Used for debugging Handlebars, drop {{debug}} in the code to see what values handlebars is working with
