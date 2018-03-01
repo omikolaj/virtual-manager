@@ -9,9 +9,35 @@ let attachListeners = function(){
   //Attach click event to display all dealerships
   viewAllDealershipsListener();
   viewVehicle();
+  createDealership();
 };
 
 const path = (obj) => $(obj).attr("href")
+
+// Create Dealership fetch
+
+function createDealership(){$(document).on("click", "#btn-test", createDealershipCall)}
+
+function createDealershipCall(e){
+  e.preventDefault()
+  fetch("/dealerships/new", {
+    credentials: 'same-origin',
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(handleErrors)
+  .then(resp=>resp.json())
+  .then(renderNewDealershipForm)
+  .catch(error => console.error('Error:', error))
+}
+
+let renderNewDealershipForm = function(json){
+  let newDealershipHTML = $("#test-template").html()
+  let compiledTemplate = Handlebars.compile(newDealershipHTML)
+  let readyHTML = compiledTemplate(json)
+  $(".modal-body")[0].innerHTML = readyHTML
+}
 
 // View vehicle fetch
 

@@ -23,9 +23,13 @@ class DealershipsController < ApplicationController
 			  redirect_back fallback_location: @dealership
 				flash[:notice] = "You cannot add new dealership. Are you a manager? Do you have 'New' permission level?"
 			else
-				if current_user.manager?
-					@dealership = Dealership.new
-					@dealership.vehicles.build
+        if current_user.manager?
+          @dealership = Dealership.new
+          @dealership.vehicles.build
+          respond_to do |format|
+            format.html {render :new}
+            format.json {render json: @dealership, status: 200}
+          end         
 				else
 					redirect_to @dealership
 					flash[:notice] = "You must must be a manager to add new dealerships"
@@ -34,6 +38,7 @@ class DealershipsController < ApplicationController
     end
 
     def create
+      binding.pry
       @dealership = Dealership.new(dealership_params)
       if @dealership.save
         redirect_to @dealership
@@ -79,5 +84,4 @@ class DealershipsController < ApplicationController
       @dealership = Dealership.find_by(:id => params[:id])
     end
 
-    
 end
