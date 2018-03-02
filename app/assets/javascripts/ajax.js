@@ -9,16 +9,62 @@ let attachListeners = function(){
   //Attach click event to display all dealerships
   viewAllDealershipsListener();
   viewVehicle();
-  createDealership();
+  displayCommandCenter();
 };
 
-const path = (obj) => $(obj).attr("href")
+// Display Command Center
 
-// Create Dealership fetch
+function displayCommandCenter(){$(document).on("click", "#js-command-center", getCommandCenter)}
 
-function createDealership(){$(document).on("click", "#btn-test", createDealershipCall)}
+function getCommandCenter(e){
+  e.preventDefault()
+  fetch(path(this),{
+    credentials: 'same-origin',
+    headers: {
+      'Accept': 'application/json'
+    }
+  })
+  .then(handleErrors)
+  .then(resp=>resp.json())
+  .then(renderCommandCenter)
+  .catch(error => console.error('Error:', error))
+}
 
-function createDealershipCall(e){
+let renderCommandCenter = function(json){
+  let commandCenterTemplateHTML = $("#command-center-template").html()
+  let compiledTemplate = Handlebars.compile(commandCenterTemplateHTML)
+  let readyHTML = compiledTemplate(json)
+  debugger
+  $("main")[0].innerHTML = readyHTML;
+}
+
+
+// Create Dealership class
+
+class Dealership{
+  constructor(name, city){
+    this.name = name
+    this.city = city
+  }
+  templateSource(){
+    return $("#btn-test").html();
+  } 
+}
+
+function createDealership(){
+  let name = $("#")
+  const dealership = new Dealership()
+}
+
+
+
+Dealership.prototype.renderNewForm = (dealership) => console.log("test")
+
+
+
+function createDealership(){$(document).on("click", "#btn-test", createDealershipObj)}
+
+function createDealershipObj(e){
   e.preventDefault()
   fetch("/dealerships/new", {
     credentials: 'same-origin',
@@ -38,6 +84,8 @@ let renderNewDealershipForm = function(json){
   let readyHTML = compiledTemplate(json)
   $(".modal-body")[0].innerHTML = readyHTML
 }
+
+const path = (obj) => $(obj).attr("href")
 
 // View vehicle fetch
 
