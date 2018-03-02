@@ -92,6 +92,7 @@
 <!-- Dealerships Handlebars template scripts -->
 
 <script id="dealerships-template" type="text/x-handlebars-template">
+
 <div class="container">
   <div class="row justify-content-center">
     <h1>New Dealership?</h1>
@@ -104,90 +105,85 @@
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="col-lg-3 col-md-4 mb-2">
-      <%= link_to "Create", new_dealership_path, class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
+        <button type="button" id="btn-new-age" class="btn btn-outline btn-xl js-scroll-trigger btn-block" data-toggle="modal" data-target="#new-dealership">
+          Create
+        </button>      
     </div>
     <div class="col-lg-3 col-md-4">
-      <%= link_to "Back Home", root_path, class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
+      <%= link_to "Back Home", home_path, class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
     </div>
   </div>
 </div>
+
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="container mt-5">
       <%= render partial: "shared/flash_messages", flash: flash %>
     </div>
-    {{>dealershipPartial}}
-      </div>
+      {{>dealershipPartial}}
+  </div>
 </div>
+
 </script>
 
 <script id="dealership-template" type="text/x-handlebars-template">
-    {{#each this}}
-      <div class="col-lg-4 col-md-4 col-sm-4 mt-5 text-center">
+
+  {{#each this}}
+    <div class="col-lg-4 col-md-4 col-sm-4 mt-5 text-center">
       <i class="fa fa-cubes fa-2x" aria-hidden="true"></i>
       <h1> {{name}} </h1>
-      <p>We have {{vehicles.length}} vehicles</p>
-        <a href='/dealerships/{{id}}' class="btn btn-outline btn-xl js-scroll-trigger btn-block">Visit</a>
+        <p>We have {{vehicles.length}} vehicles</p>
+      <a href='/dealerships/{{id}}' class="btn btn-outline btn-xl js-scroll-trigger btn-block">Visit</a>
+    </div>
+  {{/each}}
+  <div class="modal fade" id="new-dealership" tabindex="-1" role="dialog" aria-labelledby="newDealershipModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newDealershipModal">New message</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+         <form onsubmit="createDealership()" accept-charset="UTF-8">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <div class="form-group mt-2 justify-content-md-center">
+            <label class="col-form-label" for="dealership[name]">Name</label>
+            <div class="row justify-content-md-center">
+              <div class="col-sm-9">
+                <input class="form-control" type="text" name="dealership[name]" id="dealership[name]">
+              </div>
+            </div>
+          </div>
+          <div class="form-group mt-2 justify-content-md-center">
+            <label class="col-form-label" for="dealership[city]">City</label>
+            <div class="row justify-content-md-center">
+              <div class="col-sm-9">
+                <input class="form-control" type="text" name="dealership[city]" id="dealership[city]">
+              </div>
+            </div>
+          </div>      
+          <div class="row justify-content-md-center">
+            <div class="col-lg-8 col-md-8">
+              <input type="submit" name="commit" value="" class="btn btn-outline btn-xl js-scroll-trigger btn-block top-buffer nobackground" data-disable-with="">
+            </div>
+          </div>
+        </form>
       </div>
-      {{/each}}
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </script>
 
 <!-- Command Center Handlebars template scripts -->
 
-<script id="command-center-template" type="text/x-handlebars-template">
-<div class="text-center mt-3">
-<div class="container">
-  <%= render partial: "shared/flash_messages", flash: flash %>
-</div>
-<h1 class="display-4">Welcome <%=current_user.name%></h1>
-<p class="fa fa-briefcase fa-lg" aria-hidden="true"> Employer: <%= current_user.employer.name%></p><br>
-<p class="fa fa-male fa-lg" aria-hidden="true"> <%=pluralize(display_manager.split(",").size, "Manager")%>: <%= display_manager %></p><br>
-<p class="fa fa-key fa-lg" aria-hidden="true"> Permission Level: <%=current_user_permission%></p>
-<p class="display-5 mb-5">Where would you like to go?</p>
-</div>
 
-
-            <div class="container-fluid">
-              <div class="row top-buffer justify-content-center mt-3">
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                  <div class="feature-item mt-2">
-                    <a href="/employees/{{id}}/edit" class="btn btn-outline btn-xl js-scroll-trigger btn-block">Edit Profile</a>
-                    <%#= link_to "Edit Profile", edit_employee_path("{{id}}"), class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                  <div class="feature-item mt-2">
-                    <a href="/dealerships/{{dealership.id}}" class="btn btn-outline btn-xl js-scroll-trigger btn-block">Go to your dealership</a>
-                  </div>
-                </div>
-              </div>
-              <div class="row top-buffer justify-content-center">
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                  <div class="feature-item mt-2">
-                    <%= link_to "View all co-workers", employees_path, class: "btn btn-outline btn-xl js-scroll-trigger btn-block"%>
-                  </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                  <div class="feature-item mt-2">
-                    <%= link_to "See your lot", dealership_vehicles_path("{{dealership.id}}"), class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row top-buffer justify-content-center mt-3">
-              <div class="col-lg-4 col-md-4 col-sm-6">
-                  <div class="feature-item mt-2">
-                    <%= link_to "Home", root_path, class: "btn btn-outline btn-xl js-scroll-trigger btn-block" %>
-                  </div>
-                </div>
-              </div>
-    
-          
-
-        </div>
-      </div>
-
-</script>
       
 
 

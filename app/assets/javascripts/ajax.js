@@ -10,9 +10,11 @@ let attachListeners = function(){
   viewAllDealershipsListener();
   viewVehicle();
   displayCommandCenter();
+  menuComandCenter();
 };
 
 // Display Command Center
+function menuComandCenter(){$(document).on("click", "#js-nav-cc", getCommandCenter)}
 
 function displayCommandCenter(){$(document).on("click", "#js-command-center", getCommandCenter)}
 
@@ -34,7 +36,6 @@ let renderCommandCenter = function(json){
   let commandCenterTemplateHTML = $("#command-center-template").html()
   let compiledTemplate = Handlebars.compile(commandCenterTemplateHTML)
   let readyHTML = compiledTemplate(json)
-  debugger
   $("main")[0].innerHTML = readyHTML;
 }
 
@@ -128,28 +129,36 @@ function getAllDealerships(e){
   .then(handleErrors)
   .then(resp=>resp.json())
   .then(renderAllDealerships)
-  .catch(error => console.error('Error:', error))
+  .catch(function(){
+    if(error.message === "The partial dealershipPartial could not be found")
+    {
+      regiesterHandlebarPartial();
+    }else{
+      console.error('Error:', error);
+    }
+  })
 }
 
 let renderAllDealerships = function(json){
   let dealershipTemplateHTML = $("#dealerships-template").html();
   let compiledTemplate = Handlebars.compile(dealershipTemplateHTML);
   let readyHTML = compiledTemplate(json);
-  $("main")[0].innerHTML  = readyHTML;
+  $("main")[0].innerHTML = readyHTML;  
 }
 
-$(function(){
-  if ($(".application.home").length > 0){
-    $(".application.home").ready(function(){
+$(function regiesterHandlebarPartial(){
+  let registerPartialWindow = $(".application.home")
+  if (registerPartialWindow.length > 0){
+    registerPartialWindow.ready(function(){
       Handlebars.registerPartial("dealershipPartial", $("#dealership-template").html())
-    })
+    })    
   }
 })
 
 $(function(){
-    Handlebars.registerHelper("vehicleStatus", function(){
-      return this.dealership_vehicle.is_lot_ready === true ? "Lot ready" : "In repair"
-    })
+  Handlebars.registerHelper("vehicleStatus", function(){
+    return this.dealership_vehicle.is_lot_ready === true ? "Lot ready" : "In repair"
+  })
 })
 
 // Used for debugging Handlebars, drop {{debug}} in the code to see what values handlebars is working with
