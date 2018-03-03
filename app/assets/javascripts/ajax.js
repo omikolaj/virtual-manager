@@ -28,22 +28,26 @@ Dealership.appendNewDealership = function(json){
 
 Dealership.formSubmit = function(e){
   e.preventDefault();
-  var $form = $(this);
-  var action = $form.attr("action");
+  let $form = $(this);
+  let action = $form.attr("action");
+  let name = $("#dealership-name").val()
+  let city = $("#dealership-city").val()
   debugger
   fetch(action, {
-    body: JSON.stringify($form),
+    body: JSON.stringify({name: name, city: city}),
     credentials: 'same-origin',
     headers: {
       'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
       'Accept': 'application/json',
+      'Content-Type': 'application/json'
     },
     method: "POST"
   })
   .then(handleErrors)
-  .then(function(resp){
+  .then(function(e){
     debugger
     resp=>resp.json()
+
   })
   .then(Dealership.appendNewDealership)
   .catch(displayIfAnyErrors)

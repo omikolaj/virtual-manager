@@ -40,10 +40,11 @@ class DealershipsController < ApplicationController
     def create
       binding.pry
       @dealership = Dealership.new(dealership_params)
+      binding.pry
       if @dealership.save
         respond_to do |format|
           binding.pry
-          format.html {render :dealerships/"#{@dealership.id}"}
+          format.html {redirect_to @dealership}
           format.json {render json: @dealership, status: 200}
         end  
         redirect_to @dealership
