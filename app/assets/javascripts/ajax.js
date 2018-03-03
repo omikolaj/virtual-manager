@@ -129,31 +129,20 @@ function getAllDealerships(e){
   .then(handleErrors)
   .then(resp=>resp.json())
   .then(renderAllDealerships)
-  .catch(function(){
-    if(error.message === "The partial dealershipPartial could not be found")
-    {
-      regiesterHandlebarPartial();
-    }else{
-      console.error('Error:', error);
-    }
-  })
+  .catch(error => console.error('Error:', error))
 }
 
 let renderAllDealerships = function(json){
+  registerHandlebarPartial();
   let dealershipTemplateHTML = $("#dealerships-template").html();
   let compiledTemplate = Handlebars.compile(dealershipTemplateHTML);
   let readyHTML = compiledTemplate(json);
   $("main")[0].innerHTML = readyHTML;  
 }
 
-$(function regiesterHandlebarPartial(){
-  let registerPartialWindow = $(".application.home")
-  if (registerPartialWindow.length > 0){
-    registerPartialWindow.ready(function(){
-      Handlebars.registerPartial("dealershipPartial", $("#dealership-template").html())
-    })    
-  }
-})
+function registerHandlebarPartial(){
+  Handlebars.registerPartial("dealershipPartial", $("#dealership-template").html())
+}
 
 $(function(){
   Handlebars.registerHelper("vehicleStatus", function(){
@@ -182,6 +171,3 @@ let handleErrors = function(res){
   }
   throw Error(res.statusText);
 }
-
-
-
