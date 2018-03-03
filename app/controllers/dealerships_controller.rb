@@ -38,18 +38,18 @@ class DealershipsController < ApplicationController
     end
 
     def create
-      binding.pry
       @dealership = Dealership.new(dealership_params)
-      binding.pry
       if @dealership.save
-        respond_to do |format|
-          binding.pry
-          format.html {redirect_to @dealership}
-          format.json {render json: @dealership, status: 200}
-        end  
-        redirect_to @dealership
-        flash[:success] = "Dealership '#{@dealership.name}' has been successfully created!"
+        if request.format.json?
+          render json: @dealership, status: 200
+        else
+                        
+          #redirect_to @dealership
+          #flash[:success] = "Dealership '#{@dealership.name}' has been successfully created!"
+        end
       else
+        #binding.pry
+        render json: @dealership.errors
         render :new
       end
     end

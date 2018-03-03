@@ -15,17 +15,44 @@ let attachListeners = function(){
 
 // Create Dealership class
 class Dealership{
-  constructor(name, city){
-    this.name = name
-    this.city = city    
+  constructor(attributes){    
+    this.name = attributes.name
+    this.city = attributes.city    
+    this.vehicles = attributes.vehicles
+  }
+  renderNewDealershipDiv(){
+    return Dealership.template(this)
   }
 }
 
 Dealership.appendNewDealership = function(json){
-  debugger
   const dealership = new Dealership(json);
+  const dealershipDiv = dealership.renderNewDealershipDiv()
+
+  $(".js-dealership-list").append(dealershipDiv)
 }
 
+Dealership.error = function(error){
+  debugger
+  console.log("The request did not succeed", error)
+}
+
+Dealership.formSubmit = function(e){
+  e.preventDefault()
+  let $form = $(this);
+  let action = $form.attr("action");
+  let params = $form.serialize();
+  $.ajax({
+    ul: action,
+    data: params,
+    dataType: 'json',
+    method: 'POST'
+  })
+  .success(Dealership.appendNewDealership)
+  .error(Dealership.error)
+}
+
+/* This would return params where the name and city values were duplicated. 
 Dealership.formSubmit = function(e){
   e.preventDefault();
   let $form = $(this);
@@ -52,12 +79,14 @@ Dealership.formSubmit = function(e){
   .then(Dealership.appendNewDealership)
   .catch(displayIfAnyErrors)
 }
-
+*/
 Dealership.formSubmitListener = function(){
   $("form").on("submit", Dealership.formSubmit)
 }
 
 renderNewDealershipModal = function(){
+  Dealership.templateSource = $("#dealership-div-template").html();
+  Dealership.template = Handlebars.compile(Dealership.templateSource);
   let newDealershipHTML = $("#new-dealership-modal").html()
   $("main")[0].innerHTML += newDealershipHTML
   Dealership.formSubmitListener();

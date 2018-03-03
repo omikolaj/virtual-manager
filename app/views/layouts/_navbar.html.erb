@@ -103,7 +103,7 @@
           </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <input type="submit" name="commit" value="Create" id="new-dealership" class="btn btn-primary new-dealership" data-disable-with="">
+          <input type="submit" name="commit" value="Create" id="new-dealership" class="btn btn-primary new-dealership">
         </form>
 
       </div>
@@ -111,6 +111,15 @@
   </div>
 </div>
 
+</script>
+
+<script id="dealership-div-template" type="text/x-handlebars-template">
+  <div class="col-lg-4 col-md-4 col-sm-4 mt-5 text-center">
+    <i class="fa fa-cubes fa-2x" aria-hidden="true"></i>
+      <h1>{{name}}</h1>
+      <p>We have {{vehicles.length}} vehicles</p>
+      <a class="btn btn-outline btn-xl js-scroll-trigger btn-block" href="/dealerships/3">Visit</a>
+  </div>
 </script>
 
 </nav>
