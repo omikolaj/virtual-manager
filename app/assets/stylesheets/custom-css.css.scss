@@ -10,7 +10,26 @@ body{
 }
 
 .modal-content.background{
-    background: #ffffffe3}
+    background: #ffffffe3
+}
+
+.new-dealership{
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.new-dealership:hover{
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+#new-dealership.btn-primary:active, #new-dealership.btn-primary:focus{
+    color: #fff;
+    background-color: #616970;
+    border-color: #616970;
+}
 
 #btn-new-age{
     background: transparent;

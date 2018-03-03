@@ -13,6 +13,54 @@ let attachListeners = function(){
   menuComandCenter();
 };
 
+// Create Dealership class
+class Dealership{
+  constructor(name, city){
+    this.name = name
+    this.city = city    
+  }
+}
+
+Dealership.appendNewDealership = function(json){
+  debugger
+  const dealership = new Dealership(json);
+}
+
+Dealership.formSubmit = function(e){
+  e.preventDefault();
+  var $form = $(this);
+  var action = $form.attr("action");
+  debugger
+  fetch(action, {
+    body: JSON.stringify($form),
+    credentials: 'same-origin',
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+      'Accept': 'application/json',
+    },
+    method: "POST"
+  })
+  .then(handleErrors)
+  .then(function(resp){
+    debugger
+    resp=>resp.json()
+  })
+  .then(Dealership.appendNewDealership)
+  .catch(displayIfAnyErrors)
+}
+
+Dealership.formSubmitListener = function(){
+  $("form").on("submit", Dealership.formSubmit)
+}
+
+renderNewDealershipModal = function(){
+  let newDealershipHTML = $("#new-dealership-modal").html()
+  $("main")[0].innerHTML += newDealershipHTML
+  Dealership.formSubmitListener();
+}
+
+const path = (obj) => $(obj).attr("href")
+
 // Display Command Center
 function menuComandCenter(){$(document).on("click", "#js-nav-cc", getCommandCenter)}
 
@@ -38,25 +86,6 @@ let renderCommandCenter = function(json){
   let readyHTML = compiledTemplate(json)
   $("main")[0].innerHTML = readyHTML;
 }
-
-
-// Create Dealership class
-
-class Dealership{
-  constructor(name, city){
-    this.name = name
-    this.city = city
-  }
-}
-
-Dealership.prototype.renderNewForm = (dealership) => console.log("test")
-
-function renderNewDealershipModal(){
-  let newDealershipHTML = $("#new-dealership-modal").html()
-  $("main")[0].innerHTML += newDealershipHTML
-}
-
-const path = (obj) => $(obj).attr("href")
 
 // View vehicle fetch
 

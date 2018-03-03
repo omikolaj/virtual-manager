@@ -41,6 +41,11 @@ class DealershipsController < ApplicationController
       binding.pry
       @dealership = Dealership.new(dealership_params)
       if @dealership.save
+        respond_to do |format|
+          binding.pry
+          format.html {render :dealerships/"#{@dealership.id}"}
+          format.json {render json: @dealership, status: 200}
+        end  
         redirect_to @dealership
         flash[:success] = "Dealership '#{@dealership.name}' has been successfully created!"
       else
