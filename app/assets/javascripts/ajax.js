@@ -47,42 +47,12 @@ class Dealership{
     this.name = name
     this.city = city
   }
-  templateSource(){
-    return $("#btn-new-age").html();
-  } 
 }
-
-function createDealership(){
-  let name = $("#")
-  const dealership = new Dealership()
-}
-
-
 
 Dealership.prototype.renderNewForm = (dealership) => console.log("test")
 
-
-
-function createDealership(){$(document).on("click", "#btn-new-age", renderDealershipForm)}
-
-function createDealershipObj(e){
-  e.preventDefault()
-  fetch("/dealerships/new", {
-    credentials: 'same-origin',
-    headers: {
-      'Accept': 'application/json'
-    }
-  })
-  .then(handleErrors)
-  .then(resp=>resp.json())
-  .then(renderNewDealershipForm)
-  .catch(displayIfAnyErrors)
-}
-
-function renderNewDealershipForm(){
+function renderNewDealershipModal(){
   let newDealershipHTML = $("#new-dealership-modal").html()
-  //let compiledTemplate = Handlebars.compile(newDealershipHTML)
-  //let readyHTML = compiledTemplate()
   $("main")[0].innerHTML += newDealershipHTML
 }
 
