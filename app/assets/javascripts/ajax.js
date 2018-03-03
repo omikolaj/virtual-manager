@@ -29,7 +29,7 @@ function getCommandCenter(e){
   .then(handleErrors)
   .then(resp=>resp.json())
   .then(renderCommandCenter)
-  .catch(error => console.error('Error:', error))
+  .catch(displayIfAnyErrors)
 }
 
 let renderCommandCenter = function(json){
@@ -48,7 +48,7 @@ class Dealership{
     this.city = city
   }
   templateSource(){
-    return $("#btn-test").html();
+    return $("#btn-new-age").html();
   } 
 }
 
@@ -63,7 +63,7 @@ Dealership.prototype.renderNewForm = (dealership) => console.log("test")
 
 
 
-function createDealership(){$(document).on("click", "#btn-test", createDealershipObj)}
+function createDealership(){$(document).on("click", "#btn-new-age", renderDealershipForm)}
 
 function createDealershipObj(e){
   e.preventDefault()
@@ -76,14 +76,14 @@ function createDealershipObj(e){
   .then(handleErrors)
   .then(resp=>resp.json())
   .then(renderNewDealershipForm)
-  .catch(error => console.error('Error:', error))
+  .catch(displayIfAnyErrors)
 }
 
-let renderNewDealershipForm = function(json){
-  let newDealershipHTML = $("#test-template").html()
-  let compiledTemplate = Handlebars.compile(newDealershipHTML)
-  let readyHTML = compiledTemplate(json)
-  $(".modal-body")[0].innerHTML = readyHTML
+function renderNewDealershipForm(){
+  let newDealershipHTML = $("#new-dealership-modal").html()
+  //let compiledTemplate = Handlebars.compile(newDealershipHTML)
+  //let readyHTML = compiledTemplate()
+  $("main")[0].innerHTML += newDealershipHTML
 }
 
 const path = (obj) => $(obj).attr("href")
@@ -103,7 +103,7 @@ function getVehicle(e){
   .then(handleErrors)
   .then(resp=>resp.json())
   .then(renderVehicle)
-  .catch(error => console.error('Error:', error))
+  .catch(displayIfAnyErrors)
 }
 
 let renderVehicle = function(json){
@@ -119,8 +119,8 @@ function viewAllDealershipsListener(){$(document).on("click", "#js-all-dealershi
 
 function getAllDealerships(e){
   e.preventDefault()
-  let path = $(this).attr("href");
-  fetch(path, {
+  //let path = $(this).attr("href");
+  fetch(path(this), {
     credentials: 'same-origin',
     headers: {
       'Accept': 'application/json'
@@ -129,7 +129,7 @@ function getAllDealerships(e){
   .then(handleErrors)
   .then(resp=>resp.json())
   .then(renderAllDealerships)
-  .catch(error => console.error('Error:', error))
+  .catch(displayIfAnyErrors)
 }
 
 let renderAllDealerships = function(json){
@@ -164,6 +164,8 @@ function handlebarsDebugger(){
     }
   });
 }
+
+let displayIfAnyErrors = (error) => console.error('Error:', error)
 
 let handleErrors = function(res){
   if (res.ok){

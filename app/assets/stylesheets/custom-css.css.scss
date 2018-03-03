@@ -9,6 +9,10 @@ body{
     background: image-url("bg-pattern.png"), linear-gradient(to left, #7b4397, #dc2430);
 }
 
+.modal-content.background{
+    background-color: transparent;
+}
+
 #btn-new-age{
     background: transparent;
 }
