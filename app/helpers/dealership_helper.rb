@@ -41,7 +41,7 @@ module DealershipHelper
     if hash[:name].size >= 2
       obj[:name] = true
     end
-    if Dealership.find_by_name(params[:name])
+    if Dealership.find_by_name(params[:name].strip.downcase)
       obj[:uniquness] = false
     end
     obj

@@ -42,6 +42,7 @@ class DealershipsController < ApplicationController
     end
 
     def create
+      binding.pry
       @dealership = Dealership.new(dealership_params)
       if @dealership.save
         if request.format.json?

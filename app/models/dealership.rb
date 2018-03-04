@@ -4,7 +4,7 @@ class Dealership < ApplicationRecord
     has_many :vehicles, :through => :dealership_vehicles
     has_many :employees
     validates :name, :city, presence: true
-    validates :name, uniqueness: true
+    validates :name, presence: true, uniqueness: {case_sensitive: true}
     scope :id_array, ->(avoid) {
         pluck(:id).reject{|d| d == avoid.to_i }
     }
