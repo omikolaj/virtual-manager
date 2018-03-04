@@ -66,15 +66,41 @@ Dealership.formSubmit = function(e){
   let action = $form.attr("action");
   let params = $form.serialize();
   $.ajax({
-    ul: action,
+    url: action,
     data: params,
     dataType: 'json',
-    method: 'POST',
-    crossDomain: true
+    method: 'POST'
   })
   .success(Dealership.appendNewDealership)
   .error(Dealership.error)
 }
+
+
+/* This would return params where the name and city values were duplicated. 
+Dealership.formSubmit = function(e){
+  e.preventDefault();
+  let $form = $(this);
+  let action = $form.attr("action");
+  let name = $("#dealership-name").val()
+  let city = $("#dealership-city").val()
+  fetch(action, {
+    body: JSON.stringify({name: name, city: city}),
+    credentials: 'same-origin',
+    headers: {
+      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: "POST"
+  })
+  .then(handleErrors)
+  .then(function(e){
+    resp=>resp.json()
+  })
+  .then(Dealership.appendNewDealership)
+  .catch(displayIfAnyErrors)
+}
+*/
 
 Dealership.resetForm = function(){
   $ulForm = $(".validations");
@@ -218,35 +244,6 @@ renderNewDealershipModal = function(){
   Dealership.formSubmitListener();
   Dealership.resetForm();
 }
-
-/* This would return params where the name and city values were duplicated. 
-Dealership.formSubmit = function(e){
-  e.preventDefault();
-  let $form = $(this);
-  let action = $form.attr("action");
-  let name = $("#dealership-name").val()
-  let city = $("#dealership-city").val()
-  debugger
-  fetch(action, {
-    body: JSON.stringify({name: name, city: city}),
-    credentials: 'same-origin',
-    headers: {
-      'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    method: "POST"
-  })
-  .then(handleErrors)
-  .then(function(e){
-    debugger
-    resp=>resp.json()
-
-  })
-  .then(Dealership.appendNewDealership)
-  .catch(displayIfAnyErrors)
-}
-*/
 
 const path = (obj) => $(obj).attr("href")
 

@@ -50,7 +50,7 @@ class DealershipsController < ApplicationController
           redirect_to @dealership
           flash[:success] = "Dealership '#{@dealership.name}' has been successfully created!"
         end
-      else      
+      else         
         render json: return_errors(@dealership.errors.full_messages)
       end
     end
