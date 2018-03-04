@@ -87,6 +87,24 @@ a.github{
     border: 5px solid red !important;
 }
 
+.errspan {
+    float: right;
+    margin-right: 8px;
+    margin-top: -27px;
+    position: relative;
+    z-index: 2;
+    color: red;
+}
+
+.checkspan{
+    float: right;
+    margin-right: 8px;
+    margin-top: -27px;
+    position: relative;
+    z-index: 2;
+    color: green;
+}
+
 .no-padding{
     padding-top:1.5rem;
 }

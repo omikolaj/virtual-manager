@@ -93,14 +93,17 @@
 
          <form action="/dealerships" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓">
           <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
           <div class="form-group">
             <label for="dealership-name" class="col-form-label">Name:</label>
-
-            <input class="form-control" type="text" name="dealership[name]" id="dealership-name">
+            <input class="form-control" maxlength="16" type="text" name="dealership[name]" id="dealership-name">
+            <span id="js-error-name" class="fa fa-exclamation-circle errspan"></span>
           </div>
+          
           <div class="form-group">
             <label for="dealership-city" class="col-form-label">City:</label>
-            <input class="form-control" type="text" name="dealership[city]" id="dealership-city">
+            <input class="form-control"maxlength="25" type="text" name="dealership[city]" id="dealership-city">
+            <span id="js-error-city" class="fa fa-exclamation-circle errspan"></span>
           </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

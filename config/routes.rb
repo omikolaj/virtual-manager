@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resources :vehicles
   end
 
+  get '/dealership_validation', to: 'dealerships#validation'
+
   resources :employees
   post '/permissions', to: 'employees#permissions'
 

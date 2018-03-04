@@ -84,7 +84,128 @@ Dealership.resetForm = function(){
   }if($ulForm.length > 0){
     $ulForm.remove();
   }
+  Dealership.hideErrorIcons();
+  Dealership.checkInputs();
 }
+
+Dealership.hideErrorIcons = function(){
+  $("#js-error-name").hide()
+  $("#js-error-city").hide();
+}
+
+Dealership.checkInputs = function(){
+  $("#dealership-name, #dealership-city").on("keyup", function(e){
+    e.preventDefault();
+    let params = {};
+    if(e.currentTarget.id === "dealership-name"){
+      let name = $("#dealership-name").val();
+      params.name = name;
+    }else{
+      let city = $("#dealership-city").val();
+      params.city = city;
+    }
+    //let name = $("#dealership-name").val();
+    //let city = $("#dealership-city").val()
+    //let params = {name: name, city: city};
+    $.ajax({
+      url: '/dealership_validation',
+      type: 'GET',
+      dataType: 'json',
+      data: params
+    })
+    .success(function(json){
+      Dealership.showIcons(json)
+    })
+    .error(function(error){
+    })
+  })
+}
+
+Dealership.cityValid = function(json){
+  return (json.city === true) || ($("#dealership-city").val().length === 0) ? true :false  
+}
+
+Dealership.handleCityErrorIcon = function(json){
+  if(Dealership.cityValid(json)){
+    //hide icon
+    //$("#js-error-city").hide()
+    Dealership.notifyUserCitySuccess(json)
+  }else{
+    //show icon
+    //$("#js-error-city").show()
+    Dealership.notifyUserCityFailure(json)
+  }
+}
+
+Dealership.notifyUserCityFailure = function(json){
+  let errorCity = $("#js-error-city")
+  if(errorCity.hasClass("checkspan")){
+    $(errorCity.removeClass("fa fa-check-circle checkspan"))
+    $(errorCity.addClass("fa fa-exclamation-circle errspan"))
+  }else{
+    $(errorCity).show();
+  }
+}
+
+Dealership.notifyUserNameFailure = function(json){
+  let errorName = $("#js-error-name")
+  if(errorName.hasClass("checkspan")){
+    $(errorName).removeClass("fa fa-check-circle checkspan")
+    $(errorName).addClass("fa fa-exclamation-circle errspan");
+  }else{
+    $(errorName).show();
+  }
+}
+
+Dealership.nameValid = function(json){
+  if((json.name === true && json.uniquness === true) || ($("#dealership-name").val().length === 0)){
+      return true
+  }else{
+    return false
+  }
+}
+
+Dealership.handleNameErrorIcon = function(json){
+  if(Dealership.nameValid(json)){
+    //hide icon
+    Dealership.notifyUserNameSuccess(json)
+    //$("#js-error-name").hide()
+    //Dealership.notifyUser(json)
+  }else{
+    //show icon
+    //$("#js-error-name").show()
+    Dealership.notifyUserNameFailure(json)
+  }
+}
+
+Dealership.notifyUserNameSuccess = function(json){
+  let nameSuccess = $("#js-error-name");
+  if($("#dealership-name").val().length !==0){
+    $(nameSuccess).removeClass("fa fa-exclamation-circle errspan")
+    $(nameSuccess).addClass("fa fa-check-circle checkspan")
+  }else{
+    $(nameSuccess).hide()
+  }
+}
+
+Dealership.notifyUserCitySuccess = function(json){
+  let citySuccess = $("#js-error-city");
+  if($("#dealership-city").val().length !==0){
+    $(citySuccess).removeClass("fa fa-exclamation-circle errspan")
+    $(citySuccess).addClass("fa fa-check-circle checkspan")
+  }else{
+    $(citySuccess).hide()
+  }
+}
+
+Dealership.showIcons = function(json){
+  if("name" in json){
+    Dealership.handleNameErrorIcon(json)
+  }else{
+    Dealership.handleCityErrorIcon(json)
+  }
+}
+
 
 Dealership.formSubmitListener = function(){
   $("form").on("submit", Dealership.resetForm)
@@ -99,9 +220,6 @@ renderNewDealershipModal = function(){
   Dealership.formSubmitListener();
   Dealership.resetForm();
 }
-
-
-
 
 /* This would return params where the name and city values were duplicated. 
 Dealership.formSubmit = function(e){

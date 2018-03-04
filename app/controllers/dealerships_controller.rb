@@ -3,6 +3,10 @@ class DealershipsController < ApplicationController
 	before_action :dealership, only: [:show, :edit, :update, :create, :destroy]
 	before_action :require_login
     
+    def validation
+      render json: valid(params)
+    end
+
     def index
       @dealerships = Dealership.all
       respond_to do |format|
