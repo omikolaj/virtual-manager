@@ -142,6 +142,7 @@ Dealership.notifyUserCityFailure = function(json){
   if(errorCity.hasClass("checkspan")){
     $(errorCity.removeClass("fa fa-check-circle checkspan"))
     $(errorCity.addClass("fa fa-exclamation-circle errspan"))
+    $(errorCity).show();
   }else{
     $(errorCity).show();
   }
@@ -152,6 +153,7 @@ Dealership.notifyUserNameFailure = function(json){
   if(errorName.hasClass("checkspan")){
     $(errorName).removeClass("fa fa-check-circle checkspan")
     $(errorName).addClass("fa fa-exclamation-circle errspan");
+    $(errorName).show();
   }else{
     $(errorName).show();
   }
@@ -166,6 +168,7 @@ Dealership.nameValid = function(json){
 }
 
 Dealership.handleNameErrorIcon = function(json){
+  debugger
   if(Dealership.nameValid(json)){
     //hide icon
     Dealership.notifyUserNameSuccess(json)
@@ -183,6 +186,7 @@ Dealership.notifyUserNameSuccess = function(json){
   if($("#dealership-name").val().length !==0){
     $(nameSuccess).removeClass("fa fa-exclamation-circle errspan")
     $(nameSuccess).addClass("fa fa-check-circle checkspan")
+    $(nameSuccess).show();
   }else{
     $(nameSuccess).hide()
   }
@@ -193,12 +197,14 @@ Dealership.notifyUserCitySuccess = function(json){
   if($("#dealership-city").val().length !==0){
     $(citySuccess).removeClass("fa fa-exclamation-circle errspan")
     $(citySuccess).addClass("fa fa-check-circle checkspan")
+    $(citySuccess).show();
   }else{
     $(citySuccess).hide()
   }
 }
 
 Dealership.showIcons = function(json){
+  debugger
   if("name" in json){
     Dealership.handleNameErrorIcon(json)
   }else{
