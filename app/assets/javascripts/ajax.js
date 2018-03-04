@@ -102,7 +102,7 @@ Dealership.formSubmit = function(e){
 }
 */
 
-Dealership.resetForm = function(){
+Dealership.resetForm = function(e){
   $ulForm = $(".validations");
   if($("#name").length > 0){
     $("#dealership-name").css({'border-color': '#ced4da'})
@@ -111,13 +111,17 @@ Dealership.resetForm = function(){
   }if($ulForm.length > 0){
     $ulForm.remove();
   }
-  Dealership.hideErrorIcons();
+  Dealership.hideErrorIcons(e);
   Dealership.checkInputs();
 }
 
-Dealership.hideErrorIcons = function(){
-  $("#js-error-name").hide()
-  $("#js-error-city").hide();
+Dealership.hideErrorIcons = function(e){
+  if(!$("#dealership-name").val().length >= 1){
+    $("#js-error-name").hide() 
+  }
+  if(!$("#dealership-city").val().length >= 1){
+    $("#js-error-city").hide();
+  }  
 }
 
 Dealership.checkInputs = function(){
