@@ -35,10 +35,10 @@
   <div class="container">
     <%= render partial: "shared/flash_messages", flash: flash %>
   </div>
-    <h1 class="display-4">Welcome <%=current_user.name%></h1>
-      <p class="fa fa-briefcase fa-lg" aria-hidden="true"> Employer: <%= current_user.employer.name%></p><br>
-      <p class="fa fa-male fa-lg" aria-hidden="true"> <%=pluralize(display_manager.split(",").size, "Manager")%>: <%= display_manager %></p><br>
-      <p class="fa fa-key fa-lg" aria-hidden="true"> Permission Level: <%=current_user_permission%></p>
+    <h1 class="display-4">Welcome <%#=current_user.name%></h1>
+      <p class="fa fa-briefcase fa-lg" aria-hidden="true"> Employer: <%#= current_user.employer.name%></p><br>
+      <p class="fa fa-male fa-lg" aria-hidden="true"> <%#=pluralize(display_manager.split(",").size, "Manager")%>: <%#= display_manager %></p><br>
+      <p class="fa fa-key fa-lg" aria-hidden="true"> Permission Level: <%#=current_user_permission%></p>
       <p class="display-5 mb-5">Where would you like to go?</p>
   </div>
   <div class="container-fluid">

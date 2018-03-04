@@ -69,7 +69,8 @@ Dealership.formSubmit = function(e){
     ul: action,
     data: params,
     dataType: 'json',
-    method: 'POST'
+    method: 'POST',
+    crossDomain: true
   })
   .success(Dealership.appendNewDealership)
   .error(Dealership.error)
@@ -104,9 +105,6 @@ Dealership.checkInputs = function(){
       let city = $("#dealership-city").val();
       params.city = city;
     }
-    //let name = $("#dealership-name").val();
-    //let city = $("#dealership-city").val()
-    //let params = {name: name, city: city};
     $.ajax({
       url: '/dealership_validation',
       type: 'GET',
@@ -140,8 +138,7 @@ Dealership.handleCityErrorIcon = function(json){
 Dealership.notifyUserCityFailure = function(json){
   let errorCity = $("#js-error-city")
   if(errorCity.hasClass("checkspan")){
-    $(errorCity.removeClass("fa fa-check-circle checkspan"))
-    $(errorCity.addClass("fa fa-exclamation-circle errspan"))
+    $(errorCity).removeClass("fa fa-check-circle checkspan").addClass("fa fa-exclamation-circle errspan")
     $(errorCity).show();
   }else{
     $(errorCity).show();
@@ -151,11 +148,30 @@ Dealership.notifyUserCityFailure = function(json){
 Dealership.notifyUserNameFailure = function(json){
   let errorName = $("#js-error-name")
   if(errorName.hasClass("checkspan")){
-    $(errorName).removeClass("fa fa-check-circle checkspan")
-    $(errorName).addClass("fa fa-exclamation-circle errspan");
+    $(errorName).removeClass("fa fa-check-circle checkspan").addClass("fa fa-exclamation-circle errspan");
     $(errorName).show();
   }else{
     $(errorName).show();
+  }
+}
+
+Dealership.notifyUserNameSuccess = function(json){
+  let nameSuccess = $("#js-error-name");
+  if($("#dealership-name").val().length !==0){
+    $(nameSuccess).removeClass("fa fa-exclamation-circle errspan").addClass("fa fa-check-circle checkspan")
+    $(nameSuccess).show();
+  }else{
+    $(nameSuccess).hide()
+  }
+}
+
+Dealership.notifyUserCitySuccess = function(json){
+  let citySuccess = $("#js-error-city");
+  if($("#dealership-city").val().length !==0){
+    $(citySuccess).removeClass("fa fa-exclamation-circle errspan").addClass("fa fa-check-circle checkspan")
+    $(citySuccess).show();
+  }else{
+    $(citySuccess).hide()
   }
 }
 
@@ -168,7 +184,6 @@ Dealership.nameValid = function(json){
 }
 
 Dealership.handleNameErrorIcon = function(json){
-  debugger
   if(Dealership.nameValid(json)){
     //hide icon
     Dealership.notifyUserNameSuccess(json)
@@ -181,30 +196,7 @@ Dealership.handleNameErrorIcon = function(json){
   }
 }
 
-Dealership.notifyUserNameSuccess = function(json){
-  let nameSuccess = $("#js-error-name");
-  if($("#dealership-name").val().length !==0){
-    $(nameSuccess).removeClass("fa fa-exclamation-circle errspan")
-    $(nameSuccess).addClass("fa fa-check-circle checkspan")
-    $(nameSuccess).show();
-  }else{
-    $(nameSuccess).hide()
-  }
-}
-
-Dealership.notifyUserCitySuccess = function(json){
-  let citySuccess = $("#js-error-city");
-  if($("#dealership-city").val().length !==0){
-    $(citySuccess).removeClass("fa fa-exclamation-circle errspan")
-    $(citySuccess).addClass("fa fa-check-circle checkspan")
-    $(citySuccess).show();
-  }else{
-    $(citySuccess).hide()
-  }
-}
-
 Dealership.showIcons = function(json){
-  debugger
   if("name" in json){
     Dealership.handleNameErrorIcon(json)
   }else{
