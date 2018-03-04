@@ -48,7 +48,7 @@ Dealership.appendNewDealership = function(json){
   if(!json.hasOwnProperty("vehicles") && !json.hasOwnProperty("id")){
     let dealershipError = new Dealership(json)
     dealershipError.handleValidations(json)
-  }else{
+  }else{    
   const dealership = new Dealership(json);
   const dealershipDiv = dealership.renderNewDealershipDiv()
   $(".js-dealership-list").append(dealershipDiv)
