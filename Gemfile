@@ -46,7 +46,6 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'active_model_serializers'
 gem 'dotenv-rails', groups: [:development, :test]
 
-
 group :production do
   gem 'pg', '~> 0.21'
   gem 'rails_12factor'

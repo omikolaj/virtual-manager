@@ -14,4 +14,16 @@ module DealershipHelper
     end
   end
 
+  def return_errors(errors)
+    hash = {}
+    errors.map do |err|
+      if err.include?("Name")
+        hash[:name] = err
+      elsif err.include?("City")
+        hash[:city]= err
+      end
+    end
+    hash        
+  end
+
 end

@@ -42,15 +42,12 @@ class DealershipsController < ApplicationController
       if @dealership.save
         if request.format.json?
           render json: @dealership, status: 200
-        else
-                        
-          #redirect_to @dealership
-          #flash[:success] = "Dealership '#{@dealership.name}' has been successfully created!"
+        else                        
+          redirect_to @dealership
+          flash[:success] = "Dealership '#{@dealership.name}' has been successfully created!"
         end
-      else
-        #binding.pry
-        render json: @dealership.errors
-        render :new
+      else        
+        render json: return_errors(@dealership.errors.full_messages)
       end
     end
 

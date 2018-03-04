@@ -23,17 +23,40 @@ class Dealership{
   renderNewDealershipDiv(){
     return Dealership.template(this)
   }
+  handleValidations(errors){
+    this.styleErrors(errors)
+  }
+  styleErrors(errors){
+    var errmsg = `<ul class="validations">`
+    for(let err in errors){
+    $(`#dealership-${err}`).css({'border-color': 'red'})
+    }    
+    (function(){
+      for(let err in errors){
+        errmsg += `<li id=${err}>${errors[err]}</li>`
+      }
+      errmsg += `</ul>`
+    })();
+    this.prependErrors(errmsg)    
+  }
+  prependErrors(errmsg){
+    $(".modal-body").prepend(errmsg)
+  }
 }
 
 Dealership.appendNewDealership = function(json){
+  if(!json.hasOwnProperty("vehicles") && !json.hasOwnProperty("id")){
+    let dealershipError = new Dealership(json)
+    dealershipError.handleValidations(json)
+  }else{
   const dealership = new Dealership(json);
   const dealershipDiv = dealership.renderNewDealershipDiv()
-
   $(".js-dealership-list").append(dealershipDiv)
+  $('#new-dealership').modal('toggle');
+  }
 }
 
 Dealership.error = function(error){
-  debugger
   console.log("The request did not succeed", error)
 }
 
@@ -50,6 +73,30 @@ Dealership.formSubmit = function(e){
   })
   .success(Dealership.appendNewDealership)
   .error(Dealership.error)
+}
+
+Dealership.resetForm = function(){
+  $ulForm = $(".validations");
+  if($("#name").length > 0){
+    $("#dealership-name").css({'border-color': '#ced4da'})
+  }if($("#city").length > 0){
+    $("#dealership-city").css({'border-color': '#ced4da'})
+  }if($ulForm.length > 0){
+    $ulForm.remove();
+  }
+}
+
+Dealership.formSubmitListener = function(){
+  $("form").on("submit", Dealership.resetForm)
+            .on('submit', Dealership.formSubmit)
+}
+
+renderNewDealershipModal = function(){
+  Dealership.templateSource = $("#dealership-div-template").html();
+  Dealership.template = Handlebars.compile(Dealership.templateSource);
+  let newDealershipHTML = $("#new-dealership-modal").html()
+  $("main")[0].innerHTML += newDealershipHTML
+  Dealership.formSubmitListener();
 }
 
 /* This would return params where the name and city values were duplicated. 
@@ -80,17 +127,6 @@ Dealership.formSubmit = function(e){
   .catch(displayIfAnyErrors)
 }
 */
-Dealership.formSubmitListener = function(){
-  $("form").on("submit", Dealership.formSubmit)
-}
-
-renderNewDealershipModal = function(){
-  Dealership.templateSource = $("#dealership-div-template").html();
-  Dealership.template = Handlebars.compile(Dealership.templateSource);
-  let newDealershipHTML = $("#new-dealership-modal").html()
-  $("main")[0].innerHTML += newDealershipHTML
-  Dealership.formSubmitListener();
-}
 
 const path = (obj) => $(obj).attr("href")
 
