@@ -40,8 +40,8 @@ module DealershipHelper
     obj = {:name => false, :uniquness=>true}
     if hash[:name].size >= 2
       obj[:name] = true
-    end
-    if Dealership.find_by_name(params[:name].strip.downcase)
+    end    
+    if Dealership.where("lower(name) = ?", params[:name].downcase.strip).first
       obj[:uniquness] = false
     end
     obj
