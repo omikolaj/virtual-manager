@@ -97,7 +97,11 @@ renderNewDealershipModal = function(){
   let newDealershipHTML = $("#new-dealership-modal").html()
   $("main")[0].innerHTML += newDealershipHTML
   Dealership.formSubmitListener();
+  Dealership.resetForm();
 }
+
+
+
 
 /* This would return params where the name and city values were duplicated. 
 Dealership.formSubmit = function(e){
