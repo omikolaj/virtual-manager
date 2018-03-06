@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require custom
 //= require ajax
+//= require github_ajax
 //= require handlebars.min
 //= require bootstrap.bundle
 

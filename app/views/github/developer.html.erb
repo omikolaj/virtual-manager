@@ -1,0 +1,32 @@
+<h1>HI</h1>
+
+
+
+<form id="js-new-issue" action="/create_issue" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓">
+<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+<label for="issue-title">Issue Title</label><br>
+<input type="text" id="issue-title" name="github[title]"></input><br>
+
+<label for="issue-body">Issue Content</label><br>
+<textarea id="issue-body" name="github[body]" ></textarea><br>
+
+<input type="submit" value="Create Issue"></input>
+</form>
+
+
+<div>
+  <ul id="issues-display">
+  </ul>
+</div>
+
+
+<script id="issue-template" type="text/x-handlebars-template">
+  <h3>Title: {{title}}</h3>  
+  <p>{{body}}</p>
+  <img src="{{avatar}}" alt="user's avatar" height="42" width="42">
+  <p>{{author}}</p>
+</script>
+
+<script id="issues-template" type="text/x-handlebars-template">
+
+</script>

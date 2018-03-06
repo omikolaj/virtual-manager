@@ -2,9 +2,6 @@ class EmployeesController < ApplicationController
   include EmployeesHelper
   before_action :require_login, :employee
   skip_before_action :require_login, only: [:new, :create]
-    
-    def developer
-    end
 
     def permissions
       @employee = Employee.find_by(:id => params[:employee_id])

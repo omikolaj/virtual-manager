@@ -8,13 +8,13 @@ Rails.application.routes.draw do
   end
   get '/dealership_validation', to: 'dealerships#validation'
 
-  resources :employees do 
-    get 'developer', on: :collection
-  end
+  resources :employees
 
-  # API routes
+  # Developer/API routes
+  get '/developer', to: 'github#developer'
   get '/api/github', to: 'sessions#api_create'
   post '/webhooks', to: "github#webhooks"
+  post '/create_issue', to: 'github#create_issue'
 
   post '/permissions', to: 'employees#permissions'
 
