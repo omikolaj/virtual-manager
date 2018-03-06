@@ -14,6 +14,9 @@
                 <%= link_to "Command Center", employee_path(current_user.id), id:"js-nav-cc", class: "nav-link js-scroll-trigger" %>
             </li>
             <li class="nav-item">
+              <a href="/employees/developer" class="nav-link js-scroll-trigger">Developer</a>
+            </li>
+            <li class="nav-item">
               <%= link_to "Log Out", logout_path, method: 'DELETE', class: "nav-link js-scroll-trigger" %>
             </li>
             <% else %>

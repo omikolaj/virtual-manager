@@ -1,18 +1,33 @@
 class DealershipsController < ApplicationController
   include DealershipHelper, EmployeesHelper, VehiclesHelper
 	before_action :dealership, only: [:show, :edit, :update, :create, :destroy]
-	before_action :require_login
+  before_action :require_login
     
     def validation
       render json: valid(params)
     end
 
+    #resp = Faraday.post "https://github.com/login/oauth/access_token", {client_id: 'Iv1.9e2102dc932faf05', client_secret: #'e9e95e7a03feef361c1b117e439bc604ea0cc7ff', code: params[:code]}, {'Accept' => 'application/json'}
+    
     def index
-      @dealerships = Dealership.all
-      respond_to do |format|
-        format.html {render :index}
-        format.json {render json: @dealerships, status: 200}
+      binding.pry
+      #obj = {}
+      #binding.pry
+      #redirect = CGI.escape("http://localhost:3000/api/github")
+      #response1 = Faraday.get 'https://github.com/login/oauth/authorize', {client_id: 'Iv1.9e2102dc932faf05', redirect_uri: redirect}
+      response = Faraday.post("https://api.github.com/repos/omikolaj/hello-world/issues") do |req|        
+        req.params['oauth_token'] = session[:token]
+        req.params["Accept"] = 'application/json'
+        req.body = {:title => "mayu"}.to_json
       end
+      #@repos_array = JSON.parse(response.body)
+      #binding.pry      
+      #@dealerships = Dealership.all
+      #respond_to do |format|
+        #format.html {render :index}
+        #format.json {render json: @dealerships, status: 200}
+      #end
+      redirect_to "https://github.com/login/oauth/authorize?client_id=Iv1.9e2102dc932faf05&scope=repo"
     end
 
     def show

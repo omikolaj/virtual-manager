@@ -276,6 +276,7 @@ DEPENDENCIES
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   dotenv-rails
+  faraday
   figaro
   font-awesome-sass (~> 4.7.0)
   jbuilder (~> 2.5)

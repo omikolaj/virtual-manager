@@ -6,10 +6,16 @@ Rails.application.routes.draw do
   resources :dealerships do
     resources :vehicles
   end
-
   get '/dealership_validation', to: 'dealerships#validation'
 
-  resources :employees
+  resources :employees do 
+    get 'developer', on: :collection
+  end
+
+  # API routes
+  get '/api/github', to: 'sessions#api_create'
+  post '/webhooks', to: "github#webhooks"
+
   post '/permissions', to: 'employees#permissions'
 
   resources :vehicles

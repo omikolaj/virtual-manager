@@ -3,6 +3,9 @@ class EmployeesController < ApplicationController
   before_action :require_login, :employee
   skip_before_action :require_login, only: [:new, :create]
     
+    def developer
+    end
+
     def permissions
       @employee = Employee.find_by(:id => params[:employee_id])
       if @employee.update_permissions(params[:permission_id])
