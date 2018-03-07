@@ -1,15 +1,9 @@
 let attachGithubListeners = function(){
-    createIssueListener() 
+    //createIssueListener() 
 }
 
 let createIssueListener = function(){
-    $("form#js-new-issue").on("submit", submitIssueForThisRepo)
-}
-
-class Github{
-    constructor(){
-
-    }
+    //$("form#js-new-issue").on("submit", submitIssueForThisRepo)
 }
 
 class GithubIssue{
@@ -19,17 +13,60 @@ class GithubIssue{
         this.author = attr.user.login
         this.avatar = attr.user.avatar_url
     }
-    createReadyTemplate(){
+    createIssueReadyTemplate(){
         this.templateSource = $("#issue-template").html()
         this.template = Handlebars.compile(this.templateSource)
     }
-    rednerNewIssueDiv(){
-        debugger
-        return this.template(this)
+    rednerNewIssueDiv(){return this.template(this)
     }
-
+}
+let resetForm = function(){
+    $("#issue-title").empty();
+    $("#issue-body").empty();
+  }
+  
+let success = function(resp){
+    GithubIssue.appendIssue(resp)
+  }
+  
+  GithubIssue.appendIssue = function(resp){    
+      var issue = new GithubIssue(resp)
+      issue.createIssueReadyTemplate()
+      const githubDiv = issue.rednerNewIssueDiv()
+      $("#issues-display").append(githubDiv);
+  }
+  
+  GithubIssue.error = function(error){
+    debugger
+    console.error('Error:', error)
+  }
+/*
+let $form = $(this)
+let action = $form.attr("action")
+let title = $("#issue-title").val()
+let body= $("#issue-body").val()
+let params = $form.serialize()
+*/
+submitIssueForThisRepo = function(obj){
+    let form = $(obj)
+    fetch('/create_issue',{
+        method: "POST",
+        body: JSON.stringify({title: "title"}),
+        credentials: 'same-origin',
+        headers: {
+          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+    })
+    .then(handleErrors)
+    .then(resp=>resp.json())
+    .then(json=>success(json))
+    .then(resetForm)
+    .catch(displayIfAnyErrors)
 }
 
+/*
 submitIssueForThisRepo = function(e){
     e.preventDefault()
     let $form = $(this)
@@ -41,18 +78,10 @@ submitIssueForThisRepo = function(e){
         dataType: 'json',
         method: 'POST'
     })
-    .success(Github.appendIssue)
-    .error(Github.error)    
+    .success(GithubIssue.success)
+    .error(GithubIssue.error)    
 }
+*/
 
-Github.appendIssue = function(resp){    
-    var issue = new GithubIssue(resp)
-    issue.createReadyTemplate()
-    const githubDiv = issue.rednerNewIssueDiv()
-    debugger
-    $("#issues-display").append(githubDiv);
-}
 
-Github.error = function(e){
-    debugger
-}
+
