@@ -20,12 +20,13 @@ class GithubIssue{
     rednerNewIssueDiv(){return this.template(this)
     }
 }
-let resetForm = function(){
-    $("#issue-title").empty();
-    $("#issue-body").empty();
+
+let resetIssueForm = function(){
+    $("#issue-title").val('');
+    $("#issue-body").val('');
   }
   
-let success = function(resp){
+let successOnIssue = function(resp){
     GithubIssue.appendIssue(resp)
   }
   
@@ -40,18 +41,25 @@ let success = function(resp){
     debugger
     console.error('Error:', error)
   }
-/*
-let $form = $(this)
-let action = $form.attr("action")
-let title = $("#issue-title").val()
-let body= $("#issue-body").val()
-let params = $form.serialize()
-*/
+
+let dataForIssue = function(obj){
+  let $form = $(obj)
+  let data = {
+    action: $form.attr("action"),
+    issue: {
+      title: $form.find("#issue-title").val(),
+      body: $form.find("#issue-body").val()
+    }
+  }
+  return data;
+}
+
 submitIssueForThisRepo = function(obj){
-    let form = $(obj)
-    fetch('/create_issue',{
+    let data = dataForIssue(obj)
+    debugger
+    fetch(data.action,{
         method: "POST",
-        body: JSON.stringify({title: "title"}),
+        body: JSON.stringify(data.issue),
         credentials: 'same-origin',
         headers: {
           'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
@@ -61,12 +69,12 @@ submitIssueForThisRepo = function(obj){
     })
     .then(handleErrors)
     .then(resp=>resp.json())
-    .then(json=>success(json))
-    .then(resetForm)
+    .then(json=>successOnIssue(json))
+    .then(resetIssueForm)
     .catch(displayIfAnyErrors)
 }
 
-/*
+/* This works as well. keeping it for reference for now
 submitIssueForThisRepo = function(e){
     e.preventDefault()
     let $form = $(this)
