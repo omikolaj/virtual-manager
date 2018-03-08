@@ -27,23 +27,26 @@ let resetIssueForm = function(){
   }
   
 let successOnIssue = function(resp){
-    GithubIssue.appendIssue(resp)
+    GithubIssue.prependIssue(resp)
   }
   
-  GithubIssue.appendIssue = function(resp){    
+  GithubIssue.prependIssue = function(resp){    
       var issue = new GithubIssue(resp)
       issue.createIssueReadyTemplate()
       const githubDiv = issue.rednerNewIssueDiv()
-      $("#issues-display").append(githubDiv);
-  }
-  
-  GithubIssue.error = function(error){
-    debugger
-    console.error('Error:', error)
+      $("#issues-display").prepend(githubDiv);
   }
 
-let dataForIssue = function(obj){
-  let $form = $(obj)
+  appendAllIssues = function(issues){
+    for(let gitHubIssue of issues){
+      gitHubIssue.createIssueReadyTemplate()
+      const githubDiv = gitHubIssue.rednerNewIssueDiv()
+      $("#issues-display").append(githubDiv);
+    }
+  }
+
+let formDataForIssue = function(form){
+  let $form = $(form)
   let data = {
     action: $form.attr("action"),
     issue: {
@@ -54,10 +57,10 @@ let dataForIssue = function(obj){
   return data;
 }
 
-submitIssueForThisRepo = function(obj){
-    let data = dataForIssue(obj)
-    debugger
-    fetch(data.action,{
+// This request is going through my rails backend server, creating a new GithubService object to make a call GitHub API returning JSON
+submitIssueForThisRepo = function(form){
+    let data = formDataForIssue(form)
+    fetch(data.action, {
         method: "POST",
         body: JSON.stringify(data.issue),
         credentials: 'same-origin',
@@ -74,10 +77,11 @@ submitIssueForThisRepo = function(obj){
     .catch(displayIfAnyErrors)
 }
 
-/* This works as well. keeping it for reference for now
-submitIssueForThisRepo = function(e){
-    e.preventDefault()
-    let $form = $(this)
+/*
+//This works as well. keeping it for reference for now
+submitIssueForThisRepo = function(obj){
+    //e.preventDefault()
+    let $form = $(obj)
     let action = $form.attr("action")
     let params = $form.serialize()
     $.ajax({
@@ -91,5 +95,25 @@ submitIssueForThisRepo = function(e){
 }
 */
 
+// Retrieving all of the open issues making a fetch call directly from front end JavaScript
+showOpenIssues = function(){
+  fetch(`https://api.github.com/repos/omikolaj/hello-world/issues?state=${encodeURIComponent('open')}`,{
+    credentials: 'same-origin',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+      }
+    })
+    .then(handleErrors)
+    .then(resp=>resp.json())
+    .then(issuesOnSuccess)
+    .catch(displayIfAnyErrors)
+}
+
+let issuesOnSuccess = function(issues){
+  let issuesArr = []  
+  issues.forEach((item, index, array)=>issuesArr.push(new GithubIssue(item)))
+  appendAllIssues(issuesArr)
+}
 
 

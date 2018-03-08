@@ -8,6 +8,12 @@ class GithubController < ApplicationController
 
     end
 
+    def issues
+      github = GithubService.new
+      @issues = github.issues(session[:token])
+      render json: @issues, status: 200
+    end
+
     def create_issue
       github = GithubService.new
       @issue = github.submit_issue(session[:token], github_params)

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/api/github', to: 'sessions#api_create'
   post '/webhooks', to: "github#webhooks"
   post '/create_issue', to: 'github#create_issue'
+  get '/issues', to: 'github#issues'
 
   post '/permissions', to: 'employees#permissions'
 

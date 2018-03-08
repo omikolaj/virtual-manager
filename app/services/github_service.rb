@@ -31,6 +31,19 @@ class GithubService
       end
       JSON.parse(response.body)
     end
+
+    def issues(token)
+      binding.pry
+      response = Faraday.get("https://api.github.com/repos/omikolaj/hello-world/issues") do |req|
+        #req.params['oauth_token'] = token
+        req.params['Accept'] = 'application/json'
+        req.params["state"] = "closed"
+        binding.pry
+        req.params["sort"] = "created"
+      end
+      binding.pry
+      JSON.parse(response.body)
+    end
     
     
     private
