@@ -1,38 +1,67 @@
-<h1>HI</h1>
+<div class="jumbotron jumbotron-country text-center jumbotron-background top-buffer">
+ <h3>Welcome to our integration with GitHub</h3>
+    <li>Report bugs</li>
+    <li>See open issues</li>
+    <li>...</li>    
+ </div>
 
-
-
-<form id="js-new-issue" onsubmit="submitIssueForThisRepo(this);return false" action="/create_issue" accept-charset="UTF-8" method="post">
-<input name="utf8" type="hidden" value="✓">
-<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-<label for="issue-title">Issue Title</label><br>
-<input type="text" id="issue-title" name="github[title]"></input><br>
-
-<label for="issue-body">Issue Content</label><br>
-<textarea id="issue-body" name="github[body]" ></textarea><br>
-
-<input type="submit" class="btn btn-outline btn-xl js-scroll-trigger nobackground" value="Create Issue"></input>
-<button id="js-show-issues" data="0" class="btn btn-outline btn-xl js-scroll-trigger nobackground" onclick="showOpenIssues();return false;">Show open issues</button>
-</form>
-
-
-<div>
+<div class="container">    
+  <div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6 text-center mb-5">
   <div id='js-issues-msg'>
   </div>
+    <%= image_tag("bug_image.png", size: '92x92', class: 'mb-3')%>
+    <h3>Found a bug? Please report it</h3>
+    <form id="js-new-issue" onsubmit="submitIssueForThisRepo(this);return false" action="/create_issue" accept-charset="UTF-8" method="post">
+      <input name="utf8" type="hidden" value="✓">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <label for="issue-title">Issue Title</label><br>
+      <input type="text" id="issue-title" name="github[title]"></input><br>
+
+      <label for="issue-body">Issue Content</label><br>
+      <textarea id="issue-body" name="github[body]" ></textarea><br>
+      <input type="submit" class="btn btn-outline btn-xl js-scroll-trigger nobackground mt-3" value="Create Issue"></input>          
+    </form>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 text-center mb-5">
+    <%= image_tag("info.png", size: '92x92', class: 'mb-3')%>
+      <h3>You can also...</h3>
+      <button id="js-show-issues" data="0" class="btn btn-outline btn-xl js-scroll-trigger nobackground mt-3" onclick="showOpenIssues();return false;">Show open issues</button>
+
+      <form id="" onsubmit="forkRepo();return false;" action="/fork" accept-charset="UTF-8" method="post">
+       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <input type="submit" id="js-fork-repo" data="0" class="btn btn-outline btn-xl js-scroll-trigger nobackground mt-3" value="Fork Repository"></input>
+      </form>
+      <div class="mt-4" id="js-info-msg">        
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="container">    
+  <div class="row">
+  <div class="col-lg-6 col-md-6 col-sm-6 mb-5">
+<div>
   <ul id="issues-display">
   </ul>
 </div>
+</div>
+</div>
+</div>
+
+<!--Handlebars Templates -->
 
 <script id="issue-template" type="text/x-handlebars-template">
-  <h3>Title: {{title}}</h3>  
-  <p>{{body}}</p>
-  <img src="{{avatar}}" alt="user's avatar" height="42" width="42">
-  <p>{{author}}</p>
+  <h3>{{title}}</h3>  
+    <p>{{body}}</p>
+    <img src="{{avatar}}" alt="user's avatar" height="60" width="60"><br>
+    <span>-{{author}}</span>
+    <br><a href={{url}} target="_blank">View Issue on GitHub</a><br>
 </script>
 
 <script id="issues-template" type="text/x-handlebars-template">
    {{#each this}}
-    <li class="repo-issue">
+    <li class="repo-issue mb-3">
       {{>issuePartial}}
     </li>
     {{/each}}

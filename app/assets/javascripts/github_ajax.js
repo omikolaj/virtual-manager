@@ -11,6 +11,7 @@ class GithubIssue{
     constructor(attr){
         this.title = attr.title
         this.body = attr.body
+        this.url = attr.html_url
         this.author = attr.user.login
         this.avatar = attr.user.avatar_url;
         this.handlebarsRegistration = ()=>Handlebars.registerPartial("issuePartial", $("#issue-template").html())
@@ -75,8 +76,8 @@ let checkAnyOpen = function(resp){
 
 let hasErrors = function(data){  
   if(data.issue.title===''){
-    if($("#js-validation").text().indexOf("You must provide issue title")){
-      $("#js-issues-msg").append("<h3 id='js-validation'>You must provide issue title</h3>")
+    if($("#js-validation").text().indexOf("Title is required")){
+      $("#js-issues-msg").append("<h3 id='js-validation'>Title is required</h3>")
       $("#js-validation").hide();
     }
     $("#js-validation").show().delay(3000).fadeOut();
@@ -173,7 +174,54 @@ let issuesOnSuccess = function(issues){
     let issuesArr = []  
     issues.forEach((item, index, array)=>issuesArr.push(new GithubIssue(item)))
     appendAllIssues(issuesArr)
-  }  
+  }
+
+  forkRepo = function(){
+    fetch("/fork", {
+      method: "post", 
+      credentials: 'same-origin',     
+      headers:{
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
+        'Accept': 'application/json'        
+      }
+    })
+    .then(handleErrors)
+    .then(resp=>resp.json())
+    .then(success)
+    .catch(displayIfAnyErrors)
+  }
+
+  let success = function(resp){
+    switch(resp.fork===true){
+      case true:
+      onSuccesfulFork()
+      break;
+      case false:
+      onFailedFork()
+      break;
+    }    
+  }
+
+  let onSuccesfulFork = function(){
+      if($("#js-info-msg").text().trim().length === 0){
+        $("#js-info-msg").append("<h3>Success</h3>").delay(3000).fadeOut()
+      }else{
+        $("#js-info-msg").show().delay(3000).fadeOut();
+      }
+    }  
+
+  let onFailedFork = function(){
+
+      if($("#js-info-msg").text().trim().length === 0){
+        $("#js-info-msg").append("<h3>Something went wrong, you may have already forked this repo</h3>").delay(3000).fadeOut()
+      }else{
+        $("#js-info-msg").show().delay(3000).fadeOut();
+      }
+    }
+  
+   
+
+
 
 
 

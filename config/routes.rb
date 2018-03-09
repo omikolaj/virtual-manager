@@ -11,11 +11,13 @@ Rails.application.routes.draw do
   resources :employees
 
   # Developer/API routes
+  get '/repositories', to: 'github#repositories'
   get '/developer', to: 'github#developer'
   get '/api/github', to: 'sessions#api_create'
   post '/webhooks', to: "github#webhooks"
   post '/create_issue', to: 'github#create_issue'
   get '/issues', to: 'github#issues'
+  post '/fork', to: 'github#fork'
 
   post '/permissions', to: 'employees#permissions'
 

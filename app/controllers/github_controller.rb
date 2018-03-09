@@ -8,6 +8,12 @@ class GithubController < ApplicationController
 
     end
 
+    def fork
+      github = GithubService.new
+      @fork = github.fork(session[:token])      
+      render json: @fork, status: 200
+    end
+
     def issues
       github = GithubService.new
       @issues = github.issues(session[:token])
