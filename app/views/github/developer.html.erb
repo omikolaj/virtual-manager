@@ -12,7 +12,7 @@
 <textarea id="issue-body" name="github[body]" ></textarea><br>
 
 <input type="submit" class="btn btn-outline btn-xl js-scroll-trigger nobackground" value="Create Issue"></input>
-<a href="#" class="btn btn-outline btn-xl js-scroll-trigger" onclick="showOpenIssues();return false;">Show open issues</a>
+<button id="js-show-issues" data="0" class="btn btn-outline btn-xl js-scroll-trigger nobackground" onclick="showOpenIssues();return false;">Show open issues</button>
 </form>
 
 
@@ -20,7 +20,6 @@
   <ul id="issues-display">
   </ul>
 </div>
-
 
 <script id="issue-template" type="text/x-handlebars-template">
   <h3>Title: {{title}}</h3>  
@@ -30,5 +29,9 @@
 </script>
 
 <script id="issues-template" type="text/x-handlebars-template">
-
+   {{#each this}}
+    <li class="repo-issue">
+      {{>issuePartial}}
+    </li>
+    {{/each}}
 </script>

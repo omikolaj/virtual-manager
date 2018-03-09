@@ -1,5 +1,6 @@
 let attachGithubListeners = function(){
     //createIssueListener() 
+    
 }
 
 let createIssueListener = function(){
@@ -11,14 +12,17 @@ class GithubIssue{
         this.title = attr.title
         this.body = attr.body
         this.author = attr.user.login
-        this.avatar = attr.user.avatar_url
+        this.avatar = attr.user.avatar_url;
+        this.handlebarsRegistration = ()=>Handlebars.registerPartial("issuePartial", $("#issue-template").html())
+        this.handlebarsRegistration();
     }
-    createIssueReadyTemplate(){
-        this.templateSource = $("#issue-template").html()
-        this.template = Handlebars.compile(this.templateSource)
-    }
-    rednerNewIssueDiv(){return this.template(this)
-    }
+}
+
+let rednerNewIssuesDiv = function(collection){return template(collection)}
+
+let createIssuesReadyTemplate = function(){
+  this.templateSource = $("#issues-template").html()
+  this.template = Handlebars.compile(this.templateSource)
 }
 
 let resetIssueForm = function(){
@@ -30,19 +34,18 @@ let successOnIssue = function(resp){
     GithubIssue.prependIssue(resp)
   }
   
-  GithubIssue.prependIssue = function(resp){    
-      var issue = new GithubIssue(resp)
-      issue.createIssueReadyTemplate()
-      const githubDiv = issue.rednerNewIssueDiv()
+  GithubIssue.prependIssue = function(resp){   
+      let issue = new Array(new GithubIssue(resp))
+      createIssuesReadyTemplate()
+      const githubDiv = rednerNewIssuesDiv(issue)
       $("#issues-display").prepend(githubDiv);
   }
 
   appendAllIssues = function(issues){
-    for(let gitHubIssue of issues){
-      gitHubIssue.createIssueReadyTemplate()
-      const githubDiv = gitHubIssue.rednerNewIssueDiv()
-      $("#issues-display").append(githubDiv);
-    }
+    createIssuesReadyTemplate()
+    const githubDiv = rednerNewIssuesDiv(issues);
+    $("#issues-display").html('')
+    $("#issues-display").append(githubDiv);
   }
 
 let formDataForIssue = function(form){
@@ -95,8 +98,29 @@ submitIssueForThisRepo = function(obj){
 }
 */
 
+let checkButtonProperties = function(btn){  
+  let ajax = false;
+  if(btn.attr('data') == '1'){
+    ajax = modifyButtonText(btn);    
+  }
+  return ajax; 
+}
+
+let modifyButtonText = function(btn){
+  let issuesDiv = $("#issues-display")
+  if(btn.text() === "Collapse"){
+    issuesDiv.hide();
+    btn.text("Show open issues")
+  }else if(btn.text() === "Show open issues"){
+    issuesDiv.show();
+    btn.text("Collapse")    
+  }
+  return true; 
+}
+
 // Retrieving all of the open issues making a fetch call directly from front end JavaScript
 showOpenIssues = function(){
+  if(checkButtonProperties($("#js-show-issues"))){return false;}
   fetch(`https://api.github.com/repos/omikolaj/hello-world/issues?state=${encodeURIComponent('open')}`,{
     credentials: 'same-origin',
     headers: {
@@ -107,13 +131,21 @@ showOpenIssues = function(){
     .then(handleErrors)
     .then(resp=>resp.json())
     .then(issuesOnSuccess)
-    .catch(displayIfAnyErrors)
+    .then(showOpenIssuesFired)
+    .catch(displayIfAnyErrors) 
 }
+
+let showOpenIssuesFired = function(){
+  let issueDiv = $("#js-show-issues")
+  issueDiv.attr('data','1');
+  $("#js-show-issues").text("Collapse")
+ };
 
 let issuesOnSuccess = function(issues){
   let issuesArr = []  
   issues.forEach((item, index, array)=>issuesArr.push(new GithubIssue(item)))
   appendAllIssues(issuesArr)
 }
+
 
 
