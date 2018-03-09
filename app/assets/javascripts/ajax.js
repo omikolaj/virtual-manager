@@ -2,7 +2,7 @@ $(()=>init());
 
 function init(){
   attachListeners()
-  handlebarsDebugger()
+  handlebarsDebugger()  
 }
 
 let attachListeners = function(){

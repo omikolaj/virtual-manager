@@ -60,9 +60,34 @@ let formDataForIssue = function(form){
   return data;
 }
 
+let checkIssuesDiv = () => !$(".repo-issue").text().length>0 ? false : true
+
+let checkAnyOpen = function(resp){
+  if(checkIssuesDiv()){return false;}
+  if(!resp.length>0){
+    if($("#js-no-open-issues").text().indexOf("There are no open issues")){
+      $("#js-issues-msg").append("<h3 id='js-no-open-issues'>There are no open issues</h3>")
+      $("#js-no-open-issues").hide();
+    }
+    $("#js-no-open-issues").show().delay(3000).fadeOut();
+  }
+}
+
+let hasErrors = function(data){  
+  if(data.issue.title===''){
+    if($("#js-validation").text().indexOf("You must provide issue title")){
+      $("#js-issues-msg").append("<h3 id='js-validation'>You must provide issue title</h3>")
+      $("#js-validation").hide();
+    }
+    $("#js-validation").show().delay(3000).fadeOut();
+    return true;
+  }
+}
+
 // This request is going through my rails backend server, creating a new GithubService object to make a call GitHub API returning JSON
 submitIssueForThisRepo = function(form){
     let data = formDataForIssue(form)
+    if(hasErrors(data)){return false;}
     fetch(data.action, {
         method: "POST",
         body: JSON.stringify(data.issue),
@@ -131,21 +156,25 @@ showOpenIssues = function(){
     .then(handleErrors)
     .then(resp=>resp.json())
     .then(issuesOnSuccess)
-    .then(showOpenIssuesFired)
     .catch(displayIfAnyErrors) 
 }
 
-let showOpenIssuesFired = function(){
+let showOpenIssuesFired = function(issues){
+  if(issues === undefined || issues.length===0){return false;}
   let issueDiv = $("#js-show-issues")
   issueDiv.attr('data','1');
   $("#js-show-issues").text("Collapse")
  };
 
 let issuesOnSuccess = function(issues){
-  let issuesArr = []  
-  issues.forEach((item, index, array)=>issuesArr.push(new GithubIssue(item)))
-  appendAllIssues(issuesArr)
-}
+  checkAnyOpen(issues)
+  showOpenIssuesFired(issues)
+  if(issues === undefined || issues.length===0){return false;}
+    let issuesArr = []  
+    issues.forEach((item, index, array)=>issuesArr.push(new GithubIssue(item)))
+    appendAllIssues(issuesArr)
+  }  
+
 
 
 
