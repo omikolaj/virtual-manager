@@ -11,7 +11,6 @@ let attachListeners = function(){
   viewVehicle();
   displayCommandCenter();
   menuComandCenter();
-  attachGithubListeners();
 };
 
 // Create Dealership class

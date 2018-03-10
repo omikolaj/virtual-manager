@@ -14,10 +14,7 @@ Rails.application.routes.draw do
   get '/authorize', to: 'sessions#authorize'
   get '/developer', to: 'github#developer'
   get '/api', to: 'sessions#api_create'
-  post '/webhooks', to: "github#webhooks"
   post '/create_issue', to: 'github#create_issue'
-  get '/issues', to: 'github#issues'
-  post '/fork', to: 'github#fork'
 
 
   post '/permissions', to: 'employees#permissions'
