@@ -8,16 +8,12 @@ class SessionsController < ApplicationController
     end
 
     def new
-
     end
 
-    def api_create
+    def api_create      
       github = GithubService.new
-      session[:token] = github.authenticate!('Iv1.9e2102dc932faf05', 'e9e95e7a03feef361c1b117e439bc604ea0cc7ff', params[:code])
-      redirect_to developer_path
-      #user_resp = Faraday.get "https://api.github.com/user", {}, {'Authorization' => "token #{session[:token]}", 'Accept' => 'application/json'}
-      #user_json = JSON.parse(user_resp.body)
-      #session[:username] = user_json["login"]         
+      session[:token] = github.authenticate!(ENV['GITHUB_ID_API'], ENV['GITHUB_SECRET_API'], params[:code])
+      redirect_to developer_path        
     end
 
     def create
