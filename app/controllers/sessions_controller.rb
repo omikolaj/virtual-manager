@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
 
     def api_create      
       github = GithubService.new
+      binding.pry
       session[:token] = github.authenticate!(ENV['GITHUB_ID_API'], ENV['GITHUB_SECRET_API'], params[:code])
       redirect_to developer_path        
     end
