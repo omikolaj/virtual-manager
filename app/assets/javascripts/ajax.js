@@ -157,11 +157,9 @@ Dealership.cityValid = function(json){
 Dealership.handleCityErrorIcon = function(json){
   if(Dealership.cityValid(json)){
     //hide icon
-    //$("#js-error-city").hide()
     Dealership.notifyUserCitySuccess(json)
   }else{
     //show icon
-    //$("#js-error-city").show()
     Dealership.notifyUserCityFailure(json)
   }
 }
@@ -218,11 +216,8 @@ Dealership.handleNameErrorIcon = function(json){
   if(Dealership.nameValid(json)){
     //hide icon
     Dealership.notifyUserNameSuccess(json)
-    //$("#js-error-name").hide()
-    //Dealership.notifyUser(json)
   }else{
     //show icon
-    //$("#js-error-name").show()
     Dealership.notifyUserNameFailure(json)
   }
 }

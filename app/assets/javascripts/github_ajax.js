@@ -18,8 +18,6 @@ let createIssuesReadyTemplate = function(){
   this.template = Handlebars.compile(this.templateSource)
 }
 
-
-
 appendAllIssues = function(issues){
   createIssuesReadyTemplate()
   const githubDiv = rednerNewIssuesDiv(issues);

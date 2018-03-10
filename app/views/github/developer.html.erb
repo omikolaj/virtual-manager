@@ -7,7 +7,7 @@
 <div class="container">    
   <div class="row">
   <div class="col-lg-6 col-md-6 col-sm-6 text-center mb-5">
-
+   <%= render partial: "shared/flash_messages", flash: flash %>
     <%= image_tag("bug_image.png", size: '92x92', class: 'mb-3')%>
     <h3>Found a bug? Please report it</h3>
     <form id="js-new-issue" action="/create_issue" accept-charset="UTF-8" method="post">
@@ -22,8 +22,8 @@
     </form>
     </div>
     <div class="col-lg-6 col-md-6 col-sm-6 text-center mb-5">
-      <div id='js-issues-msg'>
-    </div>
+    <div id='js-issues-msg'>
+  </div>
     <%= image_tag("info.png", size: '92x92', class: 'mb-3')%>
       <h3>You can also...</h3>
       <button id="js-show-issues" data="0" class="btn btn-outline btn-xl js-scroll-trigger nobackground mt-3" onclick="showOpenIssues();return false;">Show open issues</button>           
