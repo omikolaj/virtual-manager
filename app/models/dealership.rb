@@ -3,7 +3,7 @@ class Dealership < ApplicationRecord
     has_many :dealership_vehicles
     has_many :vehicles, :through => :dealership_vehicles
     has_many :employees
-    validates :name, :city, presence: true, length: { minimum: 2 }, format: { without: /\s/ }
+    validates :name, :city, presence: true, length: { minimum: 2 }, format: { with: /^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$/, :multiline => true }#without: \s
     validates_uniqueness_of :name, :case_sensitive => false
     scope :id_array, ->(avoid) {
         pluck(:id).reject{|d| d == avoid.to_i }

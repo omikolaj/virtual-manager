@@ -21,7 +21,6 @@ class Employee < ApplicationRecord
         employee.password = SecureRandom.hex
         employee.name = employee.set_github_name(auth_hash)
         employee.omniauth = true
-        employee.token = auth_hash[:credentials][:token]
         employee.dealership_id = 1
       end
     end
@@ -47,5 +46,4 @@ class Employee < ApplicationRecord
     def set_github_name(auth_hash)
       auth_hash["info"]["name"].nil? ? auth_hash["info"]["nickname"] : auth_hash["info"]["name"]
     end
-
 end

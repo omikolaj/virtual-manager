@@ -17,4 +17,9 @@ module SessionsHelper
       @current_user = nil
     end
 
+    def logged_in_api?
+      !!session[:token]
+    end
+
+
 end

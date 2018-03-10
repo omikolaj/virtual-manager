@@ -46,6 +46,7 @@ gem 'bootstrap-sass', '~> 3.3.7'
 gem 'active_model_serializers'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'faraday'
+gem 'rack-cors', :require => 'rack/cors'
 
 group :production do
   gem 'pg', '~> 0.21'

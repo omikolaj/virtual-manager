@@ -1,12 +1,3 @@
-let attachGithubListeners = function(){
-    //createIssueListener() 
-    
-}
-
-let createIssueListener = function(){
-    //$("form#js-new-issue").on("submit", submitIssueForThisRepo)
-}
-
 class GithubIssue{
     constructor(attr){
         this.title = attr.title
@@ -21,45 +12,21 @@ class GithubIssue{
 
 let rednerNewIssuesDiv = function(collection){return template(collection)}
 
+
 let createIssuesReadyTemplate = function(){
   this.templateSource = $("#issues-template").html()
   this.template = Handlebars.compile(this.templateSource)
 }
 
-let resetIssueForm = function(){
-    $("#issue-title").val('');
-    $("#issue-body").val('');
-  }
-  
-let successOnIssue = function(resp){
-    GithubIssue.prependIssue(resp)
-  }
-  
-  GithubIssue.prependIssue = function(resp){   
-      let issue = new Array(new GithubIssue(resp))
-      createIssuesReadyTemplate()
-      const githubDiv = rednerNewIssuesDiv(issue)
-      $("#issues-display").prepend(githubDiv);
-  }
 
-  appendAllIssues = function(issues){
-    createIssuesReadyTemplate()
-    const githubDiv = rednerNewIssuesDiv(issues);
-    $("#issues-display").html('')
-    $("#issues-display").append(githubDiv);
-  }
 
-let formDataForIssue = function(form){
-  let $form = $(form)
-  let data = {
-    action: $form.attr("action"),
-    issue: {
-      title: $form.find("#issue-title").val(),
-      body: $form.find("#issue-body").val()
-    }
-  }
-  return data;
+appendAllIssues = function(issues){
+  createIssuesReadyTemplate()
+  const githubDiv = rednerNewIssuesDiv(issues);
+  $("#issues-display").html('')
+  $("#issues-display").append(githubDiv);
 }
+
 
 let checkIssuesDiv = () => !$(".repo-issue").text().length>0 ? false : true
 
@@ -74,55 +41,6 @@ let checkAnyOpen = function(resp){
   }
 }
 
-let hasErrors = function(data){  
-  if(data.issue.title===''){
-    if($("#js-validation").text().indexOf("Title is required")){
-      $("#js-issues-msg").append("<h3 id='js-validation'>Title is required</h3>")
-      $("#js-validation").hide();
-    }
-    $("#js-validation").show().delay(3000).fadeOut();
-    return true;
-  }
-}
-
-// This request is going through my rails backend server, creating a new GithubService object to make a call GitHub API returning JSON
-submitIssueForThisRepo = function(form){
-    let data = formDataForIssue(form)
-    if(hasErrors(data)){return false;}
-    fetch(data.action, {
-        method: "POST",
-        body: JSON.stringify(data.issue),
-        credentials: 'same-origin',
-        headers: {
-          'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-    })
-    .then(handleErrors)
-    .then(resp=>resp.json())
-    .then(json=>successOnIssue(json))
-    .then(resetIssueForm)
-    .catch(displayIfAnyErrors)
-}
-
-/*
-//This works as well. keeping it for reference for now
-submitIssueForThisRepo = function(obj){
-    //e.preventDefault()
-    let $form = $(obj)
-    let action = $form.attr("action")
-    let params = $form.serialize()
-    $.ajax({
-        url: action,
-        data: params,
-        dataType: 'json',
-        method: 'POST'
-    })
-    .success(GithubIssue.success)
-    .error(GithubIssue.error)    
-}
-*/
 
 let checkButtonProperties = function(btn){  
   let ajax = false;
@@ -176,31 +94,17 @@ let issuesOnSuccess = function(issues){
     appendAllIssues(issuesArr)
   }
 
-  forkRepo = function(){
-    fetch("/fork", {
-      method: "post", 
-      credentials: 'same-origin',     
-      headers:{
-        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content'),
-        'Accept': 'application/json'        
-      }
-    })
-    .then(handleErrors)
-    .then(resp=>resp.json())
-    .then(success)
-    .catch(displayIfAnyErrors)
-  }
 
-  let success = function(resp){
-    switch(resp.fork===true){
-      case true:
-      onSuccesfulFork()
-      break;
-      case false:
-      onFailedFork()
-      break;
-    }    
-  }
+let success = function(resp){
+  switch(resp.fork===true){
+    case true:
+    onSuccesfulFork()
+    break;
+    case false:
+    onFailedFork()
+    break;
+  }    
+}
 
   let onSuccesfulFork = function(){
       if($("#js-info-msg").text().trim().length === 0){
@@ -211,18 +115,9 @@ let issuesOnSuccess = function(issues){
     }  
 
   let onFailedFork = function(){
-
       if($("#js-info-msg").text().trim().length === 0){
-        $("#js-info-msg").append("<h3>Something went wrong, you may have already forked this repo</h3>").delay(3000).fadeOut()
+        $("#js-info-msg").append("<h3>You may have already forked this repo</h3>").delay(3000).fadeOut()
       }else{
         $("#js-info-msg").show().delay(3000).fadeOut();
       }
     }
-  
-   
-
-
-
-
-
-
