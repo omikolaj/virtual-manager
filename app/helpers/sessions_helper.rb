@@ -13,7 +13,6 @@ module SessionsHelper
     end
 
     def log_out
-      binding.pry
       session.delete(:user_id)
       session.delete(:developer)
       @current_user = nil
