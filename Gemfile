@@ -47,6 +47,7 @@ gem 'active_model_serializers'
 gem 'dotenv-rails', groups: [:development, :test]
 gem 'faraday'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'execjs'
 
 group :production do
   gem 'pg', '~> 0.21'

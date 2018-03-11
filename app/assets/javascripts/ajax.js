@@ -1,4 +1,5 @@
-$(()=>init());
+$(function(){
+  init()});
 
 function init(){
   attachListeners()
