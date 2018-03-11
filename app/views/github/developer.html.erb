@@ -34,8 +34,12 @@
        <input name="utf8" type="hidden" value="✓">
        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>  
        <input type="submit" class="btn btn-outline btn-xl js-scroll-trigger nobackground mt-3" value="Fork This Repository"></input>  
-       </form>         
-
+       </form>
+       <% if @fork%>
+        <p>
+          <a href="<%=@fork["html_url"]%>" class="btn btn-outline btn-xl js-scroll-trigger nobackground mt-3">See the repo on github!</a>        
+        </p>
+       <%end%>
       <div class="mt-4" id="js-info-msg">        
       </div>
     </div>

@@ -22,10 +22,10 @@ class GithubController < ApplicationController
         flash[:notice] = "You have successfully forked this repo!"
       else
         flash[:notice] = "Something went wrong..."
-      end
-      redirect_to developer_path
+      end      
+      render 'github/developer'
     end
-    
+
     private
     def github_params
        params.require(:github).permit(:title, :body)
