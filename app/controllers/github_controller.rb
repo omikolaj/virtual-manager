@@ -7,7 +7,7 @@ class GithubController < ApplicationController
       github = GithubService.new
       @issue = github.submit_issue(session[:token], github_params)
       if !valid_response?(@issue.status)
-        flash[:notice] = "You must provide the title"        
+        flash[:notice] = "Something went wrong...Did you provide a title?"        
       else        
         flash[:notice] = "You have successfully created an issue!"
       end

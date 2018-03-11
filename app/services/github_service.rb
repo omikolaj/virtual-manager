@@ -15,7 +15,7 @@ class GithubService
         req.params['oauth_token'] = token
         req.params["Accept"] = 'application/json'
         req.body = params.to_json
-      end
+      end      
       response
     end         
 end

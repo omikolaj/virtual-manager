@@ -63,7 +63,7 @@ let modifyButtonText = function(btn){
 // Retrieving all of the open issues making a fetch call directly from front end JavaScript
 showOpenIssues = function(){
   if(checkButtonProperties($("#js-show-issues"))){return false;}
-  fetch(`https://api.github.com/repos/omikolaj/hello-world/issues?state=${encodeURIComponent('open')}`,{
+  fetch(`https://api.github.com/repos/omikolaj/virtual-manager/issues?state=${encodeURIComponent('open')}`,{
     credentials: 'same-origin',
     headers: {
       'Accept': 'application/json',
