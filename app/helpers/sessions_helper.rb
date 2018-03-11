@@ -13,7 +13,9 @@ module SessionsHelper
     end
 
     def log_out
+      binding.pry
       session.delete(:user_id)
+      session.delete(:developer)
       @current_user = nil
     end
 
@@ -21,5 +23,17 @@ module SessionsHelper
       !!session[:token]
     end
 
+    def authenticate_for_api
+      session[:developer] = true
+      redirect_to '/auth/github' unless logged_in_api?
+    end
+
+    def redirect_user
+      if session[:developer]
+        redirect_to developer_path
+      else
+        redirect_to root_path
+      end
+    end
 
 end

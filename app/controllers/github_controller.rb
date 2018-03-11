@@ -1,4 +1,5 @@
 class GithubController < ApplicationController
+  before_action :authenticate_for_api, only:[:fork, :create_issue, :developer]
         
     def developer
     end
@@ -17,6 +18,11 @@ class GithubController < ApplicationController
     def fork
       github = GithubService.new
       @fork = github.fork(session[:token])
+      if @fork["fork"] 
+        flash[:notice] = "You have successfully forked this repo!"
+      else
+        flash[:notice] = "Something went wrong..."
+      end
       redirect_to developer_path
     end
     
@@ -26,6 +32,6 @@ class GithubController < ApplicationController
     end
 
     def valid_response?(status)
-      status == 200 || status == 201 || status == 204 ? true : false
+      status.to_s.include?('20') ? true : false
     end
 end

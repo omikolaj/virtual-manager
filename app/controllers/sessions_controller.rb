@@ -10,18 +10,12 @@ class SessionsController < ApplicationController
     def new
     end
 
-    def api_create      
-      github = GithubService.new
-      session[:token] = github.authenticate!(ENV['GITHUB_ID_API'], ENV['GITHUB_SECRET_API'], params[:code])
-      redirect_to developer_path        
-    end
-
     def create
       if auth_hash = request.env["omniauth.auth"]
         if @employee = Employee.find_or_create_by_omniauth(auth_hash)
-          log_in @employee          
-          session[:token] = auth_hash["credentials"]["token"]
-          redirect_to root_path
+          log_in @employee
+          session[:token] = auth_hash["credentials"]["token"]         
+          redirect_user
         else
           flash.now[:danger] = "Email already exists"
           render :welcome
