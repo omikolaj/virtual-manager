@@ -17,7 +17,6 @@ class GithubController < ApplicationController
     def fork
       github = GithubService.new
       @fork = github.fork(session[:token])
-      binding.pry
       redirect_to developer_path
     end
     
