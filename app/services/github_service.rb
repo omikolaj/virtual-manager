@@ -11,11 +11,18 @@ class GithubService
     end
 
     def submit_issue(token, params)
-      response = Faraday.post("https://api.github.com/repos/omikolaj/virtual-manager/issues") do |req|        
+      response = Faraday.post("https://api.github.com/repos/omikolaj/hello-world/issues") do |req|        
         req.params['oauth_token'] = token
         req.params["Accept"] = 'application/json'
         req.body = params.to_json
-      end      
+      end
       response
-    end         
+    end
+
+    def fork(token)
+      response = Faraday.post("https://api.github.com/repos/omikolaj/virtual-manager/forks") do |req|
+        req.params['oauth_token'] = token
+      end
+      JSON.parse(response.body)
+    end
 end

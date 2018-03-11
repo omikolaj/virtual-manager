@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper, ApplicationHelper
   protect_from_forgery with: :exception
   before_action :require_login, :get_collections, only: [:home]
-  before_action :authenticate_api_user, only:[:fork, :issues, :create_issue, :developer]
+  #before_action :authenticate_api_user, only:[:fork, :issues, :create_issue, :developer]
   skip_before_action :require_login, only: [:welcome]
 
 
@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_api_user
-    client_id = "Iv1.9e2102dc932faf05"
+    client_id = ENV['']
     github_url = "https://github.com/login/oauth/authorize?client_id=#{client_id}&scope=repo"
     redirect_to github_url unless logged_in_api?
   end

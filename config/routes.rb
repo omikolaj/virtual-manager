@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/developer', to: 'github#developer'
   get '/api', to: 'sessions#api_create'
   post '/create_issue', to: 'github#create_issue'
+  post '/fork', to: 'github#fork'
 
 
   post '/permissions', to: 'employees#permissions'

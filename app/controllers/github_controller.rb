@@ -13,6 +13,13 @@ class GithubController < ApplicationController
       end
       redirect_to developer_path
     end
+
+    def fork
+      github = GithubService.new
+      @fork = github.fork(session[:token])
+      binding.pry
+      redirect_to developer_path
+    end
     
     private
     def github_params

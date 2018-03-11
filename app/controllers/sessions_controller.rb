@@ -20,6 +20,7 @@ class SessionsController < ApplicationController
       if auth_hash = request.env["omniauth.auth"]
         if @employee = Employee.find_or_create_by_omniauth(auth_hash)
           log_in @employee          
+          session[:token] = auth_hash["credentials"]["token"]
           redirect_to root_path
         else
           flash.now[:danger] = "Email already exists"
