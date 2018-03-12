@@ -9,7 +9,7 @@ Ruby on Rails application that mimics car dealership assets management. It uses 
 - Asynchronous JavaScript and XML (AJAX) used to load 'Command Center', 'View All Dealerships' and 'View Vehicle'
 - With use of JavaScript fetch and jQuery user gets live feedback on validations when creating a new dealerships 
 - Handlebars templates (Easily maintainable and highly reusable templates) including partials and iterators
-- '/dealerships', '/vehicles/:id', 'employees/:id' respond to .json requests with ActiveRecord serialization
+- '/dealerships', '/vehicles/:id', 'employees/:id' respond to .json requests using ActiveRecord serialization
 - GitHub API integration, from the 'Developer' tab users can create new issues, list all open issues and fork the repository for this project
 
 ## Usage
