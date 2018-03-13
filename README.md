@@ -2,6 +2,7 @@
 Ruby on Rails application that mimics car dealership assets management. It uses Bootstrap for styling and JavaScript with jQuery. Users can sign up as employees or managers. This application implements security measures for authentication and authorization. As a manager user has the ability to generate reports, modify employees' permission levels and create and delete dealerships. Check it out,we need new employees and managers to join the family!
 
 ## Features
+- Bootstrap, jQuery, JavaScript used for styling
 - Custom built authentication system
 - Custom built authorization system with different permission levels
 - OmniAuth Github strategy (Login with GitHub) 
