@@ -11,6 +11,7 @@ Ruby on Rails application that mimics car dealership assets management. It uses 
 - Handlebars templates (Easily maintainable and highly reusable templates) including partials and iterators
 - '/dealerships', '/vehicles/:id', 'employees/:id' respond to .json requests using ActiveRecord serialization
 - GitHub API integration, from the 'Developer' tab users can create new issues, list all open issues and fork the repository for this project, right from the 'Developer' view
+- PostgreSQL database
 
 ## Usage
 This application has been deployed to Heroku. You can find the live version on http://virtual-manager-js.herokuapp.com
