@@ -1,4 +1,4 @@
-## Virtual Dealership Manager
+## Virtual Manager
 Ruby on Rails application that mimics car dealership assets management. It uses Bootstrap for styling and JavaScript with jQuery. Users can sign up as employees or managers. This application implements security measures for authentication and authorization. As a manager user has the ability to generate reports, modify employees' permission levels and create and delete dealerships. Check it out,we need new employees and managers to join the family!
 
 ## Features and Technologies used
