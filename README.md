@@ -15,6 +15,9 @@ Ruby on Rails application that mimics car dealership assets management. Users ca
 - GitHub API integration, from the 'Developer' tab users can create new issues, list all open issues and fork the repository for this project, right from the 'Developer' view
 - PostgreSQL database
 
+## Blog
+I wrote a blog post about this project, you can check it out [here](http://omikolaj.com/my_experience_with_cors)
+
 ## Usage
 This application has been deployed to Heroku. You can find the live version on http://virtual-manager-js.herokuapp.com
 After you have cloned the repository run "bundle install" and then run rake db:migrate. This application is set up to use postgreSQL database.
