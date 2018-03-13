@@ -6,11 +6,11 @@ Ruby on Rails application that mimics car dealership assets management. It uses 
 - Custom built authorization system with different permission levels
 - OmniAuth Github strategy (Login with GitHub) 
 - Full CRUD support (Create, Retrieve, Update, Delete) with complex inner joins relationships
-- Asynchronous JavaScript and XML (AJAX) used to load 'Command Center', 'View All Dealerships' and 'View Vehicle'
-- With use of JavaScript fetch and jQuery user gets live feedback on validations when creating a new dealerships 
+- Asynchronous JavaScript and XML (AJAX) used to load 'Command Center', 'View All Dealerships' and 'View Vehicle' views
+- With use of JavaScript fetch and jQuery user gets live feedback on validations when creating new dealerships 
 - Handlebars templates (Easily maintainable and highly reusable templates) including partials and iterators
 - '/dealerships', '/vehicles/:id', 'employees/:id' respond to .json requests using ActiveRecord serialization
-- GitHub API integration, from the 'Developer' tab users can create new issues, list all open issues and fork the repository for this project
+- GitHub API integration, from the 'Developer' tab users can create new issues, list all open issues and fork the repository for this project, right from the 'Developer' view
 
 ## Usage
 This application has been deployed to Heroku. You can find the live version on http://virtual-manager-js.herokuapp.com
