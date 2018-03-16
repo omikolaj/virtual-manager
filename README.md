@@ -16,7 +16,7 @@ Ruby on Rails application that mimics car dealership assets management. Users ca
 - PostgreSQL database
 
 ## Blog
-I wrote a blog post about this project, you can check it out [here](http://omikolaj.com/my_experience_with_cors)
+I wrote a blog post about this project, you can check it out www.omiko.co/blog/my-experience-with-cors
 
 ## Usage
 This application has been deployed to Heroku. You can find the live version on http://virtual-manager-js.herokuapp.com
