@@ -26,7 +26,7 @@ After you have cloned the repository run "bundle install" and then run rake db:m
 After cloning the repository run 'bundle install'. Run 'rake db:migrate' to set up the database schema. The application is set up to run the seed file to populate the database if it detects that the database is empty. 
 
 ## Contributing
-Bug reports and pull requests are welcome on GitHub at https://github.com/'omikolaj'/virtual-dealership-manager. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/omikolaj/virtual-dealership-manager. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 This project is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT)
